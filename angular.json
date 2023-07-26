@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/marriage",
+            "outputPath": "dist/marrige",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
