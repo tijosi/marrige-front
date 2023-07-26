@@ -1,0 +1,98 @@
+.home {
+  display: flex;
+  flex-direction: column;
+  padding: 0 5px;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  font-family: 'Noto Serif', serif;
+}
+
+.title {
+  margin: 0;
+  margin-top: 15px ;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.intro {
+  background: linear-gradient(180deg, #ffffff80 20%, transparent 90%);
+  width: 100%;
+  text-align: center;
+  padding: 0 10px;
+  margin-bottom: 20px;
+}
+
+.intro p {
+  font-size: 18px;
+}
+
+.box-gift {
+  width: 100%;
+}
+
+.card-gift {
+  backdrop-filter: blur(15px);
+  background-color: #ffffffd8;
+  padding: 5px;
+  box-shadow: 0px 0px 15px #00000041;
+  width: 48%;
+  border-radius: 0 0 15px 15px;
+  margin: 15px 1%;
+  display: inline-block;
+}
+
+.img-gift {
+  overflow: hidden;
+}
+
+.img-gift  img{
+  width: 100%;
+
+}
+
+.title-info-gift {
+  text-align: justify;
+  font-size: 18px;
+  height: 50px;
+  margin: 0;
+  overflow: hidden;
+}
+
+.price-info-gift {
+  font-weight: bold;
+  color: rgb(54, 54, 54);
+  font-size: 18px;
+  margin-bottom: 0;
+}
+
+.installment-price-info-gift {
+  font-weight: bold;
+  color: rgb(54, 54, 54);
+  height: 18px;
+  font-size: 12px;
+  margin: 0;
+}
+
+.pontos-info-gift {
+  color: #e8861ebc;
+  font-weight: bold;
+  font-size: 18px;
+  margin: 0;
+  margin-bottom: 5px;
+}
+
+.btn-value-gift {
+  width: calc(100% + 10px);
+  height: 40px;
+  outline: 0;
+  border: 0;
+  border-radius: 0 0 15px 15px;
+  background-color: #90c33e;
+  font-size: 20px;
+  transform: translate(-5px, 5px);
+  font-family: 'Roboto', sans-serif;
+}

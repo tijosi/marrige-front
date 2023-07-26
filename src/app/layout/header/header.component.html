@@ -1,0 +1,42 @@
+<nav class="navbar">
+
+  <div class="navbar-logo">
+    <a routerLink="">S & E</a>
+  </div>
+
+  <div class="toggler">
+    <span>
+      <fa-icon [class]="iconBars" [icon]="icon" (click)="openDropdown()"></fa-icon>
+    </span>
+  </div>
+
+  <div
+    class="navbar-dropdown"
+    [style]="'width: ' + widthDropdown"
+  >
+    <div class="dropdown-header">Opções</div>
+    <ul class="list-items">
+      <li class="item" (click)="routes('')">
+        <fa-icon class="item-icon" [icon]="faHome"></fa-icon>
+        Início
+      </li>
+      <li class="item" (click)="routes('presentes')">
+        <fa-icon class="item-icon" [icon]="faGifts"></fa-icon>
+        Presentes
+      </li>
+      <li class="item">
+        <fa-icon class="item-icon" [icon]="faUsers"></fa-icon>
+        Convidados
+      </li>
+      <li class="item padrinho">
+        <fa-icon class="item-icon" [icon]="faUserTie"></fa-icon>
+        Padrinhos
+      </li>
+      <li class="item sair" (click)="exitAcount()">
+        <fa-icon class="item-icon" [icon]="faSignOutAlt"></fa-icon>
+        Sair
+      </li>
+    </ul>
+  </div>
+
+</nav>

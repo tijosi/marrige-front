@@ -1,0 +1,97 @@
+<section class="home">
+  <div class="banner">
+    <div class="banner-photo">
+      <ngb-carousel
+        #carousel
+        [interval]="3000"
+        [pauseOnHover]="true"
+        [pauseOnFocus]="true"
+        [showNavigationArrows]="false"
+        [showNavigationIndicators]="false"
+      >
+        <ng-template ngbSlide *ngFor="let img of pathImgCarrousel; index as i">
+          <div class="picsum-img-wrapper">
+            <img [src]="img" style="width: 100%">
+          </div>
+        </ng-template>
+      </ngb-carousel>
+    </div>
+    <img class="banner-pattern" [src]="pathImg[0]">
+    <div class="hexagono-patter"><img class="banner-hexagono" [src]="pathImg[1]"></div>
+    <div class="hexagono-patter"><img class="banner-hexagono-2" [src]="pathImg[1]"></div>
+
+  </div>
+
+  <div class="container">
+    <section class="intro">
+      <h2>Bem Vindo ao nosso Site!</h2>
+      <p>Aqui iremos contar um pouquinho sobre quem somos nos.</p>
+      <p>E a melhor maneira de contar isso a vocês é vivendo juntos esse momento!</p>
+      <p>
+        O site foi criado com a intenção de compartilhar nosso momento da forma mais eficiente e elegante possível.
+        Esperamos que gostem desse nosso ambiente virtual e desfrute de cada detalhe criado especialmente para você, nosso Convidado epecial!
+      </p>
+    </section>
+  </div>
+  <section class="noivos">
+
+    <img src="/assets/suport/title-noivos-two.png" class="title-noivos">
+
+    <div class="flip-card">
+      <div class="flip-card-inner-noivo">
+        <div class="card" id="noivo">
+          <img [src]="pathImgNoivos[0]" style="width: 100%">
+          <p id="name-card-edson">Edson Martins</p>
+          <p (click)="detailsCard('noivo')">Conheça o Noivo...</p>
+        </div>
+        <div class="card-back-noivo">
+          <p>O edson sempre foi muito cabeçudo, mas com o tempo, eu fui me adaptando e gostando do formato estranho do Edson</p>
+          <p>No começo foi Difícil me adaptar, pois ele era totalmente diferente de mim, mas com o tempo vi que ele era extrórdinário!</p>
+          <p>Ele não bebe aguá e nem faz skin care, mas continua lindo como sempre. Fico incabualada, pois passo 200 produtos e não chego perto dele em beleza...</p>
+          <fa-icon class="faRetweet" [icon]="faRetweet" (click)="closeDetailsCard('noivo')"></fa-icon>
+          <p id="assinado-noiva">Por: Swelen Araújo</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="flip-card">
+      <div class="flip-card-inner-noiva">
+        <div class="card" id="noiva">
+          <img [src]="pathImgNoivos[1]" style="width: 100%">
+          <p id="name-card-swelen">Swelen Araújo</p>
+          <p (click)="detailsCard('noiva')">Conheça a Noiva...</p>
+        </div>
+        <div class="card-back-noiva">
+          <p>A Swelen é incrível, muito mais que eu. Queria ser um pouquinho do que ela é. Pois ela sempre me surpreende, queria ter a mesma força que ela</p>
+          <p>Quando a conheci, ela tinha uma dispoção muito grande, e com o tempo só vem crescendo. Espero um dia eu inspirar os outros igual ela me inspira. Te amo minha vida, sempre vou te amar pra sempre!</p>
+          <fa-icon class="faRetweet" [icon]="faRetweet" (click)="closeDetailsCard('noiva')"></fa-icon>
+          <p id="assinado-noivo">Por: Edson Martins</p>
+        </div>
+      </div>
+    </div>
+
+  </section>
+  <section class="countdown">
+    <h2>Contagem Regressiva para o</h2>
+    <h2>GRANDE DIA!</h2>
+    <div class="countdown-mom">
+      <div class="countdown-son">
+          <h2 id="day">{{ dayCount }}</h2>
+          <span>Dias</span>
+      </div>
+      <div class="countdown-son">
+          <h2 id="hour">{{ hourCount }}</h2>
+          <span>Horas</span>
+      </div>
+      <div class="countdown-son">
+          <h2 id="min">{{ minCount }}</h2>
+          <span>Minutos</span>
+      </div>
+      <div class="countdown-son">
+          <h2 id="sec">{{ secCount }}</h2>
+          <span>Segundos</span>
+      </div>
+    </div>
+  </section>
+</section>
+

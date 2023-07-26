@@ -1,0 +1,33 @@
+<section class="container-form">
+  <div class="title">
+    <img src="/assets/Logo-Swelen&Edson.png">
+  </div>
+  <div class="box">
+    <form class="form">
+      <div class="fields">
+        <div class="group-input">
+          <label for="name">Nome e Sobrenome:</label>
+          <input type="text" name="name" id="name" [(ngModel)]="form.name" placeholder="Digite seu nome...">
+        </div>
+
+        <div class="group-input">
+          <label for="password">Senha: </label>
+          <fa-icon [icon]="faInfoCircle" id="info-password" (click)="popupPassword()"></fa-icon>
+          <fa-icon [icon]="showPassword" id="show-password" (click)="visiblePassword()"></fa-icon>
+          <input [type]="password" name="password" id="password" [(ngModel)]="form.password" placeholder="Digite sua senha...">
+        </div>
+      </div>
+      <div class="button">
+        <button (click)="submit()">Entrar</button>
+      </div>
+    </form>
+  </div>
+  <div class="bloqueador"  *ngIf="showPopupPassword"></div>
+  <div class="information-password"  *ngIf="showPopupPassword">
+    <h3>Qual é a sua senha?</h3>
+    <fa-icon [icon]="faClose" id="close-popup-senha" (click)="popupPassword()"></fa-icon>
+    <p>Não se preocupe nosso convidado de honra. Sua senha é a sequência de números  que se encontra no convite em que você recebeu dos noivos.</p>
+    <p>Caso tenha perdido as informações da sua senha, por favor contactar o Noivo para recuperar.</p>
+  </div>
+</section>
+

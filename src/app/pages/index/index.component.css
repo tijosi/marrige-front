@@ -1,0 +1,243 @@
+
+.home {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  font-family: 'Noto Serif', serif;
+}
+
+.banner {
+  position: relative;
+  z-index: 0;
+  width: 100%;
+}
+
+.banner-photo{
+  position: absolute;
+  z-index: -1;
+  left: 48.8%;
+  transform: translateX(-50%);
+  top: 5.4%;
+  width: 66%;
+}
+
+.banner-pattern {
+  width: 100%;
+}
+
+.hexagono-patter {
+  position: absolute;
+  left: 48.8%;
+  top: 8.0%;
+  width: 100%;
+  transform: translateX(-50%);
+}
+
+.banner-hexagono {
+  width: 75%;
+  animation: rotation linear infinite 15s;
+}
+
+.banner-hexagono-2{
+  width: 75%;
+  animation: rotation2 linear infinite 12s;
+}
+
+@keyframes rotation {
+  from { transform: rotate(0deg) }
+  to { transform: rotate(360deg) }
+}
+
+@keyframes rotation2 {
+  from { transform: rotate(0deg) }
+  to { transform: rotate(-360deg) }
+}
+
+
+h2:nth-child(1) {
+  margin-top: 30px;
+}
+
+h2 {
+  text-align: center;
+}
+
+.countdown-mom {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.countdown-son {
+  width: 20%;
+  margin: 20px 5px;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+}
+#day, #hour, #sec, #min {
+  font-family: 'Inconsolata', monospace;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  background-color: #ffffffb1;
+  border: 1px solid #84848442;
+  width: 100%;
+  height: 60px;
+  font-size: 50px;
+  color: #232323;
+  margin: 0;
+  transition: 0.3s;
+}
+
+.countdown-son span {
+  font-size: 18px;
+  color: #111;
+  text-align: center;
+  padding: 3px 0;
+}
+
+section {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 50px;
+}
+
+.noivos {
+  padding: 20px 10px;
+  margin: 0;
+}
+
+.title-noivos {
+  width: 250px;
+}
+
+.card p {
+  font-size: 15px;
+  margin: 8px 0 0 0;
+  text-decoration: underline;
+}
+
+.card-back-noivo p,
+.card-back-noiva p {
+  text-indent: 20px;
+  font-size: 18px;
+  font-family: 'Inconsolata', monospace;
+  /* font-family: 'Diphylleia', serif; */
+  color: #000000;
+  text-shadow: 0px 0px 1px #00000069;
+  text-align: justify;
+}
+
+#name-card-edson,
+#name-card-swelen {
+  font-size: 20px;
+  letter-spacing: 2px;
+  text-decoration: none;
+}
+
+/* Animation rotatin in eixo Y */
+
+.flip-card {
+  width: 100%;
+  height: 500px;
+  margin: 25px 0;
+  perspective: 1000px;
+}
+
+.faRetweet {
+  color: #4a4a4a;
+  position: absolute;
+  bottom: 5px;
+  left: 15px;
+  font-size: 25px;
+}
+
+#assinado-noiva,
+#assinado-noivo {
+  position: absolute;
+  bottom: 5px;
+  right: 15px;
+  font-size: 15px ;
+}
+
+#assinado-noiva {
+  color: #dd48e2;
+}
+
+#assinado-noivo {
+  color: #3f3fbc;
+}
+
+.flip-card-inner-noiva,
+.flip-card-inner-noivo {
+  position: relative;
+  background-color: #fff9f0;
+  box-shadow: 0px 0px 15px #00000079;
+  width: 100%;
+  height: 100%;
+  transition: 1.3s;
+  transform-style: preserve-3d;
+}
+
+.flip-card-inner-noiva.rotate-active,
+.flip-card-inner-noivo.rotate-active {
+  transform: rotateY(180deg);
+}
+
+.card,
+.card-back-noivo,
+.card-back-noiva {
+  position: absolute;
+  padding: 10px 10px 30px 10px;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.card-back-noivo,
+.card-back-noiva {
+  background-color: #ffffff;
+  transform: rotateY(180deg);
+}
+
+.card-back-noivo p.write:after,
+.card-back-noiva p.write:after{
+  content: '';
+   display: inline-block;
+   position: relative;
+   bottom: -2px;
+   background-color: rgb(0, 0, 0);
+   margin-left: 2px;
+   height: 19px;
+   width: 1px;
+   animation: cursor 1.5s infinite;
+ }
+
+.card-back-noivo p.static:after,
+.card-back-noiva p.static:after{
+   content: '';
+   display: inline-block;
+   position: relative;
+   bottom: -2px;
+   background-color: rgb(0, 0, 0);
+   margin-left: 2px;
+   height: 19px;
+   width: 1px;
+ }
+
+ @keyframes cursor {
+   0% { opacity: 1; }
+     49% { opacity: 1; }
+     50% { opacity: 0; }
+     100% { opacity: 0; }
+ }

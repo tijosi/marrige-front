@@ -1,0 +1,56 @@
+.html-container {
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
+}
+
+.hidden {
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar{
+  width: 0px;
+  background-color: transparent;
+}
+
+.confirmar-presenca {
+  font-family: 'Noto Serif', serif;
+  top: calc(100vh - 65px);
+  position: fixed;
+  z-index: 1;
+  width: 250px;
+  transform: translateX(calc(50vw - 125px));
+  height: 40px;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e3d49c;
+  box-shadow: 0 0 10px #4f4624;
+  border-radius: 25px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+@media (min-width: 1250px) {
+
+  .container-pattern {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .html-container{
+    overflow-x: hidden;
+    width: 500px;
+  }
+
+  .confirmar-presenca {
+    transform: none;
+    width: 300px;
+    height: 50px;
+    font-size: 25px;
+  }
+}
