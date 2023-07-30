@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -7,13 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit{
 
-  constructor(){
+  constructor(private route: Router){
   }
 
-  ngOnInit(): void {
-    // const styleScreen = window.getComputedStyle(document.documentElement.querySelector('.html-container')!);
-    // const elContainerPattern: any = document.querySelector('.container-pattern');
-    // if (styleScreen.width > '499px') elContainerPattern!.className += '.hidden';
-  }
+  ngOnInit() {}
 
 }

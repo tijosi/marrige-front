@@ -1,6 +1,8 @@
+import { Notify } from 'src/app/helper/notify';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, of } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -13,15 +15,14 @@ export class AccountService {
     private http: HttpClient
   ) { }
 
-  login(user:any){
+  async login(user:any){
     localStorage.clear();
-    return this.http.post<any[]>(this.endpoint, user).pipe(
-      catchError(error => {
-        return of();
-      })
-    ).subscribe((r: any) => {
-      localStorage.setItem('token', r.token);
-    });
 
+    try {
+      var data:any = await this.http.post(this.endpoint, user).toPromise();
+      localStorage.setItem('token', data.token);
+    } catch (error) {
+      Notify.error('Erro ao tentar Acessar');
+    }
   }
 }

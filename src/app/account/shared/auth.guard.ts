@@ -1,7 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { catchError, delay, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -23,26 +22,18 @@ export class AuthGuard {
     });
   }
 
-  canActivate() {
+  async canActivate() {
     const headers = this.getHeaders()
-    let key = false;
-    this.http.get(this.endpoint, { headers }).pipe(
-        catchError(error => {
-            console.log(error);
-            return of();
-        })
-      ).subscribe((r: any) => {
-        key = r;
-      }
-    )
 
-
-    if(key) return true;
-    else {
-      this.route.navigate(['login']);
-      return false;
+    try {
+      var data: any = await this.http.get(this.endpoint, { headers }).toPromise();
+      if(data) return true;
+    } catch (error) {
+      console.error(error);
     }
 
+    this.route.navigate(['/login']);
+    return false;
 
   }
 }

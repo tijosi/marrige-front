@@ -41,16 +41,20 @@ export class LoginComponent implements OnInit {
   }
 
   notify: boolean = false;
-  submit() {
+  async submit() {
 
     if( !this.form.name || !this.form.password) {
       Notify.error('Os campos devem ser preenchidos!');
       return;
     }
 
-    this.rest.login(this.form);
+    try {
+      await this.rest.login(this.form);
+    } catch (error) {
+      Notify.error('Erro ao tentar fazer conexão');
+    }
 
-    setTimeout(() => this.router.navigate(['']), 1000);
+    this.router.navigate(['']);
   }
 
   visiblePassword() {

@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, HostListener } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 import { faBars, faClose, faGifts, faUsers, faUserTie, faSignOutAlt, faHome } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -74,7 +74,7 @@ export class HeaderComponent implements OnInit{
     localStorage.clear();
     this.openDropdown();
     document.documentElement.style.overflow = 'scroll';
-    this.route.navigate(['login']);
+    this.route.navigate(['']).then(() => window.location.reload());
   }
 
   routes(nav: string) {

@@ -15,7 +15,7 @@ const routes: Routes = [
       { path: '', component: IndexComponent },
       { path: 'presentes', component: PresentesComponent },
     ],
-    // canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: '',
