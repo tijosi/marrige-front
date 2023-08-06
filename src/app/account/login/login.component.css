@@ -41,10 +41,11 @@
 }
 
 .box {
-  background-color: #54759bcd;
-  backdrop-filter: blur(15px);
+  background-color: #3f79bca0;
+  border: 1px solid #142942;
+  backdrop-filter: blur(7px);
+  box-shadow: 0px 0px 10px #37404bb3;
   border-radius: 10px;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.226);
   padding: 15px 15px;
   width: 400px;
 }
@@ -132,7 +133,7 @@
 }
 
 .group-input input:focus {
-  border-bottom: 1px solid #daab76;
+  border-bottom: 1px solid #FFF;
 }
 
 .group-input input::placeholder {
@@ -146,7 +147,7 @@
 }
 
 .button button {
-  width: 90%;
+  width: 50%;
   outline: 0;
   border: 0;
   border-radius: 20px;
@@ -174,10 +175,11 @@
   }
 
   .box {
-    background-color: #4c81bdbb;
-    backdrop-filter: blur(15px);
+    background-color: #3f79bca0;
+    border: 1px solid #142942;
+    backdrop-filter: blur(7px);
     border-radius: 10px;
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.371);
+    box-shadow: 0px 0px 10px #37404bb3;
     padding: 15px 15px;
     width: 90vw;
   }

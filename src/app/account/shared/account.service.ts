@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class AccountService {
 
-  private endpoint = 'http://localhost:8000/api/login'
+  private endpoint = 'http://192.168.1.5:8000/api/login'
 
   constructor(
     private http: HttpClient

@@ -2,6 +2,11 @@
   width: 100vw;
   height: 100vh;
   overflow-x: hidden;
+  background-image: url("/assets/bg-sky.jpg");
+  background-repeat:no-repeat;
+  background-position: center;
+  background-size:cover;
+  background-attachment: fixed;
 }
 
 .hidden {
@@ -40,6 +45,11 @@
     align-items: center;
     width: 100vw;
     height: 100vh;
+    background-image: url("/assets/bg-sky.jpg");
+    background-repeat:no-repeat;
+    background-position: center;
+    background-size:cover;
+    background-attachment: fixed;
   }
 
   .html-container{

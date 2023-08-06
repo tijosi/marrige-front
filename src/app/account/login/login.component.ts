@@ -1,10 +1,9 @@
-import { Component, OnInit, Output, EventEmitter, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { faInfoCircle, faClose, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { AccountService } from '../shared/account.service';
 import {NgForm} from '@angular/forms';
 import { Notify } from 'src/app/helper/notify';
-import { catchError, of } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -22,11 +21,10 @@ export class LoginComponent implements OnInit {
   showPopupPassword = false;
 
   form: any = {
-    name: null,
-    password: null
+    chave: null
   }
 
-  password: string = 'password';
+  password: string = 'text';
 
   constructor(
     private router: Router,
@@ -36,15 +34,10 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  popupPassword() {
-    this.showPopupPassword = !this.showPopupPassword;
-  }
-
-  notify: boolean = false;
   async submit() {
 
-    if( !this.form.name || !this.form.password) {
-      Notify.error('Os campos devem ser preenchidos!');
+    if( !this.form.chave) {
+      Notify.error('A chave deve ser preenchida');
       return;
     }
 
@@ -59,12 +52,12 @@ export class LoginComponent implements OnInit {
 
   visiblePassword() {
 
-    if(this.showPassword == faEye){
+    if(this.showPassword != faEye){
       this.password = 'text';
-      this.showPassword = faEyeSlash;
+      this.showPassword = faEye;
     } else {
       this.password = 'password';
-      this.showPassword = faEye;
+      this.showPassword = faEyeSlash;
     }
   }
 }

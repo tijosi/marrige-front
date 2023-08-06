@@ -50,18 +50,18 @@ export class HeaderComponent implements OnInit{
     const dropdown: HTMLElement = document.querySelector('.navbar-dropdown')!;
     const style = dropdown.style
     const styleScreen = window.getComputedStyle(document.documentElement.querySelector('.html-container')!);
-    const domElement: any = styleScreen.width > '499px' ? document.documentElement.querySelector('.html-container') : document.documentElement;
+    const domElement: HTMLElement = styleScreen.width > '499px' ? document.documentElement.querySelector('.html-container')! : document.documentElement!;
 
     if (style.right == '100%' || style.right == "" ) {
 
-      domElement!.style.overflow = 'hidden';
+      domElement!.style.overflowY = 'hidden';
       this.iconBars += ' open';
       this.icon = faClose;
       style.right = this.computadorMode ? '100px' : '20%'
 
     } else {
 
-      domElement!.style.overflow = 'scroll'
+      domElement!.style.overflowY = 'scroll'
       this.icon = faBars;
       style.right = '100%';
       this.iconBars = 'bars';
@@ -73,8 +73,7 @@ export class HeaderComponent implements OnInit{
   exitAcount() {
     localStorage.clear();
     this.openDropdown();
-    document.documentElement.style.overflow = 'scroll';
-    this.route.navigate(['']).then(() => window.location.reload());
+    setTimeout(() => this.route.navigate(['']).then(() => window.location.reload()), 300);
   }
 
   routes(nav: string) {

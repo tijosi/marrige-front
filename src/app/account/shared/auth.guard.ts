@@ -29,7 +29,6 @@ export class AuthGuard {
       var data: any = await this.http.get(this.endpoint, { headers }).toPromise();
       if(data) return true;
     } catch (error) {
-      console.error(error);
     }
 
     this.route.navigate(['/login']);
