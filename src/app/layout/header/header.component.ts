@@ -1,6 +1,7 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { faBars, faClose, faGifts, faUsers, faUserTie, faSignOutAlt, faHome } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faClose, faGifts, faUsers, faUserTie, faSignOutAlt, faHome, faUserSecret } from '@fortawesome/free-solid-svg-icons';
+import { HeaderService } from 'src/app/service/header.service';
 
 @Component({
   selector: 'app-header',
@@ -15,20 +16,62 @@ export class HeaderComponent implements OnInit{
   faUserTie = faUserTie;
   faSignOutAlt = faSignOutAlt;
   faHome = faHome;
+  faUserSecret = faUserSecret;
+  isAdmin!: any;
 
   computadorMode = false;
   widthDropdown: string = '';
 
-  constructor(private route: Router) {
+  stringsRoutes: any[] = [
+    {id: 0, route: ''},
+    {id: 1, route: 'presentes'},
+    {id: 2, route: 'convidados'},
+    {id: 3, route: 'padrinhos'},
+    {id: 4, route: 'admin'}
+  ]
 
+  constructor(
+    private route: Router,
+    private rest: HeaderService,
+  ) {
   }
 
-  ngOnInit():void {
-    setInterval(() => this.getWidthDropdown(), 100);
+  async ngOnInit() {
+    this.isAdmin = await this.rest.getIsAdmin();
+    this.search();
+  }
+
+  async search() {
+    this.getWidthDropdown();
+    this.aba(null, true);
+  }
+
+  aba(aba: any = null, first = false) {
+    const pathName = window.location.pathname;
+    let abaString = aba == null ? pathName.replace('/', "") : aba;
+    const time = first ? 1000 : 0;
+
+    setTimeout(() => {
+      const items = document.querySelectorAll('.item');
+
+      items.forEach( el => {
+
+      if (el.className != 'item sair' && el.className != 'item padrinho') el.className = 'item';
+
+      });
+
+      this.stringsRoutes.forEach( el => {
+
+        if (el.route == abaString) items[el.id].classList.add('item-selected');
+
+      });
+    }, time)
+
   }
 
   oldWidthScreen!: string
   getWidthDropdown() {
+    // console.log('getWidthDropdown', 'header');
     const styleScreen = window.getComputedStyle(document.documentElement.querySelector('.html-container')!);
     if(this.oldWidthScreen == styleScreen.width) return
 
@@ -47,21 +90,22 @@ export class HeaderComponent implements OnInit{
 
   iconBars: string = 'bars'
   openDropdown() {
+    this.getWidthDropdown();
+
     const dropdown: HTMLElement = document.querySelector('.navbar-dropdown')!;
     const style = dropdown.style
-    const styleScreen = window.getComputedStyle(document.documentElement.querySelector('.html-container')!);
-    const domElement: HTMLElement = styleScreen.width > '499px' ? document.documentElement.querySelector('.html-container')! : document.documentElement!;
+    const domElement: HTMLElement = document.documentElement.querySelector('.html-container')!;
 
     if (style.right == '100%' || style.right == "" ) {
 
-      domElement!.style.overflowY = 'hidden';
+      domElement.style.overflow = 'hidden';
       this.iconBars += ' open';
       this.icon = faClose;
       style.right = this.computadorMode ? '100px' : '20%'
 
     } else {
 
-      domElement!.style.overflowY = 'scroll'
+      domElement.style.overflow = 'scroll'
       this.icon = faBars;
       style.right = '100%';
       this.iconBars = 'bars';
@@ -71,14 +115,18 @@ export class HeaderComponent implements OnInit{
   }
 
   exitAcount() {
-    localStorage.clear();
     this.openDropdown();
-    setTimeout(() => this.route.navigate(['']).then(() => window.location.reload()), 300);
+    setTimeout(() => {
+      window.location.reload();
+      localStorage.clear();
+    }, 300);
   }
 
   routes(nav: string) {
     this.openDropdown();
-    setTimeout(() => { this.route.navigate([nav]) }, 300)
+
+    setTimeout(() => { this.route.navigate([nav]) }, 300);
+    setTimeout(() => { this.aba(nav) }, 500);
   }
 
 }

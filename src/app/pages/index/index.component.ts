@@ -5,7 +5,7 @@ import { faRetweet } from '@fortawesome/free-solid-svg-icons';
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.css']
 })
-export class IndexComponent implements OnInit {
+export class IndexComponent implements OnInit, AfterViewInit {
 
   faRetweet = faRetweet;
 
@@ -57,6 +57,11 @@ export class IndexComponent implements OnInit {
   ngOnInit(): void {
     this.elementsCounter();
     this.runCounter;
+  }
+
+  heihgtCardInterval: any;
+  ngAfterViewInit(): void {
+    this.heihgtCardInterval = setInterval(() => this.heightCard(), 100);
     this.inteval = setInterval(this.runCounter, 1000);
   }
 
@@ -68,6 +73,14 @@ export class IndexComponent implements OnInit {
   }
 
   runCounter = () => {
+    console.log('runCounter', 'index');
+
+    if (window.location.pathname != '/') {
+      console.log('height interrompido', window.location.pathname);
+      clearInterval(this.inteval);
+      return;
+    }
+
     this.dateNow = new Date();
     const diff: number = Number(this.dateFinal) - Number(this.dateNow);
     if(diff > 0){
@@ -76,6 +89,7 @@ export class IndexComponent implements OnInit {
       this.minCount = this.setTwoDig(Math.floor((diff/1000/60)%60));
       this.secCount = this.setTwoDig(Math.floor((diff/1000)%60));
     } else { this.inteval = 0 }
+
   }
 
   setTwoDig = (arg: number): any => arg > 9 ? arg : '0'+arg;
@@ -108,11 +122,6 @@ export class IndexComponent implements OnInit {
     this.indice = 0;
     this.i = 0;
     this.people = people;
-
-    // Scroll até as coordenadas da foto
-    // const photo = document.querySelector('#'+people);
-    // const coord = photo!.getBoundingClientRect();
-    // document.documentElement.scrollBy(coord!.x, coord!.y - 10);
 
     let flipCard = document.querySelector('.flip-card-inner-'+this.people)!;
     flipCard.classList.toggle('rotate-active');
@@ -175,6 +184,27 @@ export class IndexComponent implements OnInit {
         this.loadingWriting = false;
       }
     }, this.timerWriting)
+  }
+
+  heightCard() {
+    console.log('heightCard', 'index');
+    if (window.location.pathname != '/') {
+      console.log('height interrompido', window.location.pathname);
+      clearInterval(this.heihgtCardInterval);
+      return;
+    }
+
+    let card: HTMLElement = document.querySelector('.card')!;
+    let flipCard = document.querySelectorAll('.flip-card')!;
+    let cardBackNoivo: HTMLElement = document.querySelector('.card-back-noivo')!;
+    let cardBackNoiva: HTMLElement = document.querySelector('.card-back-noiva')!;
+    cardBackNoiva.style.height = card.clientHeight + 'px'
+    cardBackNoivo.style.height = card.clientHeight + 'px'
+
+    flipCard.forEach((el: any) => {
+      el.style.height = card.clientHeight + 'px'
+    });
+
   }
 
 }

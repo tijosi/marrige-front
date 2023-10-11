@@ -6,6 +6,8 @@ import { AuthenticationComponent } from './layout/authentication/authentication.
 import { LoginComponent } from './account/login/login.component';
 import { AuthGuard } from './account/shared/auth.guard';
 import { PresentesComponent } from './pages/presentes/presentes.component';
+import { AdminComponent } from './pages/admin/admin.component';
+import { AdminGuard } from './account/shared/admin.guard';
 
 const routes: Routes = [
   {
@@ -14,6 +16,7 @@ const routes: Routes = [
     children: [
       { path: '', component: IndexComponent },
       { path: 'presentes', component: PresentesComponent },
+      { path: 'admin', component: AdminComponent, canActivate: [AdminGuard] },
     ],
     canActivate: [AuthGuard]
   },

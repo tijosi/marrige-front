@@ -4,6 +4,10 @@
   margin: 0;
 }
 
+p, h1, h2, h3 {
+  font-family: 'Noto Serif', serif;
+}
+
 h1 {
   padding-top: 15px;
   margin-bottom: 5px;
@@ -21,17 +25,39 @@ p {
 .notify {
   position: absolute;
   bottom: 30px;
-  width: 90vw;
+  width: 90%;
   height: auto;
   padding: 12px 10px;
   background-color: #FFF;
-  border-radius: 5px;
+  border-radius: 10px;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 16px;
+  font-size: 18px;
   font-family: 'Noto Serif', serif;
+  text-align: center;
+  z-index: 1;
+}
+
+@keyframes opacityStart {
+  from  { opacity: 0 }
+  to    { opacity: 1 }
+}
+
+@keyframes opacityEnd {
+  from  { opacity: 1 }
+  to    { opacity: 0 }
 }
 
 .notify-error {
-  background-color: #ffd1d1 !important;
+  background-color: #fa9898 !important;
+}
+
+.notify-success {
+  background-color: #9afa98 !important;
+}
+
+@media (min-width: 500px) {
+  .notify {
+    width: 400px;
+  }
 }

@@ -62,46 +62,6 @@ h2 {
   text-align: center;
 }
 
-.countdown-mom {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  width: 100%;
-}
-
-.countdown-son {
-  width: 20%;
-  margin: 20px 5px;
-  display: flex;
-  position: relative;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border-radius: 2px;
-}
-#day, #hour, #sec, #min {
-  font-family: 'Inconsolata', monospace;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 5px;
-  background-color: #ffffffb1;
-  border: 1px solid #84848442;
-  width: 100%;
-  height: 60px;
-  font-size: 50px;
-  color: #232323;
-  margin: 0;
-  transition: 0.3s;
-}
-
-.countdown-son span {
-  font-size: 18px;
-  color: #111;
-  text-align: center;
-  padding: 3px 0;
-}
-
 section {
   text-align: center;
   display: flex;
@@ -120,21 +80,41 @@ section {
   width: 250px;
 }
 
-.card p {
-  font-size: 15px;
-  margin: 8px 0 0 0;
-  text-decoration: underline;
+.flip-card {
+  width: 100%;
+  margin: 25px 0;
+  perspective: 1000px;
 }
 
-.card-back-noivo p,
-.card-back-noiva p {
-  text-indent: 20px;
-  font-size: 18px;
-  font-family: 'Inconsolata', monospace;
-  /* font-family: 'Diphylleia', serif; */
-  color: #000000;
-  text-shadow: 0px 0px 1px #00000069;
-  text-align: justify;
+
+.flip-card-inner-noiva,
+.flip-card-inner-noivo {
+  position: relative;
+  width: 100%;
+  transition: 1.3s;
+  transform-style: preserve-3d;
+}
+
+.flip-card-inner-noiva.rotate-active,
+.flip-card-inner-noivo.rotate-active {
+  transform: rotateY(180deg);
+}
+
+.card,
+.card-back-noivo,
+.card-back-noiva {
+  position: absolute;
+  box-shadow: 0px 0px 15px #00000079;
+  background-color: #FFF;
+  padding: 10px 10px 30px 10px;
+  border-radius: 0;
+  width: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.bottom-card {
+  min-height: 80px;
 }
 
 #name-card-edson,
@@ -144,14 +124,29 @@ section {
   text-decoration: none;
 }
 
-/* Animation rotatin in eixo Y */
+.bottom-card p:last-child:hover { cursor: pointer; }
 
-.flip-card {
-  width: 100%;
-  height: 500px;
-  margin: 25px 0;
-  perspective: 1000px;
+.bottom-card p {
+  font-size: 15px;
+  margin: 8px 0 0 0;
+  text-decoration: underline;
 }
+
+
+.card-back-noivo,
+.card-back-noiva {
+  transform: rotateY(180deg);
+}
+
+.card-back-noivo p,
+.card-back-noiva p {
+  text-indent: 20px;
+  font-size: 18px;
+  color: #000000;
+  text-shadow: 0px 0px 1px #00000069;
+  text-align: justify;
+}
+
 
 .faRetweet {
   color: #4a4a4a;
@@ -160,6 +155,8 @@ section {
   left: 15px;
   font-size: 25px;
 }
+
+.faRetweet:hover { cursor: pointer; }
 
 #assinado-noiva,
 #assinado-noivo {
@@ -177,38 +174,6 @@ section {
   color: #3f3fbc;
 }
 
-.flip-card-inner-noiva,
-.flip-card-inner-noivo {
-  position: relative;
-  background-color: #fff9f0;
-  box-shadow: 0px 0px 15px #00000079;
-  width: 100%;
-  height: 100%;
-  transition: 1.3s;
-  transform-style: preserve-3d;
-}
-
-.flip-card-inner-noiva.rotate-active,
-.flip-card-inner-noivo.rotate-active {
-  transform: rotateY(180deg);
-}
-
-.card,
-.card-back-noivo,
-.card-back-noiva {
-  position: absolute;
-  padding: 10px 10px 30px 10px;
-  width: 100%;
-  height: 100%;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-}
-
-.card-back-noivo,
-.card-back-noiva {
-  background-color: #ffffff;
-  transform: rotateY(180deg);
-}
 
 .card-back-noivo p.write:after,
 .card-back-noiva p.write:after{
@@ -241,3 +206,45 @@ section {
      50% { opacity: 0; }
      100% { opacity: 0; }
  }
+
+
+.countdown-mom {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.countdown-son {
+  width: 20%;
+  margin: 20px 5px;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+}
+
+#day, #hour, #sec, #min {
+  font-family: 'Inconsolata', monospace;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  background-color: #ffffffb1;
+  border: 1px solid #84848442;
+  width: 100%;
+  height: 60px;
+  font-size: 50px;
+  color: #232323;
+  margin: 0;
+  transition: 0.3s;
+}
+
+.countdown-son span {
+  font-size: 18px;
+  color: #111;
+  text-align: center;
+  padding: 3px 0;
+}

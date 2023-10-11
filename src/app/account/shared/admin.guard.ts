@@ -6,9 +6,9 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 
-export class AuthGuard {
+export class AdminGuard {
 
-  private endpoint = 'http://localhost:8000/api/valida-token'
+  private endpoint = 'http://localhost:8000/api/valida-admin'
 
   constructor(
     private http: HttpClient,
@@ -23,12 +23,6 @@ export class AuthGuard {
   }
 
   async canActivate() {
-
-    if (!localStorage.getItem('token')) {
-      this.route.navigate(['/login']);
-      return false;
-    }
-
     const headers = this.getHeaders()
 
     try {
@@ -37,7 +31,7 @@ export class AuthGuard {
     } catch (error) {
     }
 
-    this.route.navigate(['/login']);
+    this.route.navigate(['']);
     return false;
 
   }

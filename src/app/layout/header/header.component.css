@@ -1,6 +1,6 @@
 .navbar {
-  background-color: #fcc6e2;
-  box-shadow: 0px 0px 10px #58243fa8;
+  background-color: #ffcc89;
+  border-bottom: 1px solid #ebb56e;
   width: 100%;
   max-width: 576px;
   height: 50px;
@@ -45,11 +45,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #000;
   font-size: 20px;
   width: 100%;
   height: 50px;
-  background-color: #EEABC4;
 }
 
 .list-items {
@@ -57,6 +55,9 @@
   padding: 0;
   color: rgba(0, 0, 0, 0.80);
   font-size: 20px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .item-icon {
@@ -73,25 +74,24 @@
   align-items: center;
   justify-content: start;
   height: 50px;
+  width: 100%;
   padding: 3px;
   cursor: pointer;
   transition: 0.1s;
 }
 
+.item-selected,
 .item:active {
-  background-color: #a6a6a6;
+  background-color: #edccae;
 }
 
-.padrinho {
-  background-color: #f2cea4;
+.padrinho,
+.icon-padrinho {
+  color: #dc9d2a;
 }
 
 .sair {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  background-color: #00000072;
-  transition: cubic-bezier(0.455, 0.03, 0.515, 0.955) 0.3s;
+  color: rgba(255, 68, 68, 0.823);
 }
 
 .bars {
@@ -99,6 +99,8 @@
   font-size: 20px;
   margin-right: 30px;
 }
+
+.bars:hover { cursor: pointer; }
 
 .open {
   font-size: 25px;

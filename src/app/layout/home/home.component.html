@@ -7,5 +7,12 @@
       <router-outlet></router-outlet>
     </main>
   </div>
-  <div class="confirmar-presenca">Confirmar Presença</div>
+  <div class="confirmar-presenca" *ngIf="showBtnConfirmarPresenca">
+    <fa-icon
+      class="item-icon"
+      [icon]="faClose"
+      (click)="showBtnConfirmarPresenca = false"
+    ></fa-icon>
+    <p>Confirmar Presença</p>
+  </div>
 </div>

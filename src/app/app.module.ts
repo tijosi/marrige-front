@@ -14,6 +14,9 @@ import '@angular/localize/init';
 import { FormsModule } from '@angular/forms';
 import { PresentesComponent } from './pages/presentes/presentes.component';
 import { HttpClientModule } from '@angular/common/http';
+import { PopupComponent } from './helper/popup/popup.component';
+import { ButtonPopupComponent } from './helper/button-popup/button-popup.component';
+import { AdminComponent } from './pages/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,10 @@ import { HttpClientModule } from '@angular/common/http';
     HomeComponent,
     IndexComponent,
     AuthenticationComponent,
-    PresentesComponent
+    PresentesComponent,
+    PopupComponent,
+    ButtonPopupComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

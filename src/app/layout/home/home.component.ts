@@ -1,5 +1,5 @@
-import { Component, HostListener, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { faClose } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-home',
@@ -8,9 +8,14 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit{
 
-  constructor(private route: Router){
+  faClose = faClose;
+  showBtnConfirmarPresenca: boolean = false;
+
+  constructor(){
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    setTimeout(() => this.showBtnConfirmarPresenca = true, 2000);
+  }
 
 }

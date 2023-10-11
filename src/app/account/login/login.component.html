@@ -1,25 +1,20 @@
 <section class="container-form">
   <div class="title">
-
     <img src="/assets/Logo-Swelen&Edson.png">
-
   </div>
 
   <div class="box">
     <form class="form">
       <div class="fields">
-        <!-- <div class="group-input">
-          <label for="name">Nome e Sobrenome:</label>
-          <input type="text" name="name" id="name" [(ngModel)]="form.name" placeholder="Digite seu nome...">
-        </div> -->
-
         <div class="group-input">
-
-          <label for="password">Chave de Entrada: </label>
-          <fa-icon [icon]="faInfoCircle" id="info-password" (click)="this.showPopupPassword = true"></fa-icon>
-          <fa-icon [icon]="showPassword" id="show-password" (click)="visiblePassword()"></fa-icon>
-          <input [type]="password" name="password" id="password" [(ngModel)]="form.chave" placeholder="Digite sua chave...">
-
+          <label for="telefone">Telefone:</label>
+          <input
+            id="telefone"
+            name="telefone"
+            [(ngModel)]="form.telefone"
+            placeholder="Digite seu telefone..."
+            autocomplete="off"
+          >
         </div>
       </div>
 
@@ -30,17 +25,6 @@
       </div>
 
     </form>
-  </div>
-
-  <div class="bloqueador"  *ngIf="showPopupPassword"></div>
-
-  <div class="information-password"  *ngIf="showPopupPassword">
-
-    <h3>Qual é a sua chave?</h3>
-    <fa-icon [icon]="faClose" id="close-popup-senha" (click)="this.showPopupPassword = false"></fa-icon>
-    <p>Não se preocupe nosso convidado de honra. Sua chave é o código que se encontra no convite em que você recebeu dos noivos.</p>
-    <p>Caso tenha perdido as informações do seu código, por favor contactar o Noivo para recuperar.</p>
-
   </div>
 </section>
 

@@ -1,7 +1,7 @@
 <nav class="navbar">
 
   <div class="navbar-logo">
-    <a routerLink="">S & E</a>
+    <a>S & E</a>
   </div>
 
   <div class="toggler">
@@ -29,12 +29,16 @@
         Convidados
       </li>
       <li class="item padrinho">
-        <fa-icon class="item-icon" [icon]="faUserTie"></fa-icon>
+        <fa-icon class="item-icon icon-padrinho" [icon]="faUserTie"></fa-icon>
         Padrinhos
       </li>
+      <li class="item" (click)="routes('admin')" *ngIf="isAdmin">
+        <fa-icon class="item-icon" [icon]="faUserSecret"></fa-icon>
+        Admin
+      </li>
       <li class="item sair" (click)="exitAcount()">
-        <fa-icon class="item-icon" [icon]="faSignOutAlt"></fa-icon>
-        Sair
+        <fa-icon class="item-icon sair" [icon]="faSignOutAlt"></fa-icon>
+        Sair da Conta
       </li>
     </ul>
   </div>

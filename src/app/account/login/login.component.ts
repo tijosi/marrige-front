@@ -1,3 +1,4 @@
+import Inputmask from 'inputmask';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { faInfoCircle, faClose, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
@@ -14,50 +15,38 @@ export class LoginComponent implements OnInit {
 
   @ViewChild('NgForm') NgForm!: NgForm;
 
-  faInfoCircle = faInfoCircle;
-  faClose = faClose;
-  showPassword = faEye;
-
-  showPopupPassword = false;
-
-  form: any = {
-    chave: null
-  }
-
-  password: string = 'text';
+  form: any = {};
 
   constructor(
-    private router: Router,
     private rest: AccountService
   ){}
 
   ngOnInit(): void {
+    var telefone: any = document.getElementById('telefone');
+    Inputmask({"mask": "(99) 99999-9999", jitMasking: true }).mask(telefone);
   }
 
   async submit() {
 
-    if( !this.form.chave) {
-      Notify.error('A chave deve ser preenchida');
+    if( !this.form.telefone) {
+      Notify.error('O número deve ser preenchido');
+      return;
+    }
+
+    if( this.form.telefone.length < 15) {
+      console.log(this.form.telefone);
+      Notify.error('O número de telefone deve conter todos os dígitos');
       return;
     }
 
     try {
-      await this.rest.login(this.form);
+      const form = {
+        telefone: this.form.telefone.replace(/[^\d]+/g,'')
+      }
+      await this.rest.login({...form});
     } catch (error) {
       Notify.error('Erro ao tentar fazer conexão');
     }
 
-    this.router.navigate(['']);
-  }
-
-  visiblePassword() {
-
-    if(this.showPassword != faEye){
-      this.password = 'text';
-      this.showPassword = faEye;
-    } else {
-      this.password = 'password';
-      this.showPassword = faEyeSlash;
-    }
   }
 }

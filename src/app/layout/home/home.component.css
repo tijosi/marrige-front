@@ -22,22 +22,36 @@
   font-family: 'Noto Serif', serif;
   top: calc(100vh - 100px);
   position: fixed;
-  z-index: 1;
-  width: 250px;
-  transform: translateX(calc(50vw - 125px));
-  height: 40px;
-  color: black;
+  z-index: 0;
+  width: 80%;
+  border-radius: 15px;
+  transform: translateX(12.5%);
+  height: 50px;
+  color: #f4ba46;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #e3d49c;
-  box-shadow: 0 0 10px #4f4624;
-  border-radius: 25px;
+  background-color: #fff8ea;
+  border: 1px solid #f4ba46;
+  box-shadow: 0px 0px 5px #a38c5e93;
   font-size: 20px;
   cursor: pointer;
 }
 
-@media (min-width: 1250px) {
+.item-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: -25px;
+  right: -25px;
+  font-size: 25px;
+  border-radius: 20px;
+  width: 30px;
+  height: 30px;
+}
+
+@media (min-width: 500px) {
 
   .container-pattern {
     display: flex;
