@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class AccountService {
 
-  private endpoint = 'http://localhost:8000/api/login'
+  private endpoint = 'https://marrige-back.vercel.app/api/api/login'
 
   constructor(
     private http: HttpClient,

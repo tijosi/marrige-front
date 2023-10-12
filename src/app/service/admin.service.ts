@@ -6,7 +6,7 @@ import { Notify } from '../helper/notify';
 })
 export class AdminService {
 
-  private endpoint = 'http://localhost:8000/api/admin'
+  private endpoint = 'https://marrige-back.vercel.app/api/api/admin'
 
   constructor(private http: HttpClient) { }
 

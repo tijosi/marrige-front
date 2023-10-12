@@ -21,7 +21,7 @@ export class HeaderService {
     const headers = this.getHeaders();
 
     try {
-      await this.http.get('http://localhost:8000/api/valida-admin', { headers }).toPromise();
+      await this.http.get('https://marrige-back.vercel.app/api/api/valida-admin', { headers }).toPromise();
     } catch (error) {
       return false;
     }
