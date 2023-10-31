@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 
 export class AuthGuard {
 
-  private endpoint = 'https://marrige-back.vercel.app/api/api/valida-token'
+  private endpoint = 'http://localhost:8000/api/valida-token'
 
   constructor(
     private http: HttpClient,

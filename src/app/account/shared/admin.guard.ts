@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 
 export class AdminGuard {
 
-  private endpoint = 'https://marrige-back.vercel.app/api/api/valida-admin'
+  private endpoint = 'http://localhost:8000/api/valida-admin'
 
   constructor(
     private http: HttpClient,

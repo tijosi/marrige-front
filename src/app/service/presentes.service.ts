@@ -7,7 +7,7 @@ import { Notify } from '../helper/notify';
 })
 export class PresentesService {
 
-  private endpoint = 'https://marrige-back.vercel.app/api/api/presentes'
+  private endpoint = 'http://localhost:8000/api/presentes'
 
   constructor(private http: HttpClient) { }
 
