@@ -20,7 +20,7 @@ export class HeaderService {
     const headers = this.getHeaders();
 
     try {
-      await this.http.get(environment + '/valida-admin', { headers }).toPromise();
+      await this.http.get(environment.apiUrl + '/valida-admin', { headers }).toPromise();
     } catch (error) {
       return false;
     }

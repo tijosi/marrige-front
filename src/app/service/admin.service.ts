@@ -7,7 +7,7 @@ import { Notify } from '../helper/notify';
 })
 export class AdminService {
 
-  private endpoint = environment + '/admin'
+  private endpoint = environment.apiUrl + '/admin'
 
   constructor(private http: HttpClient) { }
 

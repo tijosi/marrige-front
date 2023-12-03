@@ -8,7 +8,7 @@ import { environment } from './../../environments/environment';
 })
 export class PresentesService {
 
-  private endpoint = environment + '/presentes'
+  private endpoint = environment.apiUrl + '/presentes'
 
   constructor(private http: HttpClient) { }
 

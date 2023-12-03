@@ -1,7 +1,9 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Notify } from 'src/app/helper/notify';
+import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { environment } from 'src/environments/environment';
+import { GuardService } from 'src/app/service/guard.service';
+import { Observable, catchError, map, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,11 +11,9 @@ import { environment } from 'src/environments/environment';
 
 export class AuthGuard {
 
-  private endpoint = environment + '/autenticacao'
-
   constructor(
-    private http: HttpClient,
-    private route: Router
+    private route: Router,
+    private rest: GuardService
   ){}
 
   private getHeaders(): HttpHeaders {
@@ -23,23 +23,22 @@ export class AuthGuard {
     });
   }
 
-  async canActivate() {
+  canActivate(): Observable<boolean> {
 
-    if (!localStorage.getItem('token')) {
-      this.route.navigate(['/login']);
-      return false;
-    }
+    return this.rest.auth(this.getHeaders()).pipe(
+      map((data: any) => {
+        if(data) return true;
 
-    const headers = this.getHeaders()
+        this.route.navigate(['/login']);
+        return false;
+      }),
 
-    try {
-      var data: any = await this.http.get(this.endpoint, { headers }).toPromise();
-      if(data) return true;
-    } catch (error) {
-    }
-
-    this.route.navigate(['/login']);
-    return false;
+      catchError((e: any) => {
+        this.route.navigate(['/login']);
+        return of(false);
+      })
+    )
 
   }
+
 }

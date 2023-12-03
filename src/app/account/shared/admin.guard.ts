@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 
 export class AdminGuard {
 
-  private endpoint = environment + '/valida-admin'
+  private endpoint = environment.apiUrl + '/valida-admin'
 
   constructor(
     private http: HttpClient,

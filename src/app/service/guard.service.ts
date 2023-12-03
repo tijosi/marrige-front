@@ -7,18 +7,18 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class AccountService {
+export class GuardService {
 
-  private endpoint = environment.apiUrl + '/login'
+  private endpoint = environment.apiUrl;
 
   constructor(
     private http: HttpClient
   ) { }
 
-  login(user:any): Observable<any> {
+  auth(headers: any): Observable<any> {
 
     try {
-      var result: Observable<any> = this.http.post(this.endpoint, user);
+      var result: Observable<any> = this.http.get(this.endpoint.concat('/autenticacao'), {headers});
     } catch (error) {
       Notify.error('Erro ao tentar buscar dados');
     }
