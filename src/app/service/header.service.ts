@@ -1,12 +1,11 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from './../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HeaderService {
-
-  private endpoint = ''
 
   constructor(private http: HttpClient) { }
 
@@ -21,7 +20,7 @@ export class HeaderService {
     const headers = this.getHeaders();
 
     try {
-      await this.http.get('http://localhost:8000/api/valida-admin', { headers }).toPromise();
+      await this.http.get(environment + '/valida-admin', { headers }).toPromise();
     } catch (error) {
       return false;
     }

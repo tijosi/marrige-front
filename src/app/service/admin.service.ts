@@ -1,4 +1,5 @@
-import { HttpClient, HttpHeaders, HttpResponseBase } from '@angular/common/http';
+import { environment } from './../../environments/environment';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Notify } from '../helper/notify';
 @Injectable({
@@ -6,7 +7,7 @@ import { Notify } from '../helper/notify';
 })
 export class AdminService {
 
-  private endpoint = 'http://localhost:8000/api/admin'
+  private endpoint = environment + '/admin'
 
   constructor(private http: HttpClient) { }
 

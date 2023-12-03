@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ import { Router } from '@angular/router';
 
 export class AdminGuard {
 
-  private endpoint = 'http://localhost:8000/api/valida-admin'
+  private endpoint = environment + '/valida-admin'
 
   constructor(
     private http: HttpClient,
