@@ -18,6 +18,15 @@
   background-color: transparent;
 }
 
+@keyframes startOpaticy {
+  0%    { opacity: 0 }
+  100%  { opacity: 1 }
+}
+
+#popup-confirm-presenca {
+  animation: startOpaticy 0.3s linear;
+}
+
 #popup-confirm-presenca .body p {
   font-size: 105%;
   text-indent: 15px;
