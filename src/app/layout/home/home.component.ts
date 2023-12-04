@@ -11,18 +11,18 @@ export class HomeComponent implements OnInit{
 
   faClose = faClose;
   showPopupConfirmPresence: boolean = false;
-  nameUser = (this.guard.getUser()).name;
+  user = this.guard.getUser();
 
   constructor(
     private guard: GuardService
   ){}
 
-  ngAfterViewInit() {
+  ngOnInit() {
     this.showPopupConfirmPresence = true;
   }
 
-  ngOnInit() {
-
+  get getClassName() {
+    return this.user.id == 2 ? 'princesa' :  '';
   }
 
   confirmar() {

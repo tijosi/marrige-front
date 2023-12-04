@@ -23,6 +23,10 @@
   100%  { opacity: 1 }
 }
 
+.princesa {
+  color: #D282A6;
+}
+
 #popup-confirm-presenca {
   animation: startOpaticy 0.3s linear;
 }
