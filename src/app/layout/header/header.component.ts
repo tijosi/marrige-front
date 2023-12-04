@@ -37,11 +37,11 @@ export class HeaderComponent implements OnInit{
   }
 
   async ngOnInit() {
-    this.isAdmin = await this.rest.getIsAdmin();
     this.search();
+    this.isAdmin = await this.rest.getIsAdmin();
   }
 
-  async search() {
+  search() {
     this.getWidthDropdown();
     this.aba(null, true);
   }
