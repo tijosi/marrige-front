@@ -30,12 +30,12 @@ export class LoginComponent implements OnInit {
   submit() {
 
     if( !this.form.telefone) {
-      Notify.error('O número deve ser preenchido');
+      Notify.warning('O número de telefone deve ser preenchido');
       return;
     }
 
     if( this.form.telefone.length < 15) {
-      Notify.error('O número de telefone deve conter todos os dígitos');
+      Notify.warning('O número de telefone deve conter todos os dígitos');
       return;
     }
 
@@ -51,10 +51,10 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['']);
       },
 
-      error: (e: any) => Notify.error(e.error.message),
-      complete: () => {
-        this.showLoadPanel = false;
-      },
+      error: (e: any) => {
+        this.showLoadPanel = false
+        Notify.error(e.error.message)
+      }
     });
 
 

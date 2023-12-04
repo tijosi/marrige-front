@@ -21,8 +21,9 @@
   justify-content: center;
   align-items: center;
   height: 100px;
-  background-color: #e5c580;
-  box-shadow: 0 0 10px #000000;
+  background-color: #fff5f9;
+  border: 1px solid #dad0d4;
+  box-shadow: 0 3px 10px #2e111d;
   border-radius: 10px;
 }
 
