@@ -7,7 +7,7 @@
   align-items: center;
   flex-direction: column;
   background-image: url("/assets/bg-tree.jpg");
-  background-size: cover;
+  background-size: auto;
   background-repeat: no-repeat;
   background-position: center center;
 }
@@ -30,8 +30,9 @@
 }
 
 .box {
-  background: linear-gradient(135deg, #6fa8ee, #3175c9, #4c26b5);
-  border: 1px solid #4c26b5;
+  background: linear-gradient(135deg, #f6d893, #cfb068, #9f7e33);
+  border: 1px solid #f6d893;
+  box-shadow: 0px 0px 10px #544523;
   border-radius: 10px;
   padding: 15px 15px;
   width: 90vw;
@@ -54,7 +55,7 @@
   outline: 0;
   border: 0;
   border-bottom: 1px solid #001029b3;
-  color: #FFF;
+  color: #000;
   background-color: transparent;
   width: 100%;
   height: 30px;
@@ -64,13 +65,13 @@
 }
 
 .group-input input:focus {
-  border-bottom: 1px solid #ffffff;
-  box-shadow: 0 5px 3px -3px #ffffff45;
+  border-bottom: 1px solid #77570d;
+  box-shadow: 0 0px 3px -3px #77570d;
   width: 100%;
 }
 
 .group-input input::placeholder {
-  color: #d8e8ff88;
+  color: #17171788;
   font-size: 15px;
 }
 
@@ -86,14 +87,14 @@
   border: 0;
   border-radius: 5px;
   height: 40px;
-  background-color: #0a3973;
+  background-color: #77570d;
   color: #FFF;
   font-size: 20px;
   transition: 0.2s;
 }
 
 .button button:active {
-  background-color: #265ea3;
+  background-color: #a07e2f;
 }
 
 @media (min-width: 576px) {

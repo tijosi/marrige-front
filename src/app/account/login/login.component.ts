@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   @ViewChild('NgForm') NgForm!: NgForm;
 
   form: any = {};
+  showLoadPanel: boolean = false;
 
   constructor(
     private rest: AccountService,
@@ -26,7 +27,7 @@ export class LoginComponent implements OnInit {
     Inputmask({"mask": "(99) 99999-9999", jitMasking: true }).mask(telefone);
   }
 
-  async submit() {
+  submit() {
 
     if( !this.form.telefone) {
       Notify.error('O número deve ser preenchido');
@@ -42,6 +43,7 @@ export class LoginComponent implements OnInit {
       telefone: this.form.telefone.replace(/[^\d]+/g,'')
     }
 
+    this.showLoadPanel = true;
     this.rest.login({...form}).subscribe({
       next: (data: any) => {
         localStorage.clear();
@@ -49,7 +51,12 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['']);
       },
 
-      error: (e: any) => Notify.error(e.error.message)
+      error: (e: any) => Notify.error(e.error.message),
+      complete: () => {
+        this.showLoadPanel = false;
+      },
     });
+
+
   }
 }

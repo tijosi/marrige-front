@@ -17,6 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { PopupComponent } from './helper/popup/popup.component';
 import { ButtonPopupComponent } from './helper/button-popup/button-popup.component';
 import { AdminComponent } from './pages/admin/admin.component';
+import { LoadingComponent } from './helper/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { AdminComponent } from './pages/admin/admin.component';
     PresentesComponent,
     PopupComponent,
     ButtonPopupComponent,
-    AdminComponent
+    AdminComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
