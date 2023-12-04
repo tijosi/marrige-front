@@ -7,12 +7,22 @@
       <router-outlet></router-outlet>
     </main>
   </div>
-  <div class="confirmar-presenca" *ngIf="showBtnConfirmarPresenca">
-    <fa-icon
-      class="item-icon"
-      [icon]="faClose"
-      (click)="showBtnConfirmarPresenca = false"
-    ></fa-icon>
-    <p>Confirmar Presença</p>
-  </div>
+  <popup
+    id="popup-confirm-presenca"
+    *ngIf="showPopupConfirmPresence"
+    (close)="showPopupConfirmPresence = false"
+    title="Seja Muito Bem vindo"
+    width="90%"
+    [scroll]="false"
+    [textBtnClose]="'Agora não'"
+  >
+    <div class="body">
+      <p>Estamos muito felizes por ter você aqui!<br> <b>{{nameUser}}</b></p><br>
+      <p>Seria uma honra ter sua presença em nosso grande dia especial.</p>
+      <p>Caso você já tenha certeza de que poderá ir, clica em <span
+          style="color: #569e2d;">Confirmar Presença</span>.</p>
+    </div>
+
+    <button-popup text="Confirmar Presença" type="success" (onClick)="confirmar()"></button-popup>
+  </popup>
 </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
+import { GuardService } from 'src/app/service/guard.service';
 
 @Component({
   selector: 'app-home',
@@ -9,13 +10,23 @@ import { faClose } from '@fortawesome/free-solid-svg-icons';
 export class HomeComponent implements OnInit{
 
   faClose = faClose;
-  showBtnConfirmarPresenca: boolean = false;
+  showPopupConfirmPresence: boolean = false;
+  nameUser = (this.guard.getUser()).name;
 
-  constructor(){
+  constructor(
+    private guard: GuardService
+  ){}
+
+  ngAfterViewInit() {
+    this.showPopupConfirmPresence = true;
   }
 
   ngOnInit() {
-    setTimeout(() => this.showBtnConfirmarPresenca = true, 2000);
+
+  }
+
+  confirmar() {
+
   }
 
 }

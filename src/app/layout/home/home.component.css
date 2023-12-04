@@ -18,38 +18,17 @@
   background-color: transparent;
 }
 
-.confirmar-presenca {
-  font-family: 'Noto Serif', serif;
-  top: calc(100vh - 100px);
-  position: fixed;
-  z-index: 0;
-  width: 80%;
-  border-radius: 15px;
-  transform: translateX(12.5%);
-  height: 50px;
-  color: #f4ba46;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #fff8ea;
-  border: 1px solid #f4ba46;
-  box-shadow: 0px 0px 5px #a38c5e93;
-  font-size: 20px;
-  cursor: pointer;
+#popup-confirm-presenca .body p {
+  font-size: 109%;
+  text-indent: 15px;
+  text-align: justify;
 }
 
-.item-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  top: -25px;
-  right: -25px;
-  font-size: 25px;
-  border-radius: 20px;
-  width: 30px;
-  height: 30px;
+#popup-confirm-presenca .body p:first-child {
+  text-align: center;
+  text-indent: 0;
 }
+
 
 @media (min-width: 500px) {
 
