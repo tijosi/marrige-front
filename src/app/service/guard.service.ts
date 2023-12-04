@@ -10,10 +10,28 @@ import { Observable } from 'rxjs';
 export class GuardService {
 
   private endpoint = environment.apiUrl;
+  currentUser: any;
 
   constructor(
     private http: HttpClient
   ) { }
+
+  setUser(user: any): void {
+    this.currentUser = user;
+    localStorage.setItem('currentUser', JSON.stringify(user));
+  }
+
+  getUser(): any {
+    if (!this.currentUser) {
+      this.currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
+    }
+    return this.currentUser;
+  }
+
+  clearUser(): void {
+    this.currentUser = null;
+    localStorage.removeItem('currentUser');
+  }
 
   auth(headers: any): Observable<any> {
 

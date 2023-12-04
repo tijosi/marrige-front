@@ -27,8 +27,12 @@ export class AuthGuard {
 
     return this.rest.auth(this.getHeaders()).pipe(
       map((data: any) => {
-        if(data) return true;
+        if(data) {
+          this.rest.setUser(data);
+          return true;
+        }
 
+        this.rest.clearUser();
         this.route.navigate(['/login']);
         return false;
       }),
