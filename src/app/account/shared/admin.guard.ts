@@ -1,7 +1,7 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { environment } from 'src/environments/environment';
+import { Observable, catchError, map, of } from 'rxjs';
+import { GuardService } from 'src/app/service/guard.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,31 +9,26 @@ import { environment } from 'src/environments/environment';
 
 export class AdminGuard {
 
-  private endpoint = environment.apiUrl + '/valida-admin'
-
   constructor(
-    private http: HttpClient,
-    private route: Router
+    private route: Router,
+    private rest: GuardService
   ){}
 
-  private getHeaders(): HttpHeaders {
-    return new HttpHeaders({
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${localStorage.getItem('token')}`,
-    });
-  }
+  canActivate(): Observable<boolean> {
 
-  async canActivate() {
-    const headers = this.getHeaders()
+    return this.rest.admin().pipe(
+      map((data: any) => {
+        if(data) return true;
 
-    try {
-      var data: any = await this.http.get(this.endpoint, { headers }).toPromise();
-      if(data) return true;
-    } catch (error) {
-    }
+        this.route.navigate(['']);
+        return false;
+      }),
 
-    this.route.navigate(['']);
-    return false;
+      catchError((e: any) => {
+        this.route.navigate(['']);
+        return of(false);
+      })
+    )
 
   }
 }

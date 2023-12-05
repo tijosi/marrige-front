@@ -16,16 +16,9 @@ export class AuthGuard {
     private rest: GuardService
   ){}
 
-  private getHeaders(): HttpHeaders {
-    return new HttpHeaders({
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${localStorage.getItem('token')}`,
-    });
-  }
-
   canActivate(): Observable<boolean> {
 
-    return this.rest.auth(this.getHeaders()).pipe(
+    return this.rest.auth().pipe(
       map((data: any) => {
         if(data) {
           this.rest.setUser(data);

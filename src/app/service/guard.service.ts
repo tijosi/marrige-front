@@ -1,5 +1,5 @@
 import { Notify } from 'src/app/helper/notify';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
@@ -15,6 +15,18 @@ export class GuardService {
   constructor(
     private http: HttpClient
   ) { }
+
+  private getHeaders(): HttpHeaders {
+    return new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    });
+  }
+
+  get isAdmin() {
+    this.getUser();
+    return this.currentUser.role_id == 1;
+  }
 
   setUser(user: any): void {
     this.currentUser = user;
@@ -33,10 +45,23 @@ export class GuardService {
     localStorage.removeItem('currentUser');
   }
 
-  auth(headers: any): Observable<any> {
+  auth(): Observable<any> {
+    const headers = this.getHeaders();
 
     try {
       var result: Observable<any> = this.http.get(this.endpoint.concat('/autenticacao'), {headers});
+    } catch (error) {
+      Notify.error('Erro ao tentar buscar dados');
+    }
+
+    return result!;
+  }
+
+  admin(): Observable<any> {
+    const headers = this.getHeaders();
+
+    try {
+      var result: Observable<any> = this.http.get(this.endpoint.concat('/admin'), {headers});
     } catch (error) {
       Notify.error('Erro ao tentar buscar dados');
     }
