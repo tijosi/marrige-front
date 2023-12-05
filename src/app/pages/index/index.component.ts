@@ -59,9 +59,8 @@ export class IndexComponent implements OnInit, AfterViewInit {
     this.runCounter;
   }
 
-  heihgtCardInterval: any;
   ngAfterViewInit(): void {
-    this.heihgtCardInterval = setInterval(() => this.heightCard(), 100);
+    setTimeout(() => this.heightCard(), 1000);
     this.inteval = setInterval(this.runCounter, 1000);
   }
 
@@ -73,8 +72,6 @@ export class IndexComponent implements OnInit, AfterViewInit {
   }
 
   runCounter = () => {
-    console.log('runCounter', 'index');
-
     if (window.location.pathname != '/') {
       console.log('height interrompido', window.location.pathname);
       clearInterval(this.inteval);
@@ -187,13 +184,6 @@ export class IndexComponent implements OnInit, AfterViewInit {
   }
 
   heightCard() {
-    console.log('heightCard', 'index');
-    if (window.location.pathname != '/') {
-      console.log('height interrompido', window.location.pathname);
-      clearInterval(this.heihgtCardInterval);
-      return;
-    }
-
     let card: HTMLElement = document.querySelector('.card')!;
     let flipCard = document.querySelectorAll('.flip-card')!;
     let cardBackNoivo: HTMLElement = document.querySelector('.card-back-noivo')!;
