@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { faBars, faClose, faGifts, faUsers, faUserTie, faSignOutAlt, faHome, faUserSecret } from '@fortawesome/free-solid-svg-icons';
+import { GuardService } from 'src/app/service/guard.service';
 import { HeaderService } from 'src/app/service/header.service';
 
 @Component({
@@ -17,7 +18,7 @@ export class HeaderComponent implements OnInit{
   faSignOutAlt = faSignOutAlt;
   faHome = faHome;
   faUserSecret = faUserSecret;
-  isAdmin!: any;
+  isAdmin = this.guard.isAdmin;
 
   computadorMode = false;
   widthDropdown: string = '';
@@ -33,12 +34,13 @@ export class HeaderComponent implements OnInit{
   constructor(
     private route: Router,
     private rest: HeaderService,
+    private guard: GuardService
   ) {
   }
 
   async ngOnInit() {
     this.search();
-    this.isAdmin = await this.rest.getIsAdmin();
+    console.log(this.isAdmin);
   }
 
   search() {
