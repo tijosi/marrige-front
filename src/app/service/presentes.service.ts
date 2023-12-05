@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Notify } from '../helper/notify';
 import { environment } from './../../environments/environment';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -19,23 +20,16 @@ export class PresentesService {
     });
   }
 
-  async getPresentes() {
-    const headers = this.getHeaders()
+  presentes(): Observable<any> {
+    const headers = this.getHeaders();
+
     try {
-      var data: any = await this.http.get(this.endpoint, { headers }).toPromise();
+      var data: Observable<any> = this.http.get(this.endpoint, { headers });
     } catch (error) {
       Notify.error('Erro ao tentar buscar dados');
     }
 
-    data.sort(function(a: any, b: any){
-      return a.valor - b.valor;
-    });
-
-    for (const el of data) {
-      el.valor = el.valor.toLocaleString('pt-br', {minimumFractionDigits: 2});
-    }
-
-    return data;
+    return data!;
   }
 
   async confirmPresente(item: any) {

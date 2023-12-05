@@ -14,6 +14,7 @@ export class PresentesComponent implements OnInit{
   showPopup: boolean = false;
   showPopupConfirmar: boolean = false;
   gifts: boolean = true;
+  showLoadPanel: boolean = true;
 
   dsLevel = [
     {id: 'baixo', name: 'PRATA'},
@@ -25,12 +26,32 @@ export class PresentesComponent implements OnInit{
     private rest: PresentesService
   ){}
 
-  async ngOnInit() {
+  ngOnInit() {
     this.search();
   }
 
-  async search() {
-    this.dsPresentes = await this.rest.getPresentes();
+  search() {
+    this.showLoadPanel = true;
+    this.dsPresentes = this.rest.presentes().subscribe({
+
+      next: data => {
+
+        this.dsPresentes = data.sort(function(a: any, b: any){
+          return a.valor - b.valor;
+        });
+
+        for (const el of this.dsPresentes) {
+          el.valor = el.valor.toLocaleString('pt-br', {minimumFractionDigits: 2});
+        }
+      },
+
+      error: e =>  Notify.error(e.error.message),
+
+      complete: () => {
+        this.showLoadPanel = false;
+      }
+
+    });
   }
 
   getInstallmentInfo(item: any) {
