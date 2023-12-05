@@ -14,26 +14,15 @@
     title="Seja Muito Bem vindo"
     width="90%"
     [scroll]="false"
-    [textBtnClose]="'Agora não'"
+    [textBtnClose]="user.role_id == 3 ? 'Agora não' : 'Ir para o Site'"
   >
-    <div class="body">
-      <p>
-        Estamos muito felizes por ter você aqui!<br> <b [class]="getClassName">{{user.name}}</b><br>
-        Seria uma honra ter sua presença em nosso grande dia especial.
-      </p><br>
-      <p>
-        Caso você já tenha certeza de que poderá ir, clica em <b style="color: #569e2d;">Confirmar Presença</b>.
-      </p>
-      <p>
-        Porém se ainda não tem certeza, não tem problemas, depois é só clicar em<i class="fas fa-bars"></i>
-        no canto superior direito e depois clicar em <b style="color: #9e782d;">Confirmar Minha Presença</b>.
-      </p>
-      <p>
-        Só lembrando que é de extrema importância a confirmação de presença,
-        pois na festa só poderá entrar as pessoas que confirmou a presença. Então por favor não esqueça, queremos te ver lá!
-      </p>
-    </div>
+    <div class="body" [innerHTML]="getSafeHtml()"></div>
 
-    <button-popup text="Confirmar Presença" type="success" (onClick)="confirmar()"></button-popup>
+    <button-popup
+      *ngIf="user.role_id == 3"
+      text="Confirmar Presença"
+      type="success"
+      (onClick)="confirmar()"
+    ></button-popup>
   </popup>
 </div>

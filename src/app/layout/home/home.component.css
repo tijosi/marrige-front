@@ -9,10 +9,6 @@
   background-attachment: fixed;
 }
 
-.hidden {
-  overflow-x: hidden;
-}
-
 ::-webkit-scrollbar{
   width: 0px;
   background-color: transparent;
@@ -21,10 +17,6 @@
 @keyframes startOpaticy {
   0%    { opacity: 0 }
   100%  { opacity: 1 }
-}
-
-.princesa {
-  color: #D282A6;
 }
 
 #popup-confirm-presenca {

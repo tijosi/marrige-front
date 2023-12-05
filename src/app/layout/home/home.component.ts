@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { faClose } from '@fortawesome/free-solid-svg-icons';
+import { DomSanitizer } from '@angular/platform-browser';
+import { WellcomeMessagem } from 'src/app/enums/HomeEnum';
 import { GuardService } from 'src/app/service/guard.service';
 
 @Component({
@@ -9,20 +10,32 @@ import { GuardService } from 'src/app/service/guard.service';
 })
 export class HomeComponent implements OnInit{
 
-  faClose = faClose;
+  bodyMessage: string = '';
+
   showPopupConfirmPresence: boolean = false;
+
   user = this.guard.getUser();
 
   constructor(
-    private guard: GuardService
+    private guard: GuardService,
+    private sanitizer: DomSanitizer
   ){}
 
   ngOnInit() {
-    this.showPopupConfirmPresence = true;
+    this.confirmPresenca();
   }
 
-  get getClassName() {
-    return this.user.id == 2 ? 'princesa' :  '';
+  getSafeHtml() {
+    return this.sanitizer.bypassSecurityTrustHtml(this.bodyMessage);
+  }
+
+  confirmPresenca() {
+    if (this.user.role_id != 1) {
+      this.showPopupConfirmPresence = true;
+
+      this.user.role_id == 2 ? this.bodyMessage = WellcomeMessagem.PADRINHO : this.bodyMessage = WellcomeMessagem.CONVIDADO;
+      this.bodyMessage = this.bodyMessage.replace('{{user.name}}', this.user.name);
+    }
   }
 
   confirmar() {
