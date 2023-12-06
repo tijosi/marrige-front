@@ -19,6 +19,7 @@
 }
 
 .intro {
+  position: relative;
   width: 100%;
   text-align: center;
   padding: 20px 10px;
@@ -30,7 +31,9 @@
 }
 
 .box-gift {
+  position: relative;
   width: 100%;
+  flex-grow: 1;
 }
 
 .card-container {
