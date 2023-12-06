@@ -1,21 +1,14 @@
 <nav class="navbar">
 
-  <div class="navbar-logo">
-    <a>S & E</a>
-  </div>
+  <span class="logo">S & E</span>
 
-  <div class="toggler">
-    <span>
-      <fa-icon [class]="iconBars" [icon]="icon" (click)="openDropdown()"></fa-icon>
-    </span>
-  </div>
+  <i [class]="'menu ' + classMenu" (click)="openDropdown()"></i>
 
-  <div
-    class="navbar-dropdown"
-    [style]="'width: ' + widthDropdown"
-  >
-    <div class="dropdown-header">Opções</div>
-    <ul class="list-items">
+  <div [class]="'navbar-dropdown ' + classNavbar">
+
+    <span class="title">Opções</span>
+
+    <ul class="list-itens">
       <li class="item" (click)="routes('')">
         <fa-icon class="item-icon" [icon]="faHome"></fa-icon>
         Início
@@ -38,7 +31,7 @@
       </li>
       <li class="item sair" (click)="exitAcount()">
         <fa-icon class="item-icon sair" [icon]="faSignOutAlt"></fa-icon>
-        Sair da Conta
+        Sair
       </li>
     </ul>
   </div>

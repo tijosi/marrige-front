@@ -11,7 +11,6 @@ import { HeaderService } from 'src/app/service/header.service';
 })
 export class HeaderComponent implements OnInit{
 
-  icon = faBars;
   faGifts = faGifts;
   faUsers = faUsers;
   faUserTie = faUserTie;
@@ -20,8 +19,11 @@ export class HeaderComponent implements OnInit{
   faUserSecret = faUserSecret;
   isAdmin = this.guard.isAdmin;
 
-  computadorMode = false;
   widthDropdown: string = '';
+  classNavbar: string = '';
+  classMenu: string = 'bars fas fa-bars';
+
+  computadorMode: boolean = false;
 
   stringsRoutes: any[] = [
     {id: 0, route: ''},
@@ -32,7 +34,7 @@ export class HeaderComponent implements OnInit{
   ]
 
   constructor(
-    private route: Router,
+    private router: Router,
     private rest: HeaderService,
     private guard: GuardService
   ) {
@@ -44,7 +46,7 @@ export class HeaderComponent implements OnInit{
   }
 
   search() {
-    this.getWidthDropdown();
+    // this.getWidthDropdown();
     this.aba(null, true);
   }
 
@@ -71,63 +73,37 @@ export class HeaderComponent implements OnInit{
 
   }
 
-  oldWidthScreen!: string
-  getWidthDropdown() {
-    // console.log('getWidthDropdown', 'header');
-    const styleScreen = window.getComputedStyle(document.documentElement.querySelector('.html-container')!);
-    if(this.oldWidthScreen == styleScreen.width) return
-
-    this.oldWidthScreen = styleScreen.width;
-
-    if (styleScreen.width > '499px'){
-      this.computadorMode = true
-      this.widthDropdown = '400px'
-    }  else {
-      this.computadorMode = false;
-      this.widthDropdown = '80%'
-    }
-
-    if (this.iconBars == "bars open") this.openDropdown();
-  }
-
-  iconBars: string = 'bars'
-  openDropdown() {
-    this.getWidthDropdown();
-
-    const dropdown: HTMLElement = document.querySelector('.navbar-dropdown')!;
-    const style = dropdown.style
+  openDropdown(exit: boolean = false) {
     const domElement: HTMLElement = document.documentElement.querySelector('.html-container')!;
 
-    if (style.right == '100%' || style.right == "" ) {
+    if (this.classMenu == "bars fas fa-bars" && !exit) {
 
-      domElement.style.overflow = 'hidden';
-      this.iconBars += ' open';
-      this.icon = faClose;
-      style.right = this.computadorMode ? '100px' : '20%'
+      this.classMenu = 'close fas fa-close';
+      this.classNavbar = 'open';
+      domElement.style.overflowY = 'hidden'
 
     } else {
 
-      domElement.style.overflow = 'scroll'
-      this.icon = faBars;
-      style.right = '100%';
-      this.iconBars = 'bars';
+      this.classMenu = 'bars fas fa-bars';
+      this.classNavbar = '';
+      domElement.style.overflowY = 'scroll'
 
     }
 
   }
 
   exitAcount() {
-    this.openDropdown();
+    this.openDropdown(true);
     setTimeout(() => {
-      window.location.reload();
       localStorage.clear();
+      this.router.navigate(['/login']);
     }, 300);
   }
 
   routes(nav: string) {
     this.openDropdown();
 
-    setTimeout(() => { this.route.navigate([nav]) }, 300);
+    setTimeout(() => { this.router.navigate([nav]) }, 300);
     setTimeout(() => { this.aba(nav) }, 500);
   }
 

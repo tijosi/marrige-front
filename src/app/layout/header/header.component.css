@@ -12,28 +12,22 @@
   z-index: 1;
 }
 
-.navbar-logo {
+.logo {
   font-family: 'Noto Serif', serif;
+  user-select:none;
   letter-spacing: -2px;
-  margin-left: 20px;
-}
-
-.navbar-logo a {
+  margin-left: 30px;
   font-size: 30px;
   color: #000000;
-  text-decoration: none;
   transition: 0.15s;
-}
-
-.navbar-logo a:active {
-  color: #D8E2DC;
 }
 
 .navbar-dropdown {
   z-index: 1;
   background-color: #ffffff;
   position: absolute;
-  height: 100vh;
+  height: calc(100vh + 1px);
+  width: 100%;
   bottom: 0;
   right: 100%;
   transform: translateY(calc(100% - 50px));
@@ -41,7 +35,11 @@
   transition: right 0.3s cubic-bezier(0.215, 0.610, 0.355, 1);
 }
 
-.dropdown-header {
+.navbar-dropdown.open {
+  right: 0;
+}
+
+.navbar .title {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -50,14 +48,14 @@
   height: 50px;
 }
 
-.list-items {
-  width: 100%;
-  padding: 0;
-  color: rgba(0, 0, 0, 0.80);
-  font-size: 20px;
+.list-itens {
   display: flex;
   align-items: center;
   flex-direction: column;
+  width: 100%;
+  padding: 0;
+  font-size: 20px;
+  color: #000;
 }
 
 .item-icon {
@@ -94,13 +92,23 @@
   color: rgba(255, 68, 68, 0.823);
 }
 
-.bars {
+.menu {
+  position: relative;
+  z-index: 9999;
   color: #000000;
   font-size: 20px;
   margin-right: 30px;
 }
 
-.bars:hover { cursor: pointer; }
+.menu.bars {
+  font-size: 20px;
+}
+
+.menu.close {
+  font-size: 23px;
+}
+
+.menu:hover { cursor: pointer; }
 
 .open {
   font-size: 25px;
