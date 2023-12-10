@@ -1,0 +1,117 @@
+.box-gift {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 10px;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+.card-container {
+  position: relative;
+  flex: 0 0 calc(50% - 5px);
+  margin-bottom: 20px;
+}
+
+.card-gift {
+  overflow: hidden;
+  padding: 10px;
+  background-color: #FFF;
+  border-radius: 5px;
+}
+
+.banner {
+  height: 30px;
+  width: calc(100% + 20px);
+  transform: translate(-10px, -10px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  font-family: 'Noto Serif', serif;
+  overflow: hidden;
+}
+
+.baixo {
+  background: linear-gradient(to bottom, #ededed, #b0b0b0);
+}
+.medio {
+  background: linear-gradient(to bottom, #ffcbbc, #fcb09b);
+}
+.alto {
+  background: linear-gradient(to bottom, #ffda9f, #ffc76e);
+}
+
+.reflexo {
+  width: 100%;
+  height: 10px;
+  background-color: #ffffffb0;
+  box-shadow: 0px 0px 10px 5px #ffffffb0;
+  position: absolute;
+  transform: rotate(-18deg);
+}
+
+.img-gift {
+  overflow: hidden;
+}
+
+.img-gift  img{
+  width: 100%;
+}
+
+.info-gift.title {
+  text-align: justify;
+  height: 50px;
+  font-size: 13px;
+  margin: 0;
+  overflow: hidden;
+}
+
+.info-gift.price {
+  font-weight: bold;
+  color: rgb(54, 54, 54);
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.btn-value-gift {
+  width: 80%;
+  margin: 0 10%;
+  height: 30px;
+  outline: 0;
+  border: 0;
+  border-radius: 5px;
+  color: #FFF;
+  background-color: #05619a;
+  box-shadow: none;
+  font-size: 16px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.selecionado {
+  position: absolute;
+  width: 100%;
+  top:0;
+  left:0;
+  background-color: #000000cd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.text-selecionado {
+  font-family: 'Noto Serif', serif;
+  text-shadow: 0px 0px 1px #00000088;
+  height: 35px;
+  width: 100%;
+  background-color: #fad393;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.escolhido {
+  opacity: 0.4;
+}

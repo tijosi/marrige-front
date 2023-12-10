@@ -16,12 +16,6 @@ export class PresentesComponent implements OnInit{
   gifts: boolean = true;
   showLoadPanel: boolean = true;
 
-  dsLevel = [
-    {id: 'baixo', name: 'PRATA'},
-    {id: 'medio', name: 'ROSEGOLD'},
-    {id: 'alto',  name: 'GOLD'}
-  ]
-
   constructor(
     private rest: PresentesService
   ){}
@@ -37,7 +31,7 @@ export class PresentesComponent implements OnInit{
       next: data => {
 
         this.dsPresentes = data.sort(function(a: any, b: any){
-          return a.valor - b.valor;
+          return b.valor - a.valor;
         });
 
         for (const el of this.dsPresentes) {
@@ -59,26 +53,6 @@ export class PresentesComponent implements OnInit{
 
     return "Sem parcelamento";
 
-  }
-
-  getSizeAreaElement(elemento: string, type: string): any {
-    if(type == 'width') {
-      const style: any = window.getComputedStyle(document.querySelector(elemento)!);
-      return `calc(${style.width} - ${style.paddingLeft} - ${style.paddingRight} + 10px)`;
-    } else if(type == 'height') {
-      const style: any = window.getComputedStyle(document.querySelector(elemento)!);
-      return `calc(${style.height} - ${style.paddingTop} - ${style.paddingBottom})`;
-    }
-  }
-
-  lookup(el: any) {
-    var result = null;
-    for (let i = 0; i < this.dsLevel.length; i++) {
-      const element = this.dsLevel[i].id;
-      if (el == element) result = this.dsLevel[i].name
-    }
-
-    return result;
   }
 
   item: any;

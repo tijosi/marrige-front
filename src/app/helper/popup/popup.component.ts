@@ -11,17 +11,15 @@ export class PopupComponent implements OnInit {
   buttons!: QueryList<ButtonPopupComponent>;
 
   @Input() title!: string;
-  @Input() height!: string;
-  @Input() width!: string;
+  @Input() height: string = 'auto';
+  @Input() width: string = 'calc(100% - 20px)';
   @Input() scroll!: boolean;
   @Input() textBtnClose: string = 'Fechar';
 
   @Output() close = new EventEmitter<boolean>();
   @Output() onClose = new EventEmitter<boolean>();
 
-  widthReal!: string;
-  heightReal!: string;
-  scrollValue: string = 'hidden';
+  scrollValue: string = 'scroll';
 
   ngOnInit(): void {
     this.converteDimensoes();
@@ -30,25 +28,38 @@ export class PopupComponent implements OnInit {
 
   converteDimensoes() {
 
-    if ( this.width && (this.width.search('%') > 0 || this.width.search('vw') > 0) ) {
-      let porcentagem = Number(this.width.replace(/[^0-9]/g, ''))/100;
+    const elPopup: HTMLElement    = document.querySelector('.popup')!;
+    const elPopupBody: HTMLElement    = document.querySelector('.popup-body')!;
+    let widthReal = this.width;
+    let heightReal = null;
 
-      let domElement: HTMLElement = document.documentElement.querySelector('.html-container')!;
-      this.widthReal = porcentagem*domElement.clientWidth + 'px';
+    if ( this.width != 'calc(100% - 20px)' && (this.width.search('%') > 0 || this.width.search('vw') > 0) ) {
 
-    } else {
-      this.widthReal = this.width
-    }
+      const porcentagem = Number(this.width.replace(/[^0-9]/g, ''))/100;
+      const domElement: HTMLElement = document.documentElement.querySelector('.html-container')!;
 
-    if ( this.height && (this.height.search('%') > 0 || this.height.search('vw') > 0) && window.screen.height >= 500) {
-      let porcentagem = Number(this.height.replace(/[^0-9]/g, ''))/100;
+      const numberwidth = porcentagem*domElement.clientWidth;
+      widthReal = numberwidth > window.innerWidth - 20 ? window.innerWidth - 20 + 'px' : numberwidth + 'px';
 
-      let domElement: HTMLElement = document.documentElement.querySelector('.html-container')!;
-      this.heightReal = porcentagem*domElement.clientHeight + 'px';
+    } else if ( this.width != 'calc(100% - 20px)' && (this.width.search('px') > 0) ) widthReal = this.width;
 
-    } else {
-      this.heightReal = this.height;
-    }
+    if ( this.height.search('%') > 0 || this.height.search('vw') > 0 ) {
+
+      const porcentagem = Number(this.height.replace(/[^0-9]/g, ''))/100;
+      const domElement: HTMLElement = document.documentElement.querySelector('.html-container')!;
+
+      const numberHeight = (porcentagem*domElement.clientHeight - 30 - 50);
+      heightReal = numberHeight > window.innerHeight - 40 ? window.innerHeight - 40 - 30 - 50 + 'px' : numberHeight + 'px'; + 'px';
+
+    } else if (this.height.search('px') > 0) heightReal = this.height;
+
+    elPopupBody.style.height = heightReal != null ?
+      heightReal :
+      elPopupBody.clientHeight > window.innerHeight - 40 ?
+        window.innerHeight - 40 - 30 - 50 + 'px' :
+        (elPopupBody.clientHeight - 30 - 50) + 'px';
+    elPopup.style.width = widthReal;
+
   }
 
   fechar() {

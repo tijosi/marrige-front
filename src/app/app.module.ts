@@ -18,6 +18,7 @@ import { PopupComponent } from './helper/popup/popup.component';
 import { ButtonPopupComponent } from './helper/button-popup/button-popup.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { LoadingComponent } from './helper/loading/loading.component';
+import { GiftComponent } from './helper/gift/gift.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { LoadingComponent } from './helper/loading/loading.component';
     PopupComponent,
     ButtonPopupComponent,
     AdminComponent,
-    LoadingComponent
+    LoadingComponent,
+    GiftComponent
   ],
   imports: [
     BrowserModule,

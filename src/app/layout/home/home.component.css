@@ -1,3 +1,16 @@
+.container-pattern {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-image: url("/assets/bg-sky.jpg");
+  background-repeat:no-repeat;
+  background-position: center;
+  background-size:cover;
+  background-attachment: fixed;
+}
+
 .html-container {
   display: flex;
   flex-direction: column;
@@ -13,9 +26,12 @@
 
 main {
   flex-grow: 1;
+  overflow-x: hidden;
 }
 
-::-webkit-scrollbar{
+.html-container::-webkit-scrollbar,
+.container-pattern::-webkit-scrollbar,
+::-webkit-scrollbar {
   width: 0px;
   background-color: transparent;
 }
@@ -40,31 +56,17 @@ main {
   text-indent: 0;
 }
 
+.confirmar-presenca {
+  transform: none;
+  width: 300px;
+  height: 50px;
+  font-size: 25px;
+}
 
 @media (min-width: 500px) {
 
-  .container-pattern {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100vw;
-    height: 100vh;
-    background-image: url("/assets/bg-sky.jpg");
-    background-repeat:no-repeat;
-    background-position: center;
-    background-size:cover;
-    background-attachment: fixed;
-  }
-
   .html-container{
-    overflow-x: hidden;
     width: 500px;
   }
 
-  .confirmar-presenca {
-    transform: none;
-    width: 300px;
-    height: 50px;
-    font-size: 25px;
-  }
 }

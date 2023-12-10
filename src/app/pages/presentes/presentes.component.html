@@ -1,65 +1,43 @@
-<loading [visible]="showLoadPanel" position=".box-gift"></loading>
+<loading [visible]="showLoadPanel" position="#gifts"></loading>
 <section class="home">
   <section class="intro">
     <h2>Lista de Presentes</h2>
-    <p>Aqui se encontra uma lista de presente em que os mesmos serão utilizados para facilitar o começo de uma nova vida
+    <p>
+      Aqui se encontra uma lista de presente em que os mesmos serão utilizados para facilitar o começo de uma nova vida
     </p>
-    <p>Sabemos que presentear os noivos é uma prática comum e cultural, porém nós decidimos ir além!</p>
-    <p>Ao nos <b>presentar</b> com algum item da sua escolha da lista, o mesmo lhe dará <b>PONTOS</b> (de acordo com a
-      categoria e preço) que serão convertidos em chances de ser <b>premiado</b> com uma surpresa no dia do casamento!
+    <p>
+      Sabemos que presentear os noivos é uma prática comum e cultural. Então se quiser ajudar nós nesse início,
+      você terá nossa gratidão eterna <span style="color:red" >&#10084;</span>
     </p>
-    <p>Quanto mais pontos, mais chances terá de ganhar algumas surpresas no grande dia!</p>
   </section>
-  <div class="box-gift">
-    <div class="card-container" *ngFor="let item of dsPresentes">
-      <div [class]="'card-gift '  + item.level + '-border'" >
-        <div [class]="'banner ' + item.level">
-          <div class="reflexo"></div>
-          <div class="level-title">{{lookup(item.level)}}</div>
-        </div>
-        <div class="img-gift" [style]="'height:' + this.getSizeAreaElement('.card-gift', 'width')">
-          <img [src]="item.path">
-        </div>
-        <div class="info-gift">
-          <p class="title-info-gift">{{item.nome}}</p>
-          <div class="values-info-gift">
-            <p class="price-info-gift">R$ {{item.valor}}</p>
-            <p class="pontos-info-gift">Pontos: {{ (item.pontos).toFixed(2) }}</p>
-          </div>
-        </div>
-        <button [class]="'btn-value-gift ' + item.level +'-border'" (click)="openPopup(item)">{{item.flg_disponivel ? 'Conferir' : 'Presenteado'}}</button>
-        <div
-          *ngIf="!item.flg_disponivel"
-          class="selecionado"
-          [style]="
-            'height:calc(' + this.getSizeAreaElement('.card-gift', 'height') + ' + 10px)'"
-        >
-          <div class="text-selecionado">SELECIONADO</div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <section id="gifts">
+    <app-gift
+      [dataSource]="dsPresentes"
+      (btnClick)="openPopup($event)"
+    ></app-gift>
+  </section>
+
 </section>
 <popup
   *ngIf="showPopup"
   (close)="showPopup = false;"
   title="Presente Selecionado"
-  width="90%"
-  height="auto"
 >
-  <div class="popup-cotainer-item">
-    <h3 class="popup-item-title">Ah que Alegria! Então você deseja nos presentear este item?</h3>
+  <div class="popup-item">
+    <h3>Ah que Alegria! Então você deseja nos presentear este item?</h3>
     <div class="popup-item-body">
       <div class="popup-item-img">
-        <img [src]="item.path" >
+        <img [src]="item.path" style="width:80%;">
       </div>
       <h1 class="popup-item-body-nome">{{ item.nome }}</h1>
       <div class="popup-item-body-price">Valor Médio: <b>R$ {{item.valor}}</b></div>
-      <div class="popup-item-body-pontos">Pontos: <b>{{(item.pontos).toFixed(2)}}</b></div>
       <div class="popup-item-body-link">Site Referência: <a [href]="item.img_url" target="_blank">clique aqui</a></div>
     </div>
     <div class="popup-item-body">
-      <p>Lembrando que ao decidir nos presentear com este item, seja com o valor ou com o próprio item, você terá em troca a nossa gratidão eterna!😂💖</p>
+      <p>
+        Lembrando que ao decidir nos presentear com este item, seja com o valor ou com o próprio item,
+        você terá em troca a nossa gratidão eterna!😂💖
+      </p>
     </div>
   </div>
 
@@ -85,7 +63,7 @@
 <popup
   *ngIf="showPopupConfirmar"
   (close)="showPopupConfirmar = false"
-  title="Confirmar Presente - Item" width="90%"
+  title="Confirmar Presente - Item"
   textBtnClose="Escolher Outro"
 >
   <div class="popup-confirmar-item">

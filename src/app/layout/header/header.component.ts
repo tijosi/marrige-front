@@ -42,11 +42,9 @@ export class HeaderComponent implements OnInit{
 
   async ngOnInit() {
     this.search();
-    console.log(this.isAdmin);
   }
 
   search() {
-    // this.getWidthDropdown();
     this.aba(null, true);
   }
 

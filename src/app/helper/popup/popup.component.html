@@ -1,44 +1,26 @@
 <div class="bloqueador"></div>
-<section
-  class="popup-container"
-  [style]="
-    'width: ' + widthReal + ';' +
-    'height: calc(' + heightReal + ' + 60px);'
-  "
->
-
-  <div
-    class="popup-pattern"
-    [style]="
-      'height: ' + heightReal + ';' +
-      'overflow-y: ' + scrollValue + ';'
-    "
-  >
+<section class="popup">
+  <div class="popup-container">
 
     <h3 class="popup-title">{{ title }}</h3>
 
     <div class="popup-body">
       <ng-content></ng-content>
     </div>
-  </div>
 
-  <div class="popup-footer">
-    <button
-      *ngFor="let button of buttons"
-      [class]="'popup-btn '+button.type"
-      [style]="
-        'width:' + button.width
-      "
-      (click)="button.onClick.emit()"
-    >
-      {{ button.text }}
-    </button>
+    <div class="popup-footer">
+      <button
+        *ngFor="let button of buttons"
+        [class]=" 'popup-btn '+button.type "
+        [style]=" 'width:' + button.width "
+        (click)="button.onClick.emit()"
+      > {{ button.text }} </button>
 
-    <button
-      class="popup-btn fechar"
-      (click)="fechar()"
-    >
-      {{textBtnClose}}
-    </button>
+      <button
+        class="popup-btn fechar"
+        (click)="fechar()"
+      > {{textBtnClose}} </button>
+    </div>
+
   </div>
 </section>
