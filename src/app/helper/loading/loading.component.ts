@@ -8,22 +8,45 @@ import { AfterViewInit, Component, ElementRef, Input, Renderer2, ViewChild } fro
 
 export class LoadingComponent implements AfterViewInit {
 
-  @ViewChild('loadingContainer') loadingContainer!: ElementRef;
   @Input() visible: boolean = true;
   @Input() position!: string;
 
-  constructor( private renderer: Renderer2) {}
+  constructor() {}
 
   ngAfterViewInit() {
-    if (this.position) {
-      const element = document.querySelector(this.position);
-      if (element) {
-        this.renderer.appendChild(element, this.loadingContainer.nativeElement)
-      }
+    this.load();
+  }
+
+  ngOnChanges() {
+    this.load();
+  }
+
+  load() {
+    this.setPosition();
+    this.setVisible();
+  }
+
+  private setVisible() {
+    const elNative: any = document.querySelector('.container-loading');
+
+    if (!this.visible) {
+      elNative!.classList.add('close');
+    } else {
+      elNative!.classList.remove('close');
     }
-    this.renderer.setStyle(this.loadingContainer.nativeElement, 'top', `0`);
-    this.renderer.setStyle(this.loadingContainer.nativeElement, 'left', `0`);
-    this.renderer.setStyle(this.loadingContainer.nativeElement, 'height', `100%`);
-    this.renderer.setStyle(this.loadingContainer.nativeElement, 'width', `100%`);
+  }
+
+  private setPosition() {
+    const element: any = document.querySelector(this.position);
+    if (element) {
+      const rect = element.getBoundingClientRect();
+      const elNative: any = document.querySelector('.container-loading');
+
+      elNative.style.top = rect.top + 'px';
+      elNative.style.left = rect.left + 'px';
+      elNative.style.width = element.offsetWidth + 'px';
+      elNative.style.height = element.offsetHeight + 'px';
+
+    }
   }
 }
