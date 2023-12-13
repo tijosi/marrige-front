@@ -1,10 +1,10 @@
 <div class="bloqueador"></div>
-<section class="popup">
+<section class="popup" [style]="'width: ' + widthReal ">
   <div class="popup-container">
 
     <h3 class="popup-title">{{ title }}</h3>
 
-    <div class="popup-body">
+    <div class="popup-body" [style]="'height: ' + heightReal">
       <ng-content></ng-content>
     </div>
 

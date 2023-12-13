@@ -10,6 +10,8 @@
 }
 
 .popup {
+  max-width: 480px;
+  max-height: calc(100% - 20px);
   position: fixed;
   top: 50%;
   left: 50%;
@@ -44,6 +46,10 @@
   flex-direction: column;
   justify-content: space-between;
   overflow-y: scroll;
+}
+
+.popup-body::-webkit-scrollbar{
+  width: 0px;
 }
 
 .popup-footer {

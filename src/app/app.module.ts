@@ -19,6 +19,12 @@ import { ButtonPopupComponent } from './helper/button-popup/button-popup.compone
 import { AdminComponent } from './pages/admin/admin.component';
 import { LoadingComponent } from './helper/loading/loading.component';
 import { GiftComponent } from './helper/gift/gift.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -41,7 +47,13 @@ import { GiftComponent } from './helper/gift/gift.component';
     FontAwesomeModule,
     NgbModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatIconModule,
+    MatButtonModule,
+    MatToolbarModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

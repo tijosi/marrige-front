@@ -10,6 +10,13 @@
       você terá nossa gratidão eterna <span style="color:red" >&#10084;</span>
     </p>
   </section>
+  <section class="toolbar-container">
+    <mat-toolbar class="mat-toolbar">
+      <span>
+        <button mat-flat-button color="primary">Adicionar</button>
+      </span>
+    </mat-toolbar>
+  </section>
   <section id="gifts">
     <app-gift
       [dataSource]="dsPresentes"
@@ -60,7 +67,7 @@
   ></button-popup>
 </popup>
 
-<popup
+<!-- <popup
   *ngIf="showPopupConfirmar"
   (close)="showPopupConfirmar = false"
   title="Confirmar Presente - Item"
@@ -71,13 +78,46 @@
     <h1 style="color: rgb(24, 24, 24); margin-bottom: 15px;font-size: 1em;padding: 0;">Resumo:</h1>
     <h1 class="popup-item-body-nome">{{ item.nome }}</h1>
     <div class="popup-item-body-price">Valor Médio: <b>R$ {{item.valor}}</b></div>
-    <div class="popup-item-body-pontos">Pontos a Ganhar: <b>{{(item.pontos).toFixed(2)}}</b></div>
     <div class="popup-item-body-link">Site Referência: <a [href]="item.img_url" target="_blank">clique aqui</a></div>
     <div class="popup-item-body-price">Presentendo com: <b>Item</b></div>
     <div class="line"></div>
-    <p style="margin-top: 15px;">Fique a vontade para comprar onde quiser! Só clicar em <b style="color: #51b934;">Darei Este Presente</b>, e saberemos que podemos contar com você!💖</p>
+    <p style="margin-top: 15px;">
+      Fique a vontade para comprar onde quiser! Só clicar em <b style="color: #51b934;">Darei Este Presente</b>,
+      e saberemos que podemos contar com você!💖
+    </p>
 
   </div>
+
+  <button-popup
+    text="Darei Este Presente"
+    type="success"
+    (onClick)="submitConfirmar()"
+  ></button-popup>
+
+</popup> -->
+
+<popup
+  *ngIf="showPopupConfirmar"
+  (close)="showPopupConfirmar = false"
+  title="Confirmar Presente - Item"
+  textBtnClose="Escolher Outro"
+>
+<div>
+  <mat-form-field appearance="outline">
+    <!-- <mat-label>Nome do Presente</mat-label> -->
+    <input matInput placeholder="Nome do Presente...">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Valor Mínimo</mat-label>
+    <input matInput placeholder="Valor Mínimo">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Valor Máximo</mat-label>
+    <input matInput placeholder="Valor Máximo">
+  </mat-form-field>
+</div>
 
   <button-popup
     text="Darei Este Presente"
