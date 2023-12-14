@@ -8,7 +8,7 @@ import { IDataSoruceGift } from 'src/app/interface/IGift.interface';
 })
 export class GiftComponent {
 
-  @Input() dataSource!: IDataSoruceGift[];
+  @Input() dataSource: IDataSoruceGift[] = [];
 
   @Output() btnClick = new EventEmitter<any>();
 

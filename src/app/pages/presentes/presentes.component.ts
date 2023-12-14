@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Notify } from 'src/app/helper/notify';
 import { PresentesService } from 'src/app/service/presentes.service';
 
@@ -9,24 +9,54 @@ import { PresentesService } from 'src/app/service/presentes.service';
 })
 export class PresentesComponent implements OnInit{
 
-  dsPresentes!: any;
+  @ViewChild('vlr_minimo') vlr_minimo!: ElementRef
+  @ViewChild('vlr_maximo') vlr_maximo!: ElementRef
 
-  showPopup: boolean = false;
-  showPopupConfirmar: boolean = false;
+  optionsCurrencyBRLMask = {
+    alias: 'numeric',
+    radixPoint: ',',
+    groupSeparator: '.',
+    autoGroup: true,
+    prefix: 'R$ ',
+    digits: 2,
+    digitsOptional: false,
+    clearMaskOnLostFocus: false,
+  };
+
+  dsPresentes: any[] = [];
+
+  imgUrl!: any;
+  formAdicionar: any = {
+    nomePresente: null,
+    vlr_minimo: null,
+    vlr_maximo: null,
+    link: null,
+    file: null
+  };
+
   gifts: boolean = true;
+  showPopup: boolean = false;
   showLoadPanel: boolean = true;
+  showPopupConfirmar: boolean = false;
+  showPopupAdicionar: boolean = false;
+
 
   constructor(
     private rest: PresentesService
-  ){}
+  ) {}
 
   ngOnInit() {
     this.search();
   }
 
+  getMask() {
+    Inputmask(this.optionsCurrencyBRLMask).mask(this.vlr_minimo.nativeElement);
+    Inputmask(this.optionsCurrencyBRLMask).mask(this.vlr_maximo.nativeElement);
+  }
+
   search() {
     this.showLoadPanel = true;
-    this.dsPresentes = this.rest.presentes().subscribe({
+    this.rest.presentes().subscribe({
 
       next: data => {
 
@@ -48,17 +78,9 @@ export class PresentesComponent implements OnInit{
     });
   }
 
-  getInstallmentInfo(item: any) {
-    if(item.qts_parcelas) return`Ou ${item.qts_parcelas}x de R$ ${item.valor_parcela}`
-
-    return "Sem parcelamento";
-
-  }
-
   item: any;
   openPopup(item: any) {
     this.item = item;
-    console.log(this.item);
     this.showPopup = true;
   }
 
@@ -73,5 +95,27 @@ export class PresentesComponent implements OnInit{
       this.showPopup = false;
       this.search();
 
+  }
+
+  openPopupAdicionar() {
+    this.showPopupAdicionar = true;
+    setTimeout(()=>this.getMask(),100)
+  }
+
+  onFileSelected(event: any) {
+    this.formAdicionar.file = event.target.files[0];
+
+    if (this.formAdicionar.file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        this.imgUrl = e.target?.result;
+      };
+      reader.readAsDataURL(this.formAdicionar.file);
+    }
+
+  }
+
+  submitAdicionar() {
+    console.log(this.formAdicionar);
   }
 }

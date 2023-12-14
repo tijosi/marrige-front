@@ -1,5 +1,6 @@
 <loading [visible]="showLoadPanel" position="#gifts"></loading>
 <section class="home">
+
   <section class="intro">
     <h2>Lista de Presentes</h2>
     <p>
@@ -10,18 +11,23 @@
       você terá nossa gratidão eterna <span style="color:red" >&#10084;</span>
     </p>
   </section>
+
   <section class="toolbar-container">
     <mat-toolbar class="mat-toolbar">
       <span>
-        <button mat-flat-button color="primary">Adicionar</button>
+        <button mat-flat-button color="primary" (click)="openPopupAdicionar()" [disabled]="showLoadPanel">Adicionar</button>
       </span>
     </mat-toolbar>
   </section>
+
   <section id="gifts">
+
+
     <app-gift
       [dataSource]="dsPresentes"
       (btnClick)="openPopup($event)"
     ></app-gift>
+
   </section>
 
 </section>
@@ -97,32 +103,51 @@
 </popup> -->
 
 <popup
-  *ngIf="showPopupConfirmar"
-  (close)="showPopupConfirmar = false"
-  title="Confirmar Presente - Item"
-  textBtnClose="Escolher Outro"
+  *ngIf="showPopupAdicionar"
+  (close)="showPopupAdicionar = false"
+  title="Adicionar Presente"
+  textBtnClose="Cancelar"
 >
-<div>
-  <mat-form-field appearance="outline">
-    <!-- <mat-label>Nome do Presente</mat-label> -->
-    <input matInput placeholder="Nome do Presente...">
-  </mat-form-field>
+  <form class="form-container">
+    <mat-form-field appearance="outline" style="width: 100%;">
+      <mat-label>Nome do Presente</mat-label>
+      <input matInput [(ngModel)]="formAdicionar.nomePresente" name="nomePresente">
+    </mat-form-field>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Valor Mínimo</mat-label>
-    <input matInput placeholder="Valor Mínimo">
-  </mat-form-field>
+    <mat-form-field appearance="outline" style="width: 50%;">
+      <mat-label>Valor Mínimo</mat-label>
+      <input matInput [(ngModel)]="formAdicionar.vlr_minimo" #vlr_minimo name="vlr_minimo">
+    </mat-form-field>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Valor Máximo</mat-label>
-    <input matInput placeholder="Valor Máximo">
-  </mat-form-field>
-</div>
+    <mat-form-field appearance="outline" style="width: 50%;">
+      <mat-label>Valor Máximo</mat-label>
+      <input matInput [(ngModel)]="formAdicionar.vlr_maximo" #vlr_maximo name="vlr_maximo">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" style="width: 100%;">
+      <mat-label>Link Referência</mat-label>
+      <input matInput [(ngModel)]="formAdicionar.link" name="link">
+    </mat-form-field>
+
+    <div class="input-file-group">
+      <label for="file">{{imgUrl ? 'Selecionar outra imagem' : 'Escolher imagem'}}</label>
+      <input
+        id="file"
+        name="file"
+        type="file"
+        [(ngModel)]="formAdicionar.file"
+        (change)="onFileSelected($event)"
+      >
+      <div class="img-file">
+        <img *ngIf="imgUrl" [src]="imgUrl">
+      </div>
+    </div>
+  </form>
 
   <button-popup
-    text="Darei Este Presente"
+    text="Adicionar"
     type="success"
-    (onClick)="submitConfirmar()"
+    (onClick)="submitAdicionar()"
   ></button-popup>
 
 </popup>
