@@ -1,7 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { faArrowDown, faCheck, faBell, faGift } from '@fortawesome/free-solid-svg-icons';
 import * as moment from 'moment';
-import { Notify } from 'src/app/helper/notify';
+import { Notify } from 'src/app/template/notify';
 import { AdminService } from 'src/app/service/admin.service';
 
 

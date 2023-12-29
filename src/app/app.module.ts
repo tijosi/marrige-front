@@ -14,17 +14,18 @@ import '@angular/localize/init';
 import { FormsModule } from '@angular/forms';
 import { PresentesComponent } from './pages/presentes/presentes.component';
 import { HttpClientModule } from '@angular/common/http';
-import { PopupComponent } from './helper/popup/popup.component';
-import { ButtonPopupComponent } from './helper/button-popup/button-popup.component';
+import { PopupComponent } from './template/popup/popup.component';
+import { ButtonPopupComponent } from './template/button-popup/button-popup.component';
 import { AdminComponent } from './pages/admin/admin.component';
-import { LoadingComponent } from './helper/loading/loading.component';
-import { GiftComponent } from './helper/gift/gift.component';
+import { LoadingComponent } from './template/loading/loading.component';
+import { GiftComponent } from './template/gift/gift.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { FileUploadModule } from 'ng2-file-upload';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import { MatInputModule } from '@angular/material/input';
     ButtonPopupComponent,
     AdminComponent,
     LoadingComponent,
-    GiftComponent
+    GiftComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,7 +54,8 @@ import { MatInputModule } from '@angular/material/input';
     MatButtonModule,
     MatToolbarModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    FileUploadModule
   ],
   providers: [],
   bootstrap: [AppComponent]

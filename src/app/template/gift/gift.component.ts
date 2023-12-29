@@ -13,9 +13,9 @@ export class GiftComponent {
   @Output() btnClick = new EventEmitter<any>();
 
   dsLevel = [
-    {id: 'baixo', name: 'PRATA'},
-    {id: 'medio', name: 'ROSEGOLD'},
-    {id: 'alto',  name: 'GOLD'}
+    {id: 'BAIXO', name: 'PRATA'},
+    {id: 'MEDIO', name: 'ROSEGOLD'},
+    {id: 'ALTO',  name: 'GOLD'}
   ];
 
   constructor(){}
@@ -33,9 +33,9 @@ export class GiftComponent {
   }
 
   borderGift(level: any): string {
-    if (level == 'BAIXO') return "border: 1px solid #c8c8c8";
-    if (level == 'MEDIO') return "border: 1px solid #e7b2a4";
-    if (level == 'ALTO')  return "border: 1px solid #ffce7f";
+    if (level == 'BAIXO') return "box-shadow: 0px 0px 5px #c8c8c8; border: 1px solid #c8c8c8";
+    if (level == 'MEDIO') return "box-shadow: 0px 0px 5px #e7b2a4; border: 1px solid #e7b2a4";
+    if (level == 'ALTO')  return "box-shadow: 0px 0px 5px #ffce7f; border: 1px solid #ffce7f";
     return ""
   }
 

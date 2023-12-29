@@ -1,4 +1,4 @@
-import { Notify } from 'src/app/helper/notify';
+import { Notify } from 'src/app/template/notify';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';

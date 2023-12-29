@@ -1,7 +1,7 @@
 import { environment } from './../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Notify } from '../helper/notify';
+import { Notify } from '../template/notify';
 @Injectable({
   providedIn: 'root'
 })

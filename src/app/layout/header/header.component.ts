@@ -28,9 +28,8 @@ export class HeaderComponent implements OnInit{
   stringsRoutes: any[] = [
     {id: 0, route: ''},
     {id: 1, route: 'presentes'},
-    {id: 2, route: 'convidados'},
-    {id: 3, route: 'padrinhos'},
-    {id: 4, route: 'admin'}
+    {id: 2, route: 'padrinhos'},
+    {id: 3, route: 'admin'}
   ]
 
   constructor(

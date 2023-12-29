@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { Notify } from 'src/app/helper/notify';
+import { Notify } from 'src/app/template/notify';
 import { PresentesService } from 'src/app/service/presentes.service';
+import { TransformHelper } from 'src/app/helper/TransformHelper';
 
 @Component({
   selector: 'app-presentes',
@@ -26,13 +27,7 @@ export class PresentesComponent implements OnInit{
   dsPresentes: any[] = [];
 
   imgUrl!: any;
-  formAdicionar: any = {
-    nomePresente: null,
-    vlr_minimo: null,
-    vlr_maximo: null,
-    link: null,
-    file: null
-  };
+  formAdicionar: any = {};
 
   gifts: boolean = true;
   showPopup: boolean = false;
@@ -102,20 +97,35 @@ export class PresentesComponent implements OnInit{
     setTimeout(()=>this.getMask(),100)
   }
 
+  formData!: FormData;
   onFileSelected(event: any) {
-    this.formAdicionar.file = event.target.files[0];
+    if (event.target.files[0]) {
+      const file: File = event.target.files[0];
+      this.formAdicionar.file = file;
 
-    if (this.formAdicionar.file) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        this.imgUrl = e.target?.result;
-      };
-      reader.readAsDataURL(this.formAdicionar.file);
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          this.imgUrl = e.target?.result;
+        };
+        reader.readAsDataURL(file);
+      }
     }
-
   }
 
   submitAdicionar() {
-    console.log(this.formAdicionar);
+
+    this.formAdicionar.vlr_minimo = TransformHelper.currencyBrlToFloat(this.vlr_minimo.nativeElement.inputmask.unmaskedvalue());
+    this.formAdicionar.vlr_maximo = TransformHelper.currencyBrlToFloat(this.vlr_maximo.nativeElement.inputmask.unmaskedvalue());
+
+    this.rest.savePresente(this.formAdicionar).subscribe({
+
+      next: data => {},
+
+      error: e =>  Notify.error(e.error.message),
+
+      complete: () => {}
+    });
   }
+
 }

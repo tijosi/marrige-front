@@ -3,7 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AccountService } from '../../service/account.service';
 import {NgForm} from '@angular/forms';
-import { Notify } from 'src/app/helper/notify';
+import { Notify } from 'src/app/template/notify';
 
 @Component({
   selector: 'app-login',

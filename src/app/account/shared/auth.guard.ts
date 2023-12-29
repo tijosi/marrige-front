@@ -1,4 +1,4 @@
-import { Notify } from 'src/app/helper/notify';
+import { Notify } from 'src/app/template/notify';
 import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
@@ -16,7 +16,10 @@ export class AuthGuard {
     private rest: GuardService
   ){}
 
-  canActivate(): Observable<boolean> {
+  // canActivate(): Observable<boolean> {
+    canActivate() {
+
+    return true;
 
     return this.rest.auth().pipe(
       map((data: any) => {

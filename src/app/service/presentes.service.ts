@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Notify } from '../helper/notify';
+import { Notify } from '../template/notify';
 import { environment } from './../../environments/environment';
 import { Observable } from 'rxjs';
+import { TransformHelper } from '../helper/TransformHelper';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,6 @@ export class PresentesService {
 
   private getHeaders(): HttpHeaders {
     return new HttpHeaders({
-      'Content-Type': 'application/json',
       Authorization: `Bearer ${localStorage.getItem('token')}`,
     });
   }
@@ -25,6 +25,20 @@ export class PresentesService {
 
     try {
       var data: Observable<any> = this.http.get(this.endpoint, { headers });
+    } catch (error) {
+      Notify.error('Erro ao tentar buscar dados');
+    }
+
+    return data!;
+  }
+
+  savePresente(form: any): Observable<any> {
+    const headers = this.getHeaders();
+
+    const formData = TransformHelper.objectToFormData(form);
+
+    try {
+      var data: Observable<any> = this.http.post(this.endpoint, formData, { headers });
     } catch (error) {
       Notify.error('Erro ao tentar buscar dados');
     }

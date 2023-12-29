@@ -111,7 +111,7 @@
   <form class="form-container">
     <mat-form-field appearance="outline" style="width: 100%;">
       <mat-label>Nome do Presente</mat-label>
-      <input matInput [(ngModel)]="formAdicionar.nomePresente" name="nomePresente">
+      <input matInput [(ngModel)]="formAdicionar.nome_presente" name="nomePresente">
     </mat-form-field>
 
     <mat-form-field appearance="outline" style="width: 50%;">
@@ -135,7 +135,6 @@
         id="file"
         name="file"
         type="file"
-        [(ngModel)]="formAdicionar.file"
         (change)="onFileSelected($event)"
       >
       <div class="img-file">
