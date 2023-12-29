@@ -19,8 +19,6 @@ export class AuthGuard {
   // canActivate(): Observable<boolean> {
     canActivate() {
 
-    return true;
-
     return this.rest.auth().pipe(
       map((data: any) => {
         if(data) {
