@@ -27,7 +27,10 @@ export class PresentesComponent implements OnInit{
   dsPresentes: any[] = [];
 
   imgUrl!: any;
-  formAdicionar: any = {};
+  formAdicionar: any = {
+    vlr_minimo: 0,
+    vlr_maximo: 0
+  };
 
   gifts: boolean = true;
   showPopup: boolean = false;
@@ -132,7 +135,10 @@ export class PresentesComponent implements OnInit{
       next: data => {
         this.showPopupAdicionar = false;
         this.showLoadPanel = false;
-        this.formAdicionar = {};
+        this.formAdicionar = {
+          vlr_minimo:0,
+          vlr_maximo:0
+        };
         this.search();
       },
 
