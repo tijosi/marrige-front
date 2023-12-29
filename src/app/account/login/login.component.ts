@@ -46,9 +46,12 @@ export class LoginComponent implements OnInit {
     this.showLoadPanel = true;
     this.rest.login({...form}).subscribe({
       next: (data: any) => {
+
         localStorage.clear();
         localStorage.setItem('token', data.token);
         this.router.navigate(['']);
+        this.showLoadPanel = false;
+
       },
 
       error: (e: any) => {
