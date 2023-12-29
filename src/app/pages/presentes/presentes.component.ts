@@ -49,8 +49,11 @@ export class PresentesComponent implements OnInit{
     Inputmask(this.optionsCurrencyBRLMask).mask(this.vlr_maximo.nativeElement);
   }
 
+  loadingPosition: any;
   search() {
     this.showLoadPanel = true;
+    this.loadingPosition = '#gifts';
+    this.dsPresentes = [];
     this.rest.presentes().subscribe({
 
       next: data => {
@@ -97,9 +100,10 @@ export class PresentesComponent implements OnInit{
     setTimeout(()=>this.getMask(),100)
   }
 
-  formData!: FormData;
   onFileSelected(event: any) {
+
     if (event.target.files[0]) {
+
       const file: File = event.target.files[0];
       this.formAdicionar.file = file;
 
@@ -110,7 +114,9 @@ export class PresentesComponent implements OnInit{
         };
         reader.readAsDataURL(file);
       }
+
     }
+
   }
 
   submitAdicionar() {
@@ -118,13 +124,22 @@ export class PresentesComponent implements OnInit{
     this.formAdicionar.vlr_minimo = TransformHelper.currencyBrlToFloat(this.vlr_minimo.nativeElement.inputmask.unmaskedvalue());
     this.formAdicionar.vlr_maximo = TransformHelper.currencyBrlToFloat(this.vlr_maximo.nativeElement.inputmask.unmaskedvalue());
 
+    this.loadingPosition = '.form-container';
+    this.showLoadPanel = true;
+
     this.rest.savePresente(this.formAdicionar).subscribe({
 
-      next: data => {},
+      next: data => {
+        this.showPopupAdicionar = false;
+        this.showLoadPanel = false;
+        this.formAdicionar = {};
+        this.search();
+      },
 
-      error: e =>  Notify.error(e.error.message),
-
-      complete: () => {}
+      error: e => {
+        Notify.error(e.message)
+        this.showLoadPanel = false;
+      }
     });
   }
 

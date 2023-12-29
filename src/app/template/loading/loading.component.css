@@ -29,6 +29,10 @@
   border-radius: 10px;
 }
 
+h2 {
+  margin-bottom: 0;
+}
+
 .title-loading {
   color: #272727;
   font-size: 16px;

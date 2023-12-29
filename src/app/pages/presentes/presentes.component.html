@@ -1,4 +1,4 @@
-<loading [visible]="showLoadPanel" position="#gifts"></loading>
+<loading [visible]="showLoadPanel" [position]="loadingPosition"></loading>
 <section class="home">
 
   <section class="intro">
@@ -73,7 +73,7 @@
   ></button-popup>
 </popup>
 
-<!-- <popup
+<popup
   *ngIf="showPopupConfirmar"
   (close)="showPopupConfirmar = false"
   title="Confirmar Presente - Item"
@@ -100,7 +100,7 @@
     (onClick)="submitConfirmar()"
   ></button-popup>
 
-</popup> -->
+</popup>
 
 <popup
   *ngIf="showPopupAdicionar"
@@ -108,6 +108,7 @@
   title="Adicionar Presente"
   textBtnClose="Cancelar"
 >
+
   <form class="form-container">
     <mat-form-field appearance="outline" style="width: 100%;">
       <mat-label>Nome do Presente</mat-label>
