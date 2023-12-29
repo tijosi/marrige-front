@@ -135,6 +135,7 @@ export class PresentesComponent implements OnInit{
       next: data => {
         this.showPopupAdicionar = false;
         this.showLoadPanel = false;
+        this.imgUrl = null;
         this.formAdicionar = {
           vlr_minimo:0,
           vlr_maximo:0
