@@ -11,7 +11,7 @@
     <div class="popup-footer">
       <button
         *ngFor="let button of buttons"
-        [class]=" 'popup-btn '+button.type "
+        [class]=" 'popup-btn '+ button.type "
         [style]=" 'width:' + button.width "
         (click)="button.onClick.emit()"
       > {{ button.text }} </button>

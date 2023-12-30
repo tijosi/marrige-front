@@ -37,21 +37,28 @@
   title="Presente Selecionado"
 >
   <div class="popup-item">
+
     <h3>Ah que Alegria! Então você deseja nos presentear este item?</h3>
+
     <div class="popup-item-body">
+
       <div class="popup-item-img">
-        <img [src]="item.path" style="width:80%;">
+        <img [src]="item.path">
       </div>
+
       <h1 class="popup-item-body-nome">{{ item.nome }}</h1>
       <div class="popup-item-body-price">Valor Médio: <b>R$ {{item.valor}}</b></div>
       <div class="popup-item-body-link">Site Referência: <a [href]="item.img_url" target="_blank">clique aqui</a></div>
+
     </div>
+
     <div class="popup-item-body">
       <p>
         Lembrando que ao decidir nos presentear com este item, seja com o valor ou com o próprio item,
         você terá em troca a nossa gratidão eterna!😂💖
       </p>
     </div>
+
   </div>
 
   <button-popup

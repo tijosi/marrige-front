@@ -13,7 +13,7 @@ export class PopupComponent implements OnInit {
   @Input() title!: string;
   @Input() height: string = '';
   @Input() width: string = '';
-  @Input() scroll!: boolean;
+  @Input() scroll: boolean = true;
   @Input() textBtnClose: string = 'Fechar';
 
   @Output() close = new EventEmitter<boolean>();
@@ -21,11 +21,11 @@ export class PopupComponent implements OnInit {
 
   scrollValue: string = 'scroll';
   widthReal: any = 'calc(100% - 20px)';
-  heightReal: any = 'calc(100% - 20px)';
+  heightReal: any = 'auto';
 
   ngOnInit(): void {
     this.converteDimensoes();
-    if(this.scroll) this.scrollValue = 'scroll'
+    if(!this.scroll) this.scrollValue = 'hidden'
   }
 
   converteDimensoes() {
@@ -45,7 +45,7 @@ export class PopupComponent implements OnInit {
       const porcentagem = Number(this.height.replace(/[^0-9]/g, ''))/100;
       const domElement: HTMLElement = document.documentElement.querySelector('.html-container')!;
 
-      const numberHeight = (porcentagem*domElement.clientHeight - 30 - 50);
+      const numberHeight = (porcentagem*domElement.clientHeight - 30 - 50 - 60);
       this.heightReal = numberHeight + 'px';
 
     } else if (this.height.search('px') > 0) this.heightReal = this.height;

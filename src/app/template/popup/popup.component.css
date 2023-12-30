@@ -11,7 +11,7 @@
 
 .popup {
   max-width: 480px;
-  max-height: calc(100% - 20px);
+  max-height: calc(100% - 80px);
   position: fixed;
   top: 50%;
   left: 50%;
@@ -35,6 +35,7 @@
   justify-content: center;
   align-items: center;
   height: 30px;
+  margin: 8px 0;
   color: #2d2d2d;
   width: 100%;
   border-bottom: 1px solid #d4d4d4c6;
@@ -44,6 +45,7 @@
 .popup-body {
   display: flex;
   flex-direction: column;
+  max-height:  calc(100vh - 170px);
   justify-content: space-between;
   overflow-y: scroll;
 }
@@ -54,6 +56,7 @@
 
 .popup-footer {
   padding: 10px;
+  border-top: 1px solid #c3c3c3;
   height: 50px;
   width: calc(100% + 20px);
   transform: translateX(-10px);
