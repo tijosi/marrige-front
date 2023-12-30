@@ -11,7 +11,7 @@
 
 .popup {
   max-width: 480px;
-  max-height: calc(100% - 80px);
+  max-height: calc(100% - 130px);
   position: fixed;
   top: 50%;
   left: 50%;
