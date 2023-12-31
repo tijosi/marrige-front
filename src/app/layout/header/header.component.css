@@ -9,7 +9,7 @@
   justify-content: space-between;
   flex-direction: row;
   align-items: center;
-  z-index: 1;
+  z-index: 2;
 }
 
 .logo {

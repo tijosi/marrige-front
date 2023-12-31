@@ -1,19 +1,19 @@
 <div class="box-gift">
 
-  <div class="card-container" *ngFor="let item of dataSource">
+  <div  class="card-container" *ngFor="let item of dataSource">
     <div
       [class]="'card-gift'"
       [style]="borderGift(item.level)"
     >
 
-      <div [class]="'banner ' + item.level">
-        <div class="reflexo"></div>
-        <div style="z-index: 1">{{ lookup(item.level) }}</div>
+      <div [class]="'banner'" [style]="bannerStyle(item.level)">
+        <div>{{ lookup(item.level) }}</div>
       </div>
+
+      <i *ngIf="isAdmin" id="btn-excluir" class="fas fa-trash" [style]="borderGiftTrash(item.level)"></i>
 
       <div
         class="img-gift"
-        [style]="'height:' + this.getSizeAreaElement('.card-gift', 'width')"
       >
         <img [src]="item.path">
       </div>
@@ -23,13 +23,14 @@
         <div class="info-gift price">Valor médio: R$ {{ item.valor }}</div>
       </div>
 
-      <button [class]="'btn-value-gift'" (click)="btnClick.emit(item)">Conferir</button>
+      <button *ngIf="item.flg_disponivel" [class]="'btn-value-gift'" (click)="btnClick.emit(item)">Conferir</button>
+      <button *ngIf="!item.flg_disponivel" [class]="'btn-empty-gift'"></button>
 
       <div
         *ngIf="!item.flg_disponivel"
         class="selecionado"
-        [style]="'height:calc(' + this.getSizeAreaElement('.card-gift', 'height') + ' + 10px)'"
-      ><div class="text-selecionado">SELECIONADO</div>
+      >
+        <div class="text-selecionado" [style]="bannerStyle(item.level)">SELECIONADO</div>
       </div>
 
     </div>

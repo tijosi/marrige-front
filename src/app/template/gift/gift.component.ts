@@ -1,3 +1,4 @@
+import { GuardService } from './../../service/guard.service';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IDataSoruceGift } from 'src/app/interface/IGift.interface';
 
@@ -8,35 +9,46 @@ import { IDataSoruceGift } from 'src/app/interface/IGift.interface';
 })
 export class GiftComponent {
 
+  @Input() dsArea: any[] = [];
   @Input() dataSource: IDataSoruceGift[] = [];
 
   @Output() btnClick = new EventEmitter<any>();
 
-  dsLevel = [
-    {id: 'BAIXO', name: 'PRATA'},
-    {id: 'MEDIO', name: 'ROSEGOLD'},
-    {id: 'ALTO',  name: 'GOLD'}
-  ];
+  isAdmin = this.guard.isAdmin;
 
-  constructor(){}
+  constructor(
+    private guard: GuardService
+  ){}
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  ngAfterContentInit() {}
+
+  ngOnChanges() {}
+
+  borderGift(area: any): string {
+
+    const selection = this.dsArea.filter(el => el.id == area);
+    return `box-shadow: 0px 0px 5px ${selection[0].color}; border: 1px solid ${selection[0].color} ;`
 
   }
 
-  ngAfterContentInit() {
+  borderGiftTrash(area: any): string {
+
+    const selection = this.dsArea.filter(el => el.id == area);
+    return `
+      box-shadow: 0px 0px 5px ${selection[0].color};
+      border: 1px solid ${selection[0].color};
+      border-radius: 3px 3px 0 0;
+    `
 
   }
 
-  ngOnChanges() {
+  bannerStyle(area: any) {
 
-  }
+    const selection = this.dsArea.filter(el => el.id == area);
+    return `background: ${selection[0].color};`
 
-  borderGift(level: any): string {
-    if (level == 'BAIXO') return "box-shadow: 0px 0px 5px #c8c8c8; border: 1px solid #c8c8c8";
-    if (level == 'MEDIO') return "box-shadow: 0px 0px 5px #e7b2a4; border: 1px solid #e7b2a4";
-    if (level == 'ALTO')  return "box-shadow: 0px 0px 5px #ffce7f; border: 1px solid #ffce7f";
-    return ""
   }
 
   getSizeAreaElement(elemento: string, type: string): any {
@@ -51,9 +63,9 @@ export class GiftComponent {
 
   lookup(el: any) {
     var result = null;
-    for (let i = 0; i < this.dsLevel.length; i++) {
-      const element = this.dsLevel[i].id;
-      if (el == element) result = this.dsLevel[i].name
+    for (let i = 0; i < this.dsArea.length; i++) {
+      const element = this.dsArea[i].id;
+      if (el == element) result = this.dsArea[i].descricao
     }
 
     return result;

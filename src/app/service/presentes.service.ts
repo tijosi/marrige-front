@@ -20,6 +20,21 @@ export class PresentesService {
     });
   }
 
+  get optionsCurrencyBRLMask() {
+
+    return {
+      alias: 'numeric',
+      radixPoint: ',',
+      groupSeparator: '.',
+      autoGroup: true,
+      prefix: 'R$ ',
+      digits: 2,
+      digitsOptional: false,
+      clearMaskOnLostFocus: false,
+    }
+
+  };
+
   presentes(): Observable<any> {
     const headers = this.getHeaders();
 
@@ -54,6 +69,13 @@ export class PresentesService {
     } catch (error) {
       Notify.error('Erro ao tentar confirmar Item');
     }
+
+    return data;
+  }
+
+  presentesArea(): Observable<any> {
+
+    var data: Observable<any> = this.http.get(environment.apiUrl + '/enum/presentes-area-enum');
 
     return data;
   }

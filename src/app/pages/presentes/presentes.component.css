@@ -106,12 +106,31 @@
 /* TOOLBAR */
 .toolbar-container {
   width: 100%;
-  margin-bottom: 10px;
 }
 
 .mat-toolbar {
+  position: relative;
   background-color: transparent;
   display: flex;
   justify-content: end;
-  height: 50px;
+  align-items: center;
+  padding: 0 10px;
+  gap: 10px;
+  height: 78px;
+}
+
+.mat-toolbar span mat-form-field {
+  width: 100%;
+}
+
+.toolbar-select-box {
+  flex-grow: 1;
+}
+
+.toolbar-adicionar {
+  width: 104px;
+  margin-bottom: 22px;
+  display: flex;
+  justify-content: end;
+
 }

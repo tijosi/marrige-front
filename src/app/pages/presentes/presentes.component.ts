@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Notify } from 'src/app/template/notify';
 import { PresentesService } from 'src/app/service/presentes.service';
 import { TransformHelper } from 'src/app/helper/TransformHelper';
+import { GuardService } from 'src/app/service/guard.service';
 
 @Component({
   selector: 'app-presentes',
@@ -13,18 +14,10 @@ export class PresentesComponent implements OnInit{
   @ViewChild('vlr_minimo') vlr_minimo!: ElementRef
   @ViewChild('vlr_maximo') vlr_maximo!: ElementRef
 
-  optionsCurrencyBRLMask = {
-    alias: 'numeric',
-    radixPoint: ',',
-    groupSeparator: '.',
-    autoGroup: true,
-    prefix: 'R$ ',
-    digits: 2,
-    digitsOptional: false,
-    clearMaskOnLostFocus: false,
-  };
-
   dsPresentes: any[] = [];
+  dsArea: any [] = [];
+
+  isAdmin = this.guard.isAdmin;
 
   imgUrl!: any;
   formAdicionar: any = {
@@ -32,7 +25,6 @@ export class PresentesComponent implements OnInit{
     vlr_maximo: 0
   };
 
-  gifts: boolean = true;
   showPopup: boolean = false;
   showLoadPanel: boolean = true;
   showPopupConfirmar: boolean = false;
@@ -40,26 +32,39 @@ export class PresentesComponent implements OnInit{
 
 
   constructor(
-    private rest: PresentesService
+    private rest: PresentesService,
+    private guard: GuardService
   ) {}
 
   ngOnInit() {
+
+    this.rest.presentesArea().subscribe({
+      next: data => this.dsArea = data
+    });
+
     this.search();
+
   }
 
   getMask() {
-    Inputmask(this.optionsCurrencyBRLMask).mask(this.vlr_minimo.nativeElement);
-    Inputmask(this.optionsCurrencyBRLMask).mask(this.vlr_maximo.nativeElement);
+    Inputmask(this.rest.optionsCurrencyBRLMask).mask(this.vlr_minimo.nativeElement);
+    Inputmask(this.rest.optionsCurrencyBRLMask).mask(this.vlr_maximo.nativeElement);
   }
 
   loadingPosition: any;
-  search() {
-    this.showLoadPanel = true;
-    this.loadingPosition = '#gifts';
+  search(filter?: any) {
     this.dsPresentes = [];
+    this.loadingPosition = '#gifts';
+    setTimeout(() => this.showLoadPanel = true, 10);
     this.rest.presentes().subscribe({
 
       next: data => {
+
+        if (filter && filter != 'TODOS') {
+          data = data.filter((el: any) => {
+            return el.level == filter;
+          });
+        }
 
         this.dsPresentes = data.sort(function(a: any, b: any){
           return b.valor - a.valor;
@@ -77,6 +82,10 @@ export class PresentesComponent implements OnInit{
       }
 
     });
+  }
+
+  valueChange(value: any) {
+    this.search(value);
   }
 
   item: any;

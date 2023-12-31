@@ -14,7 +14,16 @@
 
   <section class="toolbar-container">
     <mat-toolbar class="mat-toolbar">
-      <span>
+      <span class="toolbar-select-box">
+        <mat-form-field appearance="outline">
+          <mat-label>Filtrar por...</mat-label>
+          <mat-select [value]="'TODOS'" (valueChange)="valueChange($event)">
+            <mat-option value="TODOS" selected>TODOS</mat-option>
+            <mat-option *ngFor="let area of dsArea" [value]="area.id">{{area.descricao}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </span>
+      <span class="toolbar-adicionar">
         <button mat-flat-button color="primary" (click)="openPopupAdicionar()" [disabled]="showLoadPanel">Adicionar</button>
       </span>
     </mat-toolbar>
@@ -22,8 +31,8 @@
 
   <section id="gifts">
 
-
     <app-gift
+      [dsArea]="dsArea"
       [dataSource]="dsPresentes"
       (btnClick)="openPopup($event)"
     ></app-gift>
@@ -120,6 +129,13 @@
     <mat-form-field appearance="outline" style="width: 100%;">
       <mat-label>Nome do Presente</mat-label>
       <input matInput [(ngModel)]="formAdicionar.nome_presente" name="nomePresente">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" style="width: calc( 100% - 10px);">
+      <mat-label>Categoria</mat-label>
+      <mat-select  [(ngModel)]="formAdicionar.categoria" name="categoria">
+        <mat-option *ngFor="let area of dsArea" [value]="area.id">{{area.descricao}}</mat-option>
+      </mat-select>
     </mat-form-field>
 
     <mat-form-field appearance="outline" style="width: 50%;">
