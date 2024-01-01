@@ -17,13 +17,13 @@
       <span class="toolbar-select-box">
         <mat-form-field appearance="outline">
           <mat-label>Filtrar por...</mat-label>
-          <mat-select [value]="'TODOS'" (valueChange)="valueChange($event)">
+          <mat-select [value]="'TODOS'" (valueChange)="valueChange($event)" [disabled]="showLoadPanel">
             <mat-option value="TODOS" selected>TODOS</mat-option>
             <mat-option *ngFor="let area of dsArea" [value]="area.id">{{area.descricao}}</mat-option>
           </mat-select>
         </mat-form-field>
       </span>
-      <span class="toolbar-adicionar">
+      <span class="toolbar-adicionar" *ngIf="isAdmin">
         <button mat-flat-button color="primary" (click)="openPopupAdicionar()" [disabled]="showLoadPanel">Adicionar</button>
       </span>
     </mat-toolbar>
@@ -35,6 +35,7 @@
       [dsArea]="dsArea"
       [dataSource]="dsPresentes"
       (btnClick)="openPopup($event)"
+      (onExlcuir)="excluirPresente($event)"
     ></app-gift>
 
   </section>

@@ -39,6 +39,17 @@ export class LoadingComponent implements AfterViewInit {
   }
 
   private setPosition() {
+
+    if (this.position == null || this.position == '') {
+      const elNative: any = document.querySelector('.container-loading');
+
+      elNative.style.top = '0px';
+      elNative.style.left = '0px';
+      elNative.style.width = '100vw';
+      elNative.style.height = '100vh';
+      return;
+    };
+
     const element: any = document.querySelector(this.position);
     if (element) {
       const rect = element.getBoundingClientRect();

@@ -3,6 +3,7 @@ import { Notify } from 'src/app/template/notify';
 import { PresentesService } from 'src/app/service/presentes.service';
 import { TransformHelper } from 'src/app/helper/TransformHelper';
 import { GuardService } from 'src/app/service/guard.service';
+import { DialogComponent } from 'src/app/template/dialog/dialog.component';
 
 @Component({
   selector: 'app-presentes',
@@ -131,12 +132,38 @@ export class PresentesComponent implements OnInit{
 
   }
 
+  excluirPresente(item: any) {
+
+    DialogComponent.confirm('Deseja Exlcuír o presente <b><i>' + item.nome + '</i></b> ?', 'Excluír Presente').subscribe({
+      next: response => {
+
+        if (!response) return;
+
+        this.loadingPosition = '';
+        this.showLoadPanel = true;
+        this.rest.excluirPresente(item.id).subscribe({
+          next: () => {
+            this.showLoadPanel = false;
+            this.search();
+            Notify.success('Presente ' + item.nome + ' excluído com Sucesso!');
+          },
+          error: (e) => {
+            this.showLoadPanel = false;
+            Notify.error(e.error.message);
+          }
+        })
+      }
+
+    });
+
+  }
+
   submitAdicionar() {
 
     this.formAdicionar.vlr_minimo = TransformHelper.currencyBrlToFloat(this.vlr_minimo.nativeElement.inputmask.unmaskedvalue());
     this.formAdicionar.vlr_maximo = TransformHelper.currencyBrlToFloat(this.vlr_maximo.nativeElement.inputmask.unmaskedvalue());
 
-    this.loadingPosition = '.form-container';
+    this.loadingPosition = '.popup';
     this.showLoadPanel = true;
 
     this.rest.savePresente(this.formAdicionar).subscribe({
@@ -153,7 +180,7 @@ export class PresentesComponent implements OnInit{
       },
 
       error: e => {
-        Notify.error(e.message)
+        Notify.error(e.error.message)
         this.showLoadPanel = false;
       }
     });

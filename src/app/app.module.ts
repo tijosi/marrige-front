@@ -27,6 +27,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { FileUploadModule } from 'ng2-file-upload';
+import { DialogComponent } from './template/dialog/dialog.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { FileUploadModule } from 'ng2-file-upload';
     AdminComponent,
     LoadingComponent,
     GiftComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,

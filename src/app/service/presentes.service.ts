@@ -84,7 +84,7 @@ export class PresentesService {
     const headers = this.getHeaders();
 
     try {
-      var data: Observable<any> = this.http.delete(this.endpoint + '/presenteId' + presenteId, { headers });
+      var data: Observable<any> = this.http.delete(this.endpoint + '?presenteId=' + presenteId, { headers });
     } catch (error) {
       Notify.error('Erro ao tentar buscar dados');
     }
