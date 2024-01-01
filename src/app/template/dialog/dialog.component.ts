@@ -7,8 +7,6 @@ import { Component, ContentChildren, QueryList } from '@angular/core';
 })
 export class DialogComponent {
 
-  @ContentChildren(DialogButtonComponent) buttons!: QueryList<DialogButtonComponent>
-
   static id: number = Math.round(Math.random()*10000000);
 
   private static dialogResult: Subject<boolean> = new Subject<boolean>();
