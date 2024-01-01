@@ -1,5 +1,4 @@
 import { Observable, Subject, first } from 'rxjs';
-import { DialogButtonComponent } from './../dialog-button/dialog-button.component';
 import { Component, ContentChildren, QueryList } from '@angular/core';
 
 @Component({
