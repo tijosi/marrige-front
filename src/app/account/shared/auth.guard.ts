@@ -1,9 +1,8 @@
-import { Notify } from 'src/app/template/notify';
-import { HttpHeaders } from '@angular/common/http';
+
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { GuardService } from 'src/app/service/guard.service';
-import { Observable, catchError, map, of } from 'rxjs';
+import { catchError, map, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +15,9 @@ export class AuthGuard {
     private rest: GuardService
   ){}
 
-  // canActivate(): Observable<boolean> {
     canActivate() {
+
+    if (this.rest.getUser()) return;
 
     return this.rest.auth().pipe(
       map((data: any) => {

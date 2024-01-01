@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit{
       this.showPopupConfirmPresence = true;
 
       this.user.role_id == 2 ? this.bodyMessage = WellcomeMessagem.PADRINHO : this.bodyMessage = WellcomeMessagem.CONVIDADO;
-      this.bodyMessage = this.bodyMessage.replace('{{user.name}}', this.user.name);
+      this.bodyMessage = this.bodyMessage.replace('{{name}}', this.user.name);
     }
   }
 

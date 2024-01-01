@@ -34,7 +34,7 @@ export class GuardService {
   }
 
   getUser(): any {
-    if (!this.currentUser) {
+    if (!this.currentUser && localStorage.getItem('currentUser')) {
       this.currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
     }
     return this.currentUser;

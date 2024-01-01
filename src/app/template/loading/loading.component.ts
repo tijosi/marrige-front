@@ -8,13 +8,15 @@ import { AfterViewInit, Component, ElementRef, Input, Renderer2, ViewChild } fro
 
 export class LoadingComponent implements AfterViewInit {
 
-  @Input() visible: boolean = true;
+  @Input() visible: boolean = false;
   @Input() position!: string;
 
   constructor() {}
 
   ngAfterViewInit() {
-    this.load();
+    setTimeout(() => {
+      this.load();
+    }, 100);
   }
 
   ngOnChanges() {

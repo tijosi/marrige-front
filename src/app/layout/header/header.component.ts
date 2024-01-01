@@ -93,6 +93,7 @@ export class HeaderComponent implements OnInit{
     this.openDropdown(true);
     setTimeout(() => {
       localStorage.clear();
+      this.guard.clearUser();
       this.router.navigate(['/login']);
     }, 300);
   }

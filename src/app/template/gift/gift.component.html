@@ -10,7 +10,7 @@
         <div>{{ lookup(item.level) }}</div>
       </div>
 
-      <i *ngIf="isAdmin" id="btn-excluir" class="fas fa-trash" [style]="borderGiftTrash(item.level)"></i>
+      <span (click)="onExlcuir.emit(item)"><i *ngIf="isAdmin" id="btn-excluir" class="fas fa-close"></i></span>
 
       <div
         class="img-gift"

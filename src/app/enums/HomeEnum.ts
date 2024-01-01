@@ -1,7 +1,7 @@
 export enum WellcomeMessagem {
   CONVIDADO = `
     <p style="font-size: 105%; text-align: center;">
-      Estamos muito felizes por ter você aqui!<br> <b>{{user.name}}</b><br>
+      Estamos muito felizes por ter você aqui!<br> <b>{{name}}</b><br>
     </p><br>
     <p style="font-size: 105%; text-indent: 25px; text-align: justify;">
       Significa que você foi convidado para participar do nosso tão sonhado dia! É uma <b>honra</b> tê-lo aqui!
@@ -19,7 +19,7 @@ export enum WellcomeMessagem {
 
   PADRINHO = `
     <p style="font-size: 105%; text-align: center;">
-      Estamos muito felizes por você fazer parte desse momento conosco<br> <b>{{user.name}}</b><br>
+      Estamos muito felizes por você fazer parte desse momento conosco<br> <b>{{name}}</b><br>
     </p><br>
     <p style="font-size: 105%; text-indent: 25px; text-align: justify;">
       Se você está lendo essa mensagem significa que você <b style="color: #569e2d;">aceitou nosso convite</b>! Ficamos verdadeiramente felizes por isso!

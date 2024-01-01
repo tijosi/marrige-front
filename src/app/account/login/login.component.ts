@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AccountService } from '../../service/account.service';
 import {NgForm} from '@angular/forms';
 import { Notify } from 'src/app/template/notify';
+import { GuardService } from 'src/app/service/guard.service';
 
 @Component({
   selector: 'app-login',
@@ -19,6 +20,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private rest: AccountService,
+    private guard: GuardService,
     private router: Router
   ){}
 
@@ -48,9 +50,10 @@ export class LoginComponent implements OnInit {
       next: (data: any) => {
 
         localStorage.clear();
+        this.guard.clearUser();
         localStorage.setItem('token', data.token);
-        this.router.navigate(['']);
         this.showLoadPanel = false;
+        this.router.navigate(['']);
 
       },
 

@@ -44,12 +44,14 @@
 
 #btn-excluir {
   position: absolute;
-  top: -26px;
-  font-size: 16px;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  font-size: 22px;
   color: #c82626;
+  text-shadow: 0 0 15px #5c1111cc;
   right: -1px;
-  padding: 4px 7px;
-  background-color: #FFF;
+  padding: 4px 8px;
 }
 
 .img-gift {

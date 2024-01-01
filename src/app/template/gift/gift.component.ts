@@ -13,6 +13,7 @@ export class GiftComponent {
   @Input() dataSource: IDataSoruceGift[] = [];
 
   @Output() btnClick = new EventEmitter<any>();
+  @Output() onExlcuir = new EventEmitter<any>();
 
   isAdmin = this.guard.isAdmin;
 
@@ -30,17 +31,6 @@ export class GiftComponent {
 
     const selection = this.dsArea.filter(el => el.id == area);
     return `box-shadow: 0px 0px 5px ${selection[0].color}; border: 1px solid ${selection[0].color} ;`
-
-  }
-
-  borderGiftTrash(area: any): string {
-
-    const selection = this.dsArea.filter(el => el.id == area);
-    return `
-      box-shadow: 0px 0px 5px ${selection[0].color};
-      border: 1px solid ${selection[0].color};
-      border-radius: 3px 3px 0 0;
-    `
 
   }
 
