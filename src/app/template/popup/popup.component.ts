@@ -7,6 +7,7 @@ import { ButtonPopupComponent } from '../button-popup/button-popup.component';
   styleUrls: ['./popup.component.css']
 })
 export class PopupComponent implements OnInit {
+
   @ContentChildren(ButtonPopupComponent)
   buttons!: QueryList<ButtonPopupComponent>;
 

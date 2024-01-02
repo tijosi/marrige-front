@@ -42,52 +42,48 @@
 
 </section>
 <popup
+  id="popup-item"
   *ngIf="showPopup"
   (close)="showPopup = false;"
   title="Presente Selecionado"
+  width="350px"
 >
-  <div class="popup-item">
+  <div class="container">
 
-    <h3>Ah que Alegria! Então você deseja nos presentear este item?</h3>
-
-    <div class="popup-item-body">
-
-      <div class="popup-item-img">
-        <img [src]="item.path">
-      </div>
-
-      <h1 class="popup-item-body-nome">{{ item.nome }}</h1>
-      <div class="popup-item-body-price">Valor Médio: <b>R$ {{item.valor}}</b></div>
-      <div class="popup-item-body-link">Site Referência: <a [href]="item.img_url" target="_blank">clique aqui</a></div>
-
+    <div class="item-img">
+      <img [src]="item.path">
     </div>
 
-    <div class="popup-item-body">
+    <p class="item-nome">{{ item.nome }}</p>
+
+    <div class="text-group">
+      <p class="item-valor">Valor Aproximado: </p>
+      <p><b>R$ {{item.valor}}</b></p>
+    </div>
+
+    <div class="text-group">
+      <p class="item-link">Site Referência: </p>
+      <p><a [href]="item.img_url" target="_blank"><i class="fas fa-link"></i> Site <i class="fas fa-link"></i></a></p>
+    </div>
+
+    <div class="separator"><i class="fas fa-gift"></i></div>
+
+    <div class="button-group">
+      <p>Presentear com:</p>
+      <button>Valor</button>
+      <p style="width: auto;">ou</p>
+      <button (click)="openPopupConfirmacao()">Presente</button>
+    </div>
+
+
+    <!-- <div class="popup-item-body">
       <p>
         Lembrando que ao decidir nos presentear com este item, seja com o valor ou com o próprio item,
         você terá em troca a nossa gratidão eterna!😂💖
       </p>
-    </div>
+    </div> -->
 
   </div>
-
-  <button-popup
-    text="Presentear:"
-  ></button-popup>
-
-  <button-popup
-    text="Item"
-    width="80px"
-    type="default"
-    (onClick)="openPopupConfirmacao()"
-  ></button-popup>
-
-  <button-popup
-    text="Valor"
-    width="80px"
-    type="default"
-    onClick=""
-  ></button-popup>
 </popup>
 
 <popup
