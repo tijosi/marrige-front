@@ -1,5 +1,5 @@
 import { Observable, Subject, first } from 'rxjs';
-import { Component, ContentChildren, QueryList } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-dialog',
