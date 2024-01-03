@@ -45,8 +45,7 @@
   id="popup-item"
   *ngIf="showPopup"
   (close)="showPopup = false;"
-  title="Presente Selecionado"
-  width="350px"
+  title="Presente"
 >
   <div class="container">
 
@@ -57,12 +56,12 @@
     <p class="item-nome">{{ item.nome }}</p>
 
     <div class="text-group">
-      <p class="item-valor">Valor Aproximado: </p>
+      <p>Valor Aproximado: </p>
       <p><b>R$ {{item.valor}}</b></p>
     </div>
 
     <div class="text-group">
-      <p class="item-link">Site Referência: </p>
+      <p>Site Referência: </p>
       <p><a [href]="item.img_url" target="_blank"><i class="fas fa-link"></i> Site <i class="fas fa-link"></i></a></p>
     </div>
 
@@ -87,22 +86,46 @@
 </popup>
 
 <popup
+  id="popup-item-confirm"
   *ngIf="showPopupConfirmar"
   (close)="showPopupConfirmar = false"
-  title="Confirmar Presente - Item"
+  title="Confirmar Presente"
   textBtnClose="Escolher Outro"
 >
-  <div class="popup-confirmar-item">
+  <div class="container">
 
-    <h1 style="color: rgb(24, 24, 24); margin-bottom: 15px;font-size: 1em;padding: 0;">Resumo:</h1>
-    <h1 class="popup-item-body-nome">{{ item.nome }}</h1>
-    <div class="popup-item-body-price">Valor Médio: <b>R$ {{item.valor}}</b></div>
-    <div class="popup-item-body-link">Site Referência: <a [href]="item.img_url" target="_blank">clique aqui</a></div>
-    <div class="popup-item-body-price">Presentendo com: <b>Item</b></div>
-    <div class="line"></div>
-    <p style="margin-top: 15px;">
+    <p style="width: 100%;">Resumo:</p>
+
+    <div class="item-img">
+      <img [src]="item.path">
+    </div>
+
+    <div class="group">
+
+      <p class="item-nome">{{ item.nome }}</p>
+
+      <div class="text-group">
+        <p>Valor Aproximado: </p>
+        <p><b>R$ {{item.valor}}</b></p>
+      </div>
+
+      <div class="text-group">
+        <p>Site Referência: </p>
+        <p><a [href]="item.img_url" target="_blank"><i class="fas fa-link"></i> Site <i class="fas fa-link"></i></a></p>
+      </div>
+
+      <div class="text-group">
+        <p>Presentendo com: </p>
+        <p><b>Presente</b></p>
+      </div>
+
+    </div>
+
+    <div class="separator"><i class="fas fa-gift"></i></div>
+
+    <p class="text justify">
       Fique a vontade para comprar onde quiser! Só clicar em <b style="color: #51b934;">Darei Este Presente</b>,
-      e saberemos que podemos contar com você!💖
+      e saberemos que poderemos contar com você!💖
     </p>
 
   </div>
@@ -110,7 +133,7 @@
   <button-popup
     text="Darei Este Presente"
     type="success"
-    (onClick)="submitConfirmar()"
+    (onClick)="confirmarPresente()"
   ></button-popup>
 
 </popup>

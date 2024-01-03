@@ -99,12 +99,25 @@ export class PresentesComponent implements OnInit{
     this.showPopupConfirmar = true;
   }
 
-  async submitConfirmar() {
+  confirmarPresente() {
 
-      await this.rest.confirmPresente(this.item);
-      this.showPopupConfirmar = false;
-      this.showPopup = false;
-      this.search();
+    this.loadingPosition = '';
+    this.showLoadPanel = true;
+    this.rest.confirmarPresente(this.item.id).subscribe({
+      next: () => {
+        this.showPopupConfirmar = false;
+        this.showPopup = false;
+        this.showLoadPanel = false;
+
+        this.search();
+        Notify.success('MUITO OBRIGADOOOO💖💖');
+      },
+      error: (e) => {
+        this.showLoadPanel = false;
+        Notify.error(e.error.message);
+      }
+    })
+
 
   }
 

@@ -32,17 +32,16 @@
   flex-grow: 1;
   width: 100%;
 }
-
-#popup-item .container {
+.container {
   display: flex;
   justify-items: center;
   align-items: center;
   width: 100%;
-  padding: 15px 5px 0 5px;
+  padding: 0px 5px;
   flex-wrap: wrap;
 }
 
-#popup-item .container .separator {
+.container .separator {
   position: relative;
   width: 100%;
   background-color: #5c4c10;
@@ -52,7 +51,7 @@
   justify-content: center;
 }
 
-#popup-item .container .separator i {
+.container .separator i {
   position: absolute;
   font-size: 16px;
   color: #5c4c10;
@@ -61,19 +60,32 @@
   top: -9px;
 }
 
-#popup-item .item-img {
+.item-img {
   position: relative;
   width: 100%;
   margin-bottom: 20px;
 }
 
-#popup-item .item-img::before {
+.item-img::before {
   content: '';
   padding-top: 50%;
   display: block;
 }
 
-#popup-item .item-img img {
+
+#popup-item-confirm .item-img {
+  position: relative;
+  width: 30%;
+  margin-bottom: 20px;
+}
+
+#popup-item-confirm .item-img::before {
+  content: '';
+  padding-top: 100%;
+  display: block;
+}
+
+.item-img img {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -82,7 +94,18 @@
   max-width: 100%;
 }
 
-#popup-item .item-nome {
+#popup-item-confirm .group {
+  width: calc(70% - 10px);
+  padding: 0 0 0 10px;
+}
+
+#popup-item-confirm .item-nome {
+  margin-bottom: 10px;
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.item-nome {
   color: #252525;
   font-size: 18px;
   width: 100%;
@@ -93,23 +116,23 @@
   margin-bottom: 20px;
 }
 
-#popup-item .text-group {
+.text-group {
   width: 100%;
   display: flex;
   justify-content: space-between;
 }
 
-#popup-item .text-group p {
+.text-group p {
   color: #000000;
   font-weight: bold;
 }
 
-#popup-item .text-group p:first-child {
+.text-group p:first-child {
   color: #252525;
   font-weight: 300;
 }
 
-#popup-item .button-group {
+.button-group {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -119,7 +142,7 @@
   margin-bottom: 20px;
 }
 
-#popup-item .button-group button {
+.button-group button {
   outline: 0;
   border: 1px solid #4265e4;
   border-radius: 5px;
@@ -130,7 +153,7 @@
   font-family: 'Roboto', sans-serif;
 }
 
-#popup-item .button-group p {
+.button-group p {
   width: 100%;
   text-align: center;
   margin: 0;

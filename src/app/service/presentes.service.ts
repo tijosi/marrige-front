@@ -49,7 +49,6 @@ export class PresentesService {
 
   savePresente(form: any): Observable<any> {
     const headers = this.getHeaders();
-
     const formData = TransformHelper.objectToFormData(form);
 
     try {
@@ -61,23 +60,28 @@ export class PresentesService {
     return data!;
   }
 
-  async confirmPresente(item: any) {
-    const headers = this.getHeaders()
+  confirmarPresente(presenteId: any): Observable<any> {
+
+    const headers = this.getHeaders();
+
     try {
-      var data: any = await this.http.post(this.endpoint.concat('/confirm-presente'), item, { headers }).toPromise();
-      Notify.success('MUITO OBRIGADOOOO💖💖');
+      var data: Observable<any> = this.http.post(this.endpoint + '/confirmar', {presenteId}, { headers });
     } catch (error) {
-      Notify.error('Erro ao tentar confirmar Item');
+      Notify.error('Erro ao tentar buscar dados');
     }
 
-    return data;
+    return data!;
   }
 
   presentesArea(): Observable<any> {
 
-    var data: Observable<any> = this.http.get(environment.apiUrl + '/enum/presentes-area-enum');
+    try {
+      var data: Observable<any> = this.http.get(environment.apiUrl + '/enum/presentes-area-enum');
+    } catch (error) {
+      Notify.error('Erro ao tentar buscar dados');
+    }
 
-    return data;
+    return data!;
   }
 
   excluirPresente(presenteId: any): Observable<any> {

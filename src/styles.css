@@ -37,6 +37,10 @@ h1 {
   font-weight: bold;
 }
 
+.text.justify {
+  text-align: justify;
+}
+
 .notify {
   position: absolute;
   bottom: 30px;
