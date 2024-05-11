@@ -58,9 +58,7 @@ export class PresentesComponent implements OnInit{
     this.loadingPosition = '#gifts';
     setTimeout(() => this.showLoadPanel = true, 10);
     this.rest.presentes().subscribe({
-
       next: data => {
-
         if (filter && filter != 'TODOS') {
           data = data.filter((el: any) => {
             return el.level == filter;
@@ -74,14 +72,12 @@ export class PresentesComponent implements OnInit{
         for (const el of this.dsPresentes) {
           el.valor = el.valor.toLocaleString('pt-br', {minimumFractionDigits: 2});
         }
+        this.showLoadPanel = false;
       },
-
-      error: e =>  Notify.error(e.error.message),
-
-      complete: () => {
+      error: e =>  {
+        Notify.error(e.error.message);
         this.showLoadPanel = false;
       }
-
     });
   }
 
@@ -110,7 +106,7 @@ export class PresentesComponent implements OnInit{
         this.showLoadPanel = false;
 
         this.search();
-        Notify.success('MUITO OBRIGADOOOO💖💖');
+        Notify.success('MUITO OBRIGADOOOO💖');
       },
       error: (e) => {
         this.showLoadPanel = false;
@@ -127,9 +123,7 @@ export class PresentesComponent implements OnInit{
   }
 
   onFileSelected(event: any) {
-
     if (event.target.files[0]) {
-
       const file: File = event.target.files[0];
       this.formAdicionar.file = file;
 
@@ -140,16 +134,13 @@ export class PresentesComponent implements OnInit{
         };
         reader.readAsDataURL(file);
       }
-
     }
-
   }
 
   excluirPresente(item: any) {
 
     DialogComponent.confirm('Deseja Exlcuír o presente <b><i>' + item.nome + '</i></b> ?', 'Excluír Presente').subscribe({
       next: response => {
-
         if (!response) return;
 
         this.loadingPosition = '';
