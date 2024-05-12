@@ -60,12 +60,12 @@ export class PresentesService {
     return data!;
   }
 
-  confirmarPresente(presenteId: any): Observable<any> {
+  confirmarPresente(param: any): Observable<any> {
 
     const headers = this.getHeaders();
 
     try {
-      var data: Observable<any> = this.http.post(this.endpoint + '/confirmar', {presenteId}, { headers });
+      var data: Observable<any> = this.http.post(this.endpoint + '/confirmar', param, { headers });
     } catch (error) {
       Notify.error('Erro ao tentar buscar dados');
     }

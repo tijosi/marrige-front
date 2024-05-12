@@ -91,30 +91,35 @@ export class PresentesComponent implements OnInit{
     this.showPopup = true;
   }
 
-  openPopupConfirmacao() {
+  tipoPresente!: 'Valor' | 'Presente';
+  openPopupConfirmacao(string: 'Valor' | 'Presente') {
+    this.tipoPresente = string;
     this.showPopupConfirmar = true;
   }
 
   confirmarPresente() {
-
     this.loadingPosition = '';
     this.showLoadPanel = true;
-    this.rest.confirmarPresente(this.item.id).subscribe({
-      next: () => {
+    const form = {
+      presenteId: this.item.id,
+      tipo: this.tipoPresente
+    };
+    this.rest.confirmarPresente(form).subscribe({
+      next: (data) => {
         this.showPopupConfirmar = false;
         this.showPopup = false;
         this.showLoadPanel = false;
-
         this.search();
         Notify.success('MUITO OBRIGADOOOO💖');
+        if (data.link) {
+          window.open(data.link, '_blank');
+        }
       },
       error: (e) => {
         this.showLoadPanel = false;
         Notify.error(e.error.message);
       }
     })
-
-
   }
 
   openPopupAdicionar() {

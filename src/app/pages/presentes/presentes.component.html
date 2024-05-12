@@ -7,7 +7,7 @@
       Aqui se encontra uma lista de presente em que os mesmos serão utilizados para facilitar o começo de uma nova vida
     </p>
     <p>
-      Sabemos que presentear os noivos é uma prática comum e cultural. Então se quiser ajudar nós nesse início,
+      Sabemos que presentear os noivos é uma prática comum e cultural. Então se nos quiser ajudar nesse início,
       você terá nossa gratidão eterna <span style="color:red" >&#10084;</span>
     </p>
   </section>
@@ -72,18 +72,10 @@
 
     <div class="button-group">
       <p>Presentear com:</p>
-      <button>Valor</button>
+      <button (click)="openPopupConfirmacao('Valor')">Valor</button>
       <p style="width: auto;">ou</p>
-      <button (click)="openPopupConfirmacao()">Presente</button>
+      <button (click)="openPopupConfirmacao('Presente')">Presente</button>
     </div>
-
-
-    <!-- <div class="popup-item-body">
-      <p>
-        Lembrando que ao decidir nos presentear com este item, seja com o valor ou com o próprio item,
-        você terá em troca a nossa gratidão eterna!😂💖
-      </p>
-    </div> -->
 
   </div>
 </popup>
@@ -98,43 +90,39 @@
   <div class="container">
 
     <p style="width: 100%;">Resumo:</p>
-
     <div class="item-img">
       <img [src]="item.path">
     </div>
 
     <div class="group">
-
       <p class="item-nome">{{ item.nome }}</p>
-
       <div class="text-group">
         <p>Valor Aproximado: </p>
         <p><b>R$ {{item.valor}}</b></p>
       </div>
-
       <div class="text-group">
         <p>Site Referência: </p>
         <p><a [href]="item.img_url" target="_blank"><i class="fas fa-link"></i> Site <i class="fas fa-link"></i></a></p>
       </div>
-
       <div class="text-group">
         <p>Presentendo com: </p>
         <p><b>Presente</b></p>
       </div>
-
     </div>
-
     <div class="separator"><i class="fas fa-gift"></i></div>
-
-    <p class="text justify">
+    <p class="text justify" *ngIf="tipoPresente == 'Presente'">
       Fique a vontade para comprar onde quiser! Só clicar em <b style="color: #51b934;">Darei Este Presente</b>,
       e saberemos que poderemos contar com você!💖
+    </p>
+    <p class="text justify" *ngIf="tipoPresente == 'Valor'">
+      Fique a vontade para doar o valor da forma que quiser! Clicando em <b style="color: #51b934;">Doar Valor</b>,
+      abrirá uma nova página para poder fazer o pagamento. Obrigado de verdade por sua contribuição!💖
     </p>
 
   </div>
 
   <button-popup
-    text="Darei Este Presente"
+    [text]="tipoPresente == 'Presente' ? 'Darei Este Presente' : 'Doar Valor'"
     type="success"
     (onClick)="confirmarPresente()"
   ></button-popup>
