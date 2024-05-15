@@ -79,28 +79,29 @@
 }
 
 .info-gift.title {
-  text-align: justify;
+  text-align: center;
   height: 50px;
   line-height: 15px;
-  font-size: 13px;
+  font-size: 17px;
   margin: 0;
   overflow: hidden;
 }
 
 .info-gift.price {
+  text-align: center;
   font-weight: bold;
   color: rgb(54, 54, 54);
-  font-size: 12px;
+  font-size: 16px;
   margin-bottom: 10px;
 }
 
 .btn-value-gift {
-  width: 80%;
-  margin: 0 10%;
+  width: 90%;
+  margin: 0 5%;
   height: 30px;
   outline: 0;
   border: 0;
-  border-radius: 5px;
+  border-radius: 3px;
   color: #FFF;
   background-color: #4265e4;
   box-shadow: none;
@@ -109,12 +110,12 @@
 }
 
 .btn-empty-gift {
-  width: 80%;
-  margin: 0 10%;
+  width: 90%;
+  margin: 0 5%;
   height: 24px;
   outline: 0;
   border: 0;
-  border-radius: 5px;
+  border-radius: 3px;
   color: #ffffff00;
   background-color: #ffffff00;
   box-shadow: none;

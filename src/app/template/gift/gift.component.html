@@ -20,10 +20,10 @@
 
       <div class="info-gift">
         <div class="info-gift title">{{ item.nome }}</div>
-        <div class="info-gift price">Valor médio: R$ {{ item.valor }}</div>
+        <div class="info-gift price">R${{ item.valor }}</div>
       </div>
 
-      <button *ngIf="item.flg_disponivel" [class]="'btn-value-gift'" (click)="btnClick.emit(item)">Conferir</button>
+      <button *ngIf="item.flg_disponivel" [class]="'btn-value-gift'" (click)="btnClick.emit(item)">CONFERIR</button>
       <button *ngIf="!item.flg_disponivel" [class]="'btn-empty-gift'"></button>
 
       <div
