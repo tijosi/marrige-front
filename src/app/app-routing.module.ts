@@ -1,3 +1,4 @@
+import { PresenteDetailComponent } from './pages/presentes/presente-detail/presente-detail.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './layout/home/home.component';
@@ -10,28 +11,30 @@ import { AdminComponent } from './pages/admin/admin.component';
 import { AdminGuard } from './account/shared/admin.guard';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: HomeComponent,
-    children: [
-      { path: '', component: IndexComponent },
-      { path: 'presentes', component: PresentesComponent },
-      { path: 'admin', component: AdminComponent, canActivate: [AdminGuard] },
-    ],
-    canActivate: [AuthGuard]
-  },
-  {
-    path: '',
-    component: AuthenticationComponent,
-    children: [
-      { path: '', redirectTo: 'login', pathMatch: 'full' },
-      { path: 'login', component: LoginComponent },
-    ]
-  },
+    {
+        path: '',
+        component: HomeComponent,
+        children: [
+            { path: '', component: IndexComponent },
+            { path: 'presentes', component: PresentesComponent },
+            { path: 'admin', component: AdminComponent, canActivate: [AdminGuard] },
+            { path: 'presente-detail/:id', component: PresenteDetailComponent }
+        ],
+        canActivate: [AuthGuard]
+    },
+    {
+        path: '',
+        component: AuthenticationComponent,
+        children: [
+            { path: '', redirectTo: 'login', pathMatch: 'full' },
+            { path: 'login', component: LoginComponent },
+        ]
+    },
+    {path: '**', redirectTo: '', pathMatch: 'full'}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -28,6 +28,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { FileUploadModule } from 'ng2-file-upload';
 import { DialogComponent } from './template/dialog/dialog.component';
+import { PresenteDetailComponent } from './pages/presentes/presente-detail/presente-detail.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { DialogComponent } from './template/dialog/dialog.component';
     AdminComponent,
     LoadingComponent,
     GiftComponent,
-    DialogComponent
+    DialogComponent,
+    PresenteDetailComponent
   ],
   imports: [
     BrowserModule,

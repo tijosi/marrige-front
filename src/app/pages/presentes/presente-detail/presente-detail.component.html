@@ -1,0 +1,122 @@
+<loading [visible]="showLoadPanel"></loading>
+<html>
+<section *ngIf="active" class="screen">
+
+    <body class="gift">
+        <div>
+            <button type="button" class="btn-voltar" (click)="close()">
+                <i class="fas fa-arrow-left"></i>
+                Escolher outro presente
+            </button>
+        </div>
+        <h3>{{presente.nome}}</h3>
+        <div class="img-container">
+            <img [src]="presente.path_img">
+        </div>
+        <div class="valor-container">
+            <p class="valor">R$ {{presente.valor.toFixed(2).split('.')[0]}}</p>
+            <p class="valor-decimal">{{presente.valor.toFixed(2).split('.')[1]}}</p>
+        </div>
+        <span class="value-parcelado-sem-juros" *ngIf="presente.valor > 1200">
+            em
+            <span class="parcela">2x R$ {{(presente.valor/2).toFixed(2).split('.')[0]}}<span
+                    class="parcela-decimal">{{(presente.valor/2).toFixed(2).split('.')[1]}}</span>
+                sem juros
+            </span>
+        </span>
+        <span class="value-parcelado">
+            ou até 12x com juros
+        </span>
+        <section class="descricao">
+            Anotação:
+            <p class="descricao-text" *ngIf="presente.descricao != null && presente.descricao != ''">
+                {{presente.descricao}}
+            </p>
+            <p class="descricao-text">
+                Caso queira verificar onde nos baseamos o presente, acesse o link
+                <a [href]="presente.img_url" target="_blank" class="link">
+                    clicando aqui
+                </a>
+            </p>
+
+        </section>
+        <section class="ajuste-altura"></section>
+        <section class="presentear">
+            Forma de presentear:
+            <div class="buttons">
+                <button mat-flat-button color="accent" (click)="confirmarPresente('Valor')">PRESENTEAR VALOR</button>
+                <button mat-flat-button color="primary"  (click)="confirmarPresente('Produto')">PRESENTEAR PRODUTO</button>
+            </div>
+        </section>
+    </body>
+</section>
+
+<popup
+    id="popup-item-confirm"
+    *ngIf="showPopupConfirmar"
+    (close)="showPopupConfirmar = false; presente.tipoPresente = null;"
+    title="Confirmar Presente"
+    textBtnClose="Escolher Outro"
+>
+    <div class="container">
+
+        <p style="width: 100%;">Resumo:</p>
+        <div class="container-main">
+            <div class="item-img">
+                <img [src]="presente.path_img">
+            </div>
+
+            <div class="group">
+                <p class="item-nome">{{ presente.nome }}</p>
+                <!-- <div class="text-group">
+                    <p>Valor Aproximado: </p>
+                    <p><b>R$ {{presente.valor}}</b></p>
+                </div> -->
+                <div class="text-group">
+                    <p>Site Referência: </p>
+                    <p><a [href]="presente.img_url" target="_blank">Site</a></p>
+                </div>
+                <div class="text-group">
+                    <p>Presentendo com: </p>
+                    <p><b>Produto</b></p>
+                </div>
+            </div>
+        </div>
+        <div class="separator"><i class="fas fa-gift"></i></div>
+        <p class="text justify" *ngIf="presente.tipoPresente == 'Produto'">
+            Fique a vontade para comprar onde quiser! Só clicar em <b style="color: #51b934;">Presentear Produto</b>,
+            e saberemos que poderemos contar com você!💖
+        </p>
+        <p class="text justify" *ngIf="presente.tipoPresente == 'Valor'">
+            Fique a vontade para doar o valor da forma que quiser! Clicando em <b style="color: #51b934;">Doar
+                Valor</b>,
+            abrirá uma nova página para poder fazer o pagamento. Obrigado de verdade por sua contribuição!💖
+        </p>
+
+    </div>
+
+    <button-popup
+        [text]="presente.tipoPresente == 'Produto' ? 'Presentear Produto' : 'Presentear Valor'"
+        type="success"
+        (onClick)="submit()"
+    ></button-popup>
+
+</popup>
+<popup
+    id="popup-item-selecionado"
+    *ngIf="showPopupSelecionado"
+    (close)="produtoSelecionado()"
+    title="Presente Selecionado"
+    [btnFecharVisible]="false"
+>
+    <p style="text-align: center;">
+        Este presente já foi selecionado ou presenteado, por favor selecione outro!
+    </p>
+    <button-popup
+        [text]="'Escolher outro Presente'"
+        type="default"
+        (onClick)="produtoSelecionado()"
+    ></button-popup>
+</popup>
+
+</html>

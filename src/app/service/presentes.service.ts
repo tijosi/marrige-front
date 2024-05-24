@@ -35,11 +35,14 @@ export class PresentesService {
 
   };
 
-  presentes(): Observable<any> {
+  presentes(id?:string): Observable<any> {
     const headers = this.getHeaders();
+    let endpoint = this.endpoint;
+
+    if (id) endpoint = this.endpoint.concat('?id='+id);
 
     try {
-      var data: Observable<any> = this.http.get(this.endpoint, { headers });
+      var data: Observable<any> = this.http.get(endpoint, { headers });
     } catch (error) {
       Notify.error('Erro ao tentar buscar dados');
     }

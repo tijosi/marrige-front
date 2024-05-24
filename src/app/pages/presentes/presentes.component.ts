@@ -4,6 +4,7 @@ import { PresentesService } from 'src/app/service/presentes.service';
 import { TransformHelper } from 'src/app/helper/TransformHelper';
 import { GuardService } from 'src/app/service/guard.service';
 import { DialogComponent } from 'src/app/template/dialog/dialog.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-presentes',
@@ -26,14 +27,13 @@ export class PresentesComponent implements OnInit{
     vlr_maximo: 0
   };
 
-  showPopup: boolean = false;
   showLoadPanel: boolean = true;
-  showPopupConfirmar: boolean = false;
   showPopupAdicionar: boolean = false;
 
 
   constructor(
     private rest: PresentesService,
+    private router: Router,
     private guard: GuardService
   ) {}
 
@@ -88,38 +88,7 @@ export class PresentesComponent implements OnInit{
   item: any;
   openPopup(item: any) {
     this.item = item;
-    this.showPopup = true;
-  }
-
-  tipoPresente!: 'Valor' | 'Presente';
-  openPopupConfirmacao(string: 'Valor' | 'Presente') {
-    this.tipoPresente = string;
-    this.showPopupConfirmar = true;
-  }
-
-  confirmarPresente() {
-    this.loadingPosition = '';
-    this.showLoadPanel = true;
-    const form = {
-      presenteId: this.item.id,
-      tipo: this.tipoPresente
-    };
-    this.rest.confirmarPresente(form).subscribe({
-      next: (data) => {
-        this.showPopupConfirmar = false;
-        this.showPopup = false;
-        this.showLoadPanel = false;
-        this.search();
-        Notify.success('MUITO OBRIGADOOOO💖');
-        if (data.link) {
-          window.open(data.link, '_blank');
-        }
-      },
-      error: (e) => {
-        this.showLoadPanel = false;
-        Notify.error(e.error.message);
-      }
-    })
+    this.router.navigate(['/presente-detail/'+item.id]);
   }
 
   openPopupAdicionar() {
@@ -143,7 +112,6 @@ export class PresentesComponent implements OnInit{
   }
 
   excluirPresente(item: any) {
-
     DialogComponent.confirm('Deseja Exlcuír o presente <b><i>' + item.nome + '</i></b> ?', 'Excluír Presente').subscribe({
       next: response => {
         if (!response) return;
@@ -162,9 +130,7 @@ export class PresentesComponent implements OnInit{
           }
         })
       }
-
     });
-
   }
 
   submitAdicionar() {

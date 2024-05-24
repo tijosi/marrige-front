@@ -2,7 +2,6 @@
   width: 100%;
   height: 100%;
   position: relative;
-  font-family: 'Open Sans', sans-serif;
 }
 
 .dropdown {
@@ -87,7 +86,6 @@
   font-size: 1.1em;
   padding: 0;
   margin: 0;
-  font-family: 'Open Sans', sans-serif;
 }
 
 .notificacao-icon {
@@ -146,7 +144,6 @@
   padding: 0;
   margin: 0;
   width: calc(100% - 30px);
-  font-family: 'Open Sans', sans-serif;
 }
 
 .notificacao-footer fa-icon{
@@ -165,7 +162,6 @@
 
 .empty-notificacoes {
   font-size: 1.4em;
-  font-family: 'Noto Serif', serif;
 }
 
 
@@ -285,7 +281,6 @@
   background-color: #f5f5ff;
   box-shadow: none;
   font-size: 20px;
-  font-family: 'Roboto', sans-serif;
 }
 
 .values-info-gift {

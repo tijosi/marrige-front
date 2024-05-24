@@ -31,14 +31,13 @@
   left: 50%;
   top: -1px;
   transform: translateX(calc(-50% + 2px));
-  border-radius: 0px 0px 10px 10px;
+  border-radius: 0px 0px 7px 7px;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 14px;
   color: #FFF;
   text-shadow: 0px 0px 1px #FFF;
-  font-family: 'Noto Serif', serif;
   overflow: hidden;
 }
 
@@ -60,6 +59,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 10px;
 }
 
 .img-gift::before {
@@ -79,20 +79,19 @@
 }
 
 .info-gift.title {
-  text-align: center;
-  height: 50px;
+  text-align: justify;
+  height: 45px;
   line-height: 15px;
-  font-size: 17px;
-  margin: 0;
+  font-size: 13px;
+  margin: 5px 0 0 0;
   overflow: hidden;
 }
 
 .info-gift.price {
   text-align: center;
-  font-weight: bold;
-  color: rgb(54, 54, 54);
+  color: rgb(73, 138, 63);
   font-size: 16px;
-  margin-bottom: 10px;
+  margin: 5px 0 10px 0;
 }
 
 .btn-value-gift {
@@ -106,7 +105,6 @@
   background-color: #4265e4;
   box-shadow: none;
   font-size: 16px;
-  font-family: 'Roboto', sans-serif;
 }
 
 .btn-empty-gift {
@@ -120,7 +118,6 @@
   background-color: #ffffff00;
   box-shadow: none;
   font-size: 16px;
-  font-family: 'Roboto', sans-serif;
 }
 
 .selecionado {
@@ -138,7 +135,6 @@
 
 .text-selecionado {
   position: relative;
-  font-family: 'Noto Serif', serif;
   color: #FFF;
   height: 35px;
   width: 100%;

@@ -16,6 +16,7 @@ export class PopupComponent implements OnInit {
   @Input() width: string = '';
   @Input() scroll: boolean = true;
   @Input() textBtnClose: string = 'Fechar';
+  @Input() btnFecharVisible: boolean = true;
 
   @Output() close = new EventEmitter<boolean>();
   @Output() onClose = new EventEmitter<boolean>();

@@ -15,12 +15,12 @@
       <div
         class="img-gift"
       >
-        <img [src]="item.path">
+        <img [src]="item.path_img">
       </div>
 
       <div class="info-gift">
         <div class="info-gift title">{{ item.nome }}</div>
-        <div class="info-gift price">R${{ item.valor }}</div>
+        <div class="info-gift price">R$ {{ item.valor }}</div>
       </div>
 
       <button *ngIf="item.flg_disponivel" [class]="'btn-value-gift'" (click)="btnClick.emit(item)">CONFERIR</button>
