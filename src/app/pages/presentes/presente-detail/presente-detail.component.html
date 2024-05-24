@@ -78,7 +78,7 @@
                 </div>
                 <div class="text-group">
                     <p>Presentendo com: </p>
-                    <p><b>Produto</b></p>
+                    <p><b>{{presente.tipoPresente == 'Produto' ? 'Produto' : 'Valor'}}</b></p>
                 </div>
             </div>
         </div>
@@ -88,8 +88,7 @@
             e saberemos que poderemos contar com você!💖
         </p>
         <p class="text justify" *ngIf="presente.tipoPresente == 'Valor'">
-            Fique a vontade para doar o valor da forma que quiser! Clicando em <b style="color: #51b934;">Doar
-                Valor</b>,
+            Fique a vontade para doar o valor da forma que quiser! Clicando em <b style="color: #51b934;">Presentear Valor</b>,
             abrirá uma nova página para poder fazer o pagamento. Obrigado de verdade por sua contribuição!💖
         </p>
 
