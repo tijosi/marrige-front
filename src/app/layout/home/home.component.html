@@ -1,28 +1,10 @@
 <div class="container-pattern">
-  <div class="html-container">
-    <header>
-      <app-header></app-header>
-    </header>
-    <main>
-      <router-outlet></router-outlet>
-    </main>
-  </div>
-  <popup
-    *ngIf="showPopupConfirmPresence"
-    id="popup-confirm-presenca"
-    (close)="showPopupConfirmPresence = false"
-    title="Seja Muito Bem vindo"
-    width="90%"
-    [scroll]="false"
-    [textBtnClose]="user.role_id == 3 ? 'Agora não' : 'Ir para o Site'"
-  >
-    <div class="body" [innerHTML]="getSafeHtml()"></div>
-
-    <button-popup
-      *ngIf="user.role_id == 3"
-      text="Confirmar Presença"
-      type="success"
-      (onClick)="confirmar()"
-    ></button-popup>
-  </popup>
+    <div class="html-container">
+        <header>
+            <app-header></app-header>
+        </header>
+        <main>
+            <router-outlet></router-outlet>
+        </main>
+    </div>
 </div>

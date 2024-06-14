@@ -10,36 +10,9 @@ import { GuardService } from 'src/app/service/guard.service';
 })
 export class HomeComponent implements OnInit{
 
-  bodyMessage: string = '';
+  constructor(){}
 
-  showPopupConfirmPresence: boolean = false;
+  ngOnInit() {}
 
-  user = this.guard.getUser();
-
-  constructor(
-    private guard: GuardService,
-    private sanitizer: DomSanitizer
-  ){}
-
-  ngOnInit() {
-    this.confirmPresenca();
-  }
-
-  getSafeHtml() {
-    return this.sanitizer.bypassSecurityTrustHtml(this.bodyMessage);
-  }
-
-  confirmPresenca() {
-    if (this.user.role_id != 1) {
-      this.showPopupConfirmPresence = true;
-
-      this.user.role_id == 2 ? this.bodyMessage = WellcomeMessagem.PADRINHO : this.bodyMessage = WellcomeMessagem.CONVIDADO;
-      this.bodyMessage = this.bodyMessage.replace('{{name}}', this.user.name);
-    }
-  }
-
-  confirmar() {
-
-  }
 
 }

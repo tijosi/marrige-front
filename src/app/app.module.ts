@@ -29,6 +29,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { FileUploadModule } from 'ng2-file-upload';
 import { DialogComponent } from './template/dialog/dialog.component';
 import { PresenteDetailComponent } from './pages/presentes/presente-detail/presente-detail.component';
+import { PadrinhosComponent } from './pages/padrinhos/padrinhos.component';
+import { ButtonStarComponent } from './template/button-star/button-star/button-star.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,9 @@ import { PresenteDetailComponent } from './pages/presentes/presente-detail/prese
     LoadingComponent,
     GiftComponent,
     DialogComponent,
-    PresenteDetailComponent
+    PresenteDetailComponent,
+    PadrinhosComponent,
+    ButtonStarComponent
   ],
   imports: [
     BrowserModule,

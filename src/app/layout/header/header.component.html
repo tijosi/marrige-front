@@ -1,35 +1,43 @@
 <nav class="navbar">
 
-  <span class="logo">S & E</span>
+    <div class="btn-presenca" (click)="confirmPresenca()" *ngIf="user.role_id != 1 && user.role_id != 2"><app-button-star></app-button-star></div>
+    <i [class]="'menu ' + classMenu" (click)="openDropdown()"></i>
 
-  <i [class]="'menu ' + classMenu" (click)="openDropdown()"></i>
+    <div [class]="'navbar-dropdown ' + classNavbar">
 
-  <div [class]="'navbar-dropdown ' + classNavbar">
+        <span class="title">Opções</span>
 
-    <span class="title">Opções</span>
-
-    <ul class="list-itens">
-      <li class="item" (click)="routes('')">
-        <fa-icon class="item-icon" [icon]="faHome"></fa-icon>
-        Início
-      </li>
-      <li class="item" (click)="routes('presentes')">
-        <fa-icon class="item-icon" [icon]="faGifts"></fa-icon>
-        Presentes
-      </li>
-      <li class="item padrinho">
-        <fa-icon class="item-icon icon-padrinho" [icon]="faUserTie"></fa-icon>
-        Padrinhos
-      </li>
-      <li class="item" (click)="routes('admin')" *ngIf="isAdmin">
-        <fa-icon class="item-icon" [icon]="faUserSecret"></fa-icon>
-        Admin
-      </li>
-      <li class="item sair" (click)="exitAcount()">
-        <fa-icon class="item-icon sair" [icon]="faSignOutAlt"></fa-icon>
-        Sair
-      </li>
-    </ul>
-  </div>
+        <ul class="list-itens">
+            <li class="item" (click)="routes('')">
+                <fa-icon class="item-icon" [icon]="faHome"></fa-icon>
+                Início
+            </li>
+            <li class="item" (click)="routes('presentes')">
+                <fa-icon class="item-icon" [icon]="faGifts"></fa-icon>
+                Presentes
+            </li>
+            <li class="item padrinho" (click)="routes('padrinhos')" *ngIf="user.role_id != 3">
+                <fa-icon class="item-icon icon-padrinho" [icon]="faUserTie"></fa-icon>
+                Padrinhos
+            </li>
+            <li class="item" (click)="routes('admin')" *ngIf="isAdmin">
+                <fa-icon class="item-icon" [icon]="faUserSecret"></fa-icon>
+                Admin
+            </li>
+            <span class="line"></span>
+            <li class="item sair" (click)="exitAcount()">
+                <fa-icon class="item-icon sair" [icon]="faSignOutAlt"></fa-icon>
+                Sair
+            </li>
+        </ul>
+    </div>
 
 </nav>
+
+<popup *ngIf="showPopupConfirmPresence" id="popup-confirm-presenca" (close)="showPopupConfirmPresence = false"
+    title="Seja Muito Bem vindo" width="90%" [scroll]="false"
+    [textBtnClose]="user.role_id == 3 ? 'Agora não' : 'Ir para o Site'">
+    <div class="body" [innerHTML]="getSafeHtml()"></div>
+    <button-popup *ngIf="user.role_id == 3" text="Confirmar Presença" type="success"
+        (onClick)="confirmar()"></button-popup>
+</popup>

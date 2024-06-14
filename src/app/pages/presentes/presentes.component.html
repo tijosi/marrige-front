@@ -52,29 +52,68 @@
     textBtnClose="Cancelar"
 >
     <form class="form-container">
-        <mat-form-field appearance="outline" style="width: 100%;">
+        <mat-form-field appearance="outline" style="width: 100%;padding: 0 !important;">
             <mat-label>Nome do Presente</mat-label>
             <input matInput [(ngModel)]="formAdicionar.nome_presente" name="nomePresente">
         </mat-form-field>
 
-        <mat-form-field appearance="outline" style="width: calc( 100% - 10px);">
+        <mat-form-field appearance="outline" style="width: 100%;padding: 0 !important;">
             <mat-label>Categoria</mat-label>
             <mat-select [(ngModel)]="formAdicionar.categoria" name="categoria">
                 <mat-option *ngFor="let area of dsArea" [value]="area.id">{{area.descricao}}</mat-option>
             </mat-select>
         </mat-form-field>
 
-        <mat-form-field appearance="outline" style="width: 50%;">
+        <mat-form-field appearance="outline" style="width: 50%;padding: 0 !important;">
             <mat-label>Valor Mínimo</mat-label>
             <input matInput [(ngModel)]="formAdicionar.vlr_minimo" #vlr_minimo name="vlr_minimo">
         </mat-form-field>
 
-        <mat-form-field appearance="outline" style="width: 50%;">
+        <mat-form-field appearance="outline" style="width: 50%;padding: 0 !important;">
             <mat-label>Valor Máximo</mat-label>
             <input matInput [(ngModel)]="formAdicionar.vlr_maximo" #vlr_maximo name="vlr_maximo">
         </mat-form-field>
 
-        <mat-form-field appearance="outline" style="width: 100%;">
+        <mat-form-field appearance="outline" style="width: 100%;padding: 0 !important;">
+            <mat-label>Descricao do Presente</mat-label>
+            <textarea matInput [(ngModel)]="formAdicionar.descricao" name="descricao"></textarea>
+        </mat-form-field>
+
+        <p style="width: 100%">TAG's:</p>
+        <mat-form-field appearance="outline" style="width: 40%;padding: 0 !important;">
+            <mat-label>Nome</mat-label>
+            <input matInput [(ngModel)]="tag.nome"  name="tag-nome">
+        </mat-form-field>
+        <mat-form-field appearance="outline" style="width: 40%;padding: 0 !important;">
+            <mat-label>Descricao</mat-label>
+            <input matInput [(ngModel)]="tag.descricao"  name="tag-descricao">
+        </mat-form-field>
+        <button
+        style="width: 15%; height: 56px; margin-left: 5%;"
+        mat-flat-button color="primary"
+        (click)="adicionarTag()"
+        [disabled]="tag.validate">
+            <i class="fas fa-add"></i>
+        </button>
+
+        <section class="list-tags">
+            <div class="group-tags" *ngFor="let tag of tags" >
+                <div class="group-p">
+                    <p>{{tag.nome}}</p>
+                    <p>{{tag.descricao}}</p>
+                </div>
+                <button
+                    style="width: 15%; height: 100%;"
+                    mat-button color="warn"
+                    (click)="excluirTag(tag.id)"
+                >
+                    <i class="fas fa-trash"></i>
+                </button>
+
+            </div>
+        </section>
+
+        <mat-form-field appearance="outline" style="width: 100%;padding: 0 !important;">
             <mat-label>Link Referência</mat-label>
             <input matInput [(ngModel)]="formAdicionar.link" name="link">
         </mat-form-field>
@@ -82,7 +121,7 @@
         <div class="input-file-group">
             <label for="file">{{imgUrl ? 'Selecionar outra imagem' : 'Escolher imagem'}}</label>
             <input id="file" name="file" type="file" (change)="onFileSelected($event)">
-            <div class="img-file">
+            <div class="img-file" (paste)="onPaste($event)">
                 <img *ngIf="imgUrl" [src]="imgUrl">
             </div>
         </div>

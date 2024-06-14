@@ -17,7 +17,7 @@ export class AuthGuard {
 
     canActivate() {
 
-    if (this.rest.getUser()) return;
+    if (this.rest.getUser()) return true;
 
     return this.rest.auth().pipe(
       map((data: any) => {

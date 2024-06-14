@@ -1,108 +1,126 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { NavigationEnd, Router } from '@angular/router';
 import { faBars, faClose, faGifts, faUsers, faUserTie, faSignOutAlt, faHome, faUserSecret } from '@fortawesome/free-solid-svg-icons';
 import { GuardService } from 'src/app/service/guard.service';
 import { HeaderService } from 'src/app/service/header.service';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+    selector: 'app-header',
+    templateUrl: './header.component.html',
+    styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit{
+export class HeaderComponent implements OnInit {
 
-  faGifts = faGifts;
-  faUsers = faUsers;
-  faUserTie = faUserTie;
-  faSignOutAlt = faSignOutAlt;
-  faHome = faHome;
-  faUserSecret = faUserSecret;
-  isAdmin = this.guard.isAdmin;
+    user = this.guard.getUser();
 
-  widthDropdown: string = '';
-  classNavbar: string = '';
-  classMenu: string = 'bars fas fa-bars';
+    faGifts = faGifts;
+    faUsers = faUsers;
+    faUserTie = faUserTie;
+    faSignOutAlt = faSignOutAlt;
+    faHome = faHome;
+    faUserSecret = faUserSecret;
+    isAdmin = this.guard.isAdmin;
 
-  computadorMode: boolean = false;
+    bodyMessage: string = '';
+    widthDropdown: string = '';
+    classNavbar: string = '';
+    classMenu: string = 'bars fas fa-bars';
 
-  stringsRoutes: any[] = [
-    {id: 0, route: ''},
-    {id: 1, route: 'presentes'},
-    {id: 2, route: 'padrinhos'},
-    {id: 3, route: 'admin'}
-  ]
+    computadorMode: boolean = false;
+    showPopupConfirmPresence: boolean = false;
 
-  constructor(
-    private router: Router,
-    private rest: HeaderService,
-    private guard: GuardService
-  ) {
-  }
+    stringsRoutes: any[] = [
+        { id: 0, route: '' },
+        { id: 1, route: 'presentes' },
+        { id: 2, route: 'padrinhos' },
+        { id: 3, route: 'admin' }
+    ]
 
-  async ngOnInit() {
-    this.search();
-  }
+    constructor(
+        private router: Router,
+        private rest: HeaderService,
+        private guard: GuardService,
+        private sanitizer: DomSanitizer
+    ) {
+    }
 
-  search() {
-    this.aba(null, true);
-  }
+    async ngOnInit() {
+        this.search();
+    }
 
-  aba(aba: any = null, first = false) {
-    const pathName = window.location.pathname;
-    let abaString = aba == null ? pathName.replace('/', "") : aba;
-    const time = first ? 1000 : 0;
+    search() {
+        this.aba(null, true);
+    }
 
-    setTimeout(() => {
-      const items = document.querySelectorAll('.item');
+    aba(aba: any = null, first = false) {
 
-      items.forEach( el => {
+        const pathName = window.location.pathname;
+        let abaString = aba == null ? pathName.replace('/', "") : aba;
+        const time = first ? 1000 : 0;
 
-      if (el.className != 'item sair' && el.className != 'item padrinho') el.className = 'item';
+        setTimeout(() => {
+            const items = document.querySelectorAll('.item');
 
-      });
+            items.forEach(el => {
+                if (el.className != 'item sair' && el.className != 'item padrinho') el.className = 'item';
+            });
 
-      this.stringsRoutes.forEach( el => {
-
-        if (el.route == abaString) items[el.id].classList.add('item-selected');
-
-      });
-    }, time)
-
-  }
-
-  openDropdown(exit: boolean = false) {
-    const domElement: HTMLElement = document.documentElement.querySelector('.html-container')!;
-
-    if (this.classMenu == "bars fas fa-bars" && !exit) {
-
-      this.classMenu = 'close fas fa-close';
-      this.classNavbar = 'open';
-      domElement.style.overflowY = 'hidden'
-
-    } else {
-
-      this.classMenu = 'bars fas fa-bars';
-      this.classNavbar = '';
-      domElement.style.overflowY = 'scroll'
+            this.stringsRoutes.forEach(el => {
+                if (el.route == abaString) items[el.id].classList.add('item-selected');
+            });
+        }, time)
 
     }
 
-  }
+    openDropdown(exit: boolean = false) {
+        const domElement: HTMLElement = document.documentElement.querySelector('.html-container')!;
 
-  exitAcount() {
-    this.openDropdown(true);
-    setTimeout(() => {
-      localStorage.clear();
-      this.guard.clearUser();
-      this.router.navigate(['/login']);
-    }, 300);
-  }
+        if (this.classMenu == "bars fas fa-bars" && !exit) {
 
-  routes(nav: string) {
-    this.openDropdown();
+            this.classMenu = 'close fas fa-close';
+            this.classNavbar = 'open';
+            domElement.style.overflowY = 'hidden'
 
-    setTimeout(() => { this.router.navigate([nav]) }, 300);
-    setTimeout(() => { this.aba(nav) }, 500);
-  }
+        } else {
+
+            this.classMenu = 'bars fas fa-bars';
+            this.classNavbar = '';
+            domElement.style.overflowY = 'scroll'
+
+        }
+
+    }
+
+    getSafeHtml() {
+        return this.sanitizer.bypassSecurityTrustHtml(this.bodyMessage);
+      }
+
+    confirmPresenca() {
+        setTimeout(() => {
+            if (this.user.role_id != 1) {
+                this.showPopupConfirmPresence = true;
+                this.bodyMessage = this.bodyMessage.replace('{{name}}', this.user.name);
+            }
+        }, 400);
+    }
+
+    confirmar(){}
+
+    exitAcount() {
+        this.openDropdown(true);
+        setTimeout(() => {
+            localStorage.clear();
+            this.guard.clearUser();
+            this.router.navigate(['/login']);
+        }, 300);
+    }
+
+    routes(nav: string) {
+        this.openDropdown();
+
+        setTimeout(() => { this.router.navigate([nav]) }, 300);
+        setTimeout(() => { this.aba(nav) }, 500);
+    }
 
 }

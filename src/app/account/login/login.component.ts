@@ -52,8 +52,8 @@ export class LoginComponent implements OnInit {
         localStorage.clear();
         this.guard.clearUser();
         localStorage.setItem('token', data.token);
-        this.showLoadPanel = false;
         this.router.navigate(['']);
+        this.showLoadPanel = false;
 
       },
 

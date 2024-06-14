@@ -9,6 +9,7 @@ import { AuthGuard } from './account/shared/auth.guard';
 import { PresentesComponent } from './pages/presentes/presentes.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { AdminGuard } from './account/shared/admin.guard';
+import { PadrinhosComponent } from './pages/padrinhos/padrinhos.component';
 
 const routes: Routes = [
     {
@@ -16,6 +17,7 @@ const routes: Routes = [
         component: HomeComponent,
         children: [
             { path: '', component: IndexComponent },
+            { path: 'padrinhos', component: PadrinhosComponent },
             { path: 'presentes', component: PresentesComponent },
             { path: 'admin', component: AdminComponent, canActivate: [AdminGuard] },
             { path: 'presente-detail/:id', component: PresenteDetailComponent }

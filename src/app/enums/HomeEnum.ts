@@ -1,36 +1,35 @@
 export enum WellcomeMessagem {
   CONVIDADO = `
     <p style="font-size: 105%; text-align: center;">
-      Estamos muito felizes por ter você aqui!<br> <b>{{name}}</b><br>
+    Estamos radiantes de alegria em tê-lo(a) conosco!<br> <b>{{name}}</b><br>
     </p><br>
     <p style="font-size: 105%; text-indent: 25px; text-align: justify;">
-      Significa que você foi convidado para participar do nosso tão sonhado dia! É uma <b>honra</b> tê-lo aqui!
+    Sua presença é um sinal de que foi cordialmente convidado(a) para compartilhar conosco este dia tão almejado! É uma <b>honra</b> inestimável contar com sua presença!
     </p>
     <p style="font-size: 105%; text-indent: 25px; text-align: justify;">
-      Caso você já tenha certeza de que poderá ir no nosso casamento, clica em <b style="color: #569e2d;">Confirmar Presença</b>.
+    Se já tiver certeza de que poderá nos brindar com sua presença no nosso enlace matrimonial, por gentileza, clique em <b style="color: #569e2d;">Confirmar Presença</b>.
     </p>
     <p style="font-size: 105%; text-indent: 25px; text-align: justify;">
-      Porém se ainda não tem certeza, não tem problemas, depois é só clicar em <i class="fas fa-bars"></i> no canto superior direito e depois clicar em <b style="color: #9e782d;">Confirmar Minha Presença</b>.
+    Contudo, se ainda não estiver seguro(a), não há problema algum. Posteriormente, basta clicar no ícone <i class="fas fa-bars"></i> no canto superior direito e em seguida selecionar <b style="color: #9e782d;">Confirmar Minha Presença</b>.
     </p>
     <p style="font-size: 105%; text-indent: 25px; text-align: justify;">
-      Só lembrando que é de extrema importância a confirmação de presença,
-      pois na festa só poderá entrar as pessoas que confirmou a presença. Então por favor não esqueça, queremos te ver lá!
+    Gostaríamos de ressaltar que a confirmação de presença é de suma importância, pois somente poderão adentrar à festa aqueles que tiverem confirmado previamente. Portanto, rogamos que não se esqueça, pois será um prazer imensurável contar com sua presença!
     </p>`,
 
   PADRINHO = `
     <p style="font-size: 105%; text-align: center;">
-      Estamos muito felizes por você fazer parte desse momento conosco<br> <b>{{name}}</b><br>
+    Estamos exultantes por ter a honra de sua presença neste momento tão especial<br> <b>{{name}}</b><br>
     </p><br>
     <p style="font-size: 105%; text-indent: 25px; text-align: justify;">
-      Se você está lendo essa mensagem significa que você <b style="color: #569e2d;">aceitou nosso convite</b>! Ficamos verdadeiramente felizes por isso!
+    Ao ler esta mensagem, significa que você <b style="color: #569e2d;">aceitou o nosso gentil convite</b>! Ficamos verdadeiramente jubilantes por tal deferência!
     </p>
     <p style="font-size: 105%; text-indent: 25px; text-align: justify;">
-      Nosso <b>muito obrigado e gratidão</b> por ter aceitado fazer parte desse momento único com a gente.
+    Expressamos nossos <b>mais sinceros agradecimentos e profunda gratidão</b> por ter aceitado compartilhar conosco este momento ímpar.
     </p>
     <p style="font-size: 105%; text-indent: 25px; text-align: justify;">
-      Aproveite esse Ambiente Virtual que fizemos para você! Caso queira ver outras páginas é só clicar em <i class="fas fa-bars"></i> no canto superior direito
+    Aproveite este Ambiente Virtual que cuidadosamente preparamos para você! Caso deseje explorar outras páginas, basta clicar no <i class="fas fa-bars"></i> no canto superior direito.
     </p><br>
     <p style="font-size: 105%; text-align: center;">
-      <b>Contamos com você nesse grande dia!</b>
+    <b>Esperamos ansiosamente por sua presença neste dia memorável!</b>
     </p>`,
 }
