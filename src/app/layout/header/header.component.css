@@ -56,9 +56,10 @@
     animation: closeDropdown 0.5s linear;
     background: none;
     border: none;
+    color: #FFF;
 }
 
-.menu.open * {
+.menu.open i {
     color: #FFF;
 }
 
@@ -73,7 +74,8 @@
 .navbar-dropdown {
     position: absolute;
     z-index: 2;
-    background-color: #2f2f2f;
+    background: #ffffffcc;
+    backdrop-filter: blur(10px);
     height: 100vh;
     width: 100%;
     bottom: 0;
@@ -91,11 +93,12 @@
     display: flex;
     justify-content: start;
     align-items: center;
-    margin-left: 15px;
+    padding: 15px;
     font-size: 18px;
     width: 100%;
     height: 50px;
     color: #ffffff;
+    background-color: #a76b0ac2;
 }
 
 .list-itens {
@@ -104,8 +107,8 @@
     flex-direction: column;
     width: 100%;
     padding: 0;
-    font-size: 20px;
-    color: #ffffff;
+    font-size: 18px;
+    color: #1a1a1a;
 }
 
 .item {
@@ -117,12 +120,12 @@
     padding: 3px;
     cursor: pointer;
     transition: 0.1s;
-    background-color: #4e4e4e;
+    background-color: transparent;
 }
 
 .item-icon {
     padding: 0 12px 0 10px;
-    color: #ffffff;
+    color: #1a1a1a;
     width: 50px;
     display: flex;
     justify-content: center;
@@ -131,12 +134,11 @@
 
 
 .item:active {
-    background-color: #a2a2a2df;
+    background-color: #d48f1790;
 }
 
 .item-selected {
-    background: #a2a2a2df;
-    color: #2f2f2f;
+    background: #d48f175f;
 }
 
 .item-selected fa-icon {
@@ -151,7 +153,6 @@
 .sair {
     color: rgba(255, 68, 68, 0.514);
     font-size: 18px;
-    background-color: #2f2f2f;
 }
 
 .line {
