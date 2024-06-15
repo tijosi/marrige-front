@@ -1,13 +1,17 @@
 <nav class="navbar">
 
     <div class="btn-presenca" (click)="confirmPresenca()" *ngIf="user.role_id != 1 && user.role_id != 2"><app-button-star></app-button-star></div>
-    <i [class]="'menu ' + classMenu" (click)="openDropdown()"></i>
+    <div [class]="'menu ' + classNavbar" (click)="openDropdown()">
+        <i [class]="classMenu"></i>
+        <span>{{classNavbar == 'open' ? 'Fechar' : 'MENU'}}</span>
+    </div>
 
     <div [class]="'navbar-dropdown ' + classNavbar">
 
         <span class="title">Opções</span>
 
         <ul class="list-itens">
+            <span class="line"></span>
             <li class="item" (click)="routes('')">
                 <fa-icon class="item-icon" [icon]="faHome"></fa-icon>
                 Início
