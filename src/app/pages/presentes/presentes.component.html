@@ -80,16 +80,16 @@
         </mat-form-field>
 
         <p style="width: 100%">TAG's:</p>
-        <mat-form-field appearance="outline" style="width: 40%;padding: 0 !important;">
+        <mat-form-field appearance="outline" style="width: calc(50% - 34.5px); padding: 0 !important;">
             <mat-label>Nome</mat-label>
             <input matInput [(ngModel)]="tag.nome"  name="tag-nome">
         </mat-form-field>
-        <mat-form-field appearance="outline" style="width: 40%;padding: 0 !important;">
+        <mat-form-field appearance="outline" style="width: calc(50% - 34.5px); padding: 0 !important;">
             <mat-label>Descricao</mat-label>
             <input matInput [(ngModel)]="tag.descricao"  name="tag-descricao">
         </mat-form-field>
         <button
-        style="width: 15%; height: 56px; margin-left: 5%;"
+        style="width: 64px; height: 56px; margin-left: 5px;"
         mat-flat-button color="primary"
         (click)="adicionarTag()"
         [disabled]="tag.validate">

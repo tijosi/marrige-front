@@ -5,6 +5,7 @@ import { TransformHelper } from 'src/app/helper/TransformHelper';
 import { GuardService } from 'src/app/service/guard.service';
 import { DialogComponent } from 'src/app/template/dialog/dialog.component';
 import { Router } from '@angular/router';
+import { StringHelper } from 'src/app/helper/StringHelper';
 
 @Component({
     selector: 'app-presentes',
@@ -126,6 +127,7 @@ export class PresentesComponent implements OnInit {
                 if (items[i].type.indexOf('image') !== -1) {
                     const blob = items[i].getAsFile();
                     if (blob) {
+                        this.formAdicionar.file = blob;
                         const reader = new FileReader();
                         reader.onload = (e) => {
                             this.imgUrl = e.target?.result;
@@ -160,15 +162,13 @@ export class PresentesComponent implements OnInit {
     }
 
     submitAdicionar() {
-
         this.formAdicionar.vlr_minimo = TransformHelper.currencyBrlToFloat(this.vlr_minimo.nativeElement.inputmask.unmaskedvalue());
         this.formAdicionar.vlr_maximo = TransformHelper.currencyBrlToFloat(this.vlr_maximo.nativeElement.inputmask.unmaskedvalue());
-
+        this.formAdicionar.tags = JSON.stringify(this.tags);
         this.loadingPosition = '.popup';
         this.showLoadPanel = true;
 
         this.rest.savePresente(this.formAdicionar).subscribe({
-
             next: data => {
                 this.showPopupAdicionar = false;
                 this.showLoadPanel = false;
@@ -188,17 +188,41 @@ export class PresentesComponent implements OnInit {
     }
 
     adicionarTag() {
-        for (const tag of this.tags) {
-            if (tag.nome == this.tag.nome) {
-                Notify.error('TAG Já existente');
-                return;
-            }
-        }
+        if (!this.validationTag()) return;
+
         this.tags.push({
-            id: Math.random()*10000000000,
-            nome: this.tag.nome,
+            id: this.generateUniqueId(),
+            nome: this.tag.nome.toUpperCase(),
             descricao: this.tag.descricao
         })
+        console.log(this.tags);
+    }
+
+    validationTag(): boolean {
+        if (StringHelper.isEmpty(this.tag.nome)) {
+            Notify.warning('TAG Precisa de nome');
+            return false;
+        }
+
+        if (StringHelper.isEmpty(this.tag.descricao)) {
+            Notify.warning('TAG Precisa de descrição');
+            return false;
+        }
+
+        for (const tag of this.tags) {
+            if (tag.nome.toUpperCase() == this.tag.nome.toUpperCase()) {
+                Notify.warning('TAG Já existente');
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    generateUniqueId(): string {
+        const timestamp = Date.now();
+        const randomNumber = Math.floor(Math.random() * 1000000);
+        return `${timestamp}${randomNumber}`;
     }
 
     excluirTag(id:string) {

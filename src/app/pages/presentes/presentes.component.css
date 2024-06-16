@@ -83,26 +83,25 @@
 }
 
 .list-tags .group-p {
-    height: 35px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     flex-grow: 1;
-    margin: 0 20px 0 0;
     border: 1px solid #c1c1c1;
     border-radius: 5px;
-    width: 80%;
+    width: calc(100% - 64px);
 }
 
 .list-tags .group-p  p {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    overflow: clip;
+    text-overflow: ellipsis;
+    text-transform: capitalize;
+    text-wrap: nowrap;
     margin: 0;
-    height: 100%;
+    padding: 5px 0;
+    padding-left: 5px;
     width: 50%;
-    overflow: hidden;
 }
 
 .list-tags .group-p  p:last-child {
