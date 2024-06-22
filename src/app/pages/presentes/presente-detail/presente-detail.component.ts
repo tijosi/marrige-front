@@ -17,6 +17,8 @@ export class PresenteDetailComponent {
     showPopupSelecionado: boolean = false;
     showLoadPanel: boolean = false;
 
+    displayedColumns = ['nome', 'descricao'];
+
     constructor(
         private route: ActivatedRoute,
         private router: Router,

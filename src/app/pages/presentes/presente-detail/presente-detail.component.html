@@ -10,9 +10,11 @@
             </button>
         </div>
         <h3>{{presente.nome}}</h3>
-        <div class="img-container">
-            <img [src]="presente.path_img">
-        </div>
+        <section class="gift-img">
+            <div class="img-container">
+                <img [src]="presente.path_img">
+            </div>
+        </section>
         <div class="valor-container">
             <p class="valor">R$ {{presente.valor.toFixed(2).split('.')[0]}}</p>
             <p class="valor-decimal">{{presente.valor.toFixed(2).split('.')[1]}}</p>
@@ -28,7 +30,7 @@
             ou até 12x com juros
         </span>
         <section class="descricao">
-            Anotação:
+            <p style="text-indent: 0;">Anotação:</p>
             <p class="descricao-text" *ngIf="presente.descricao != null && presente.descricao != ''">
                 {{presente.descricao}}
             </p>
@@ -38,26 +40,38 @@
                     clicando aqui
                 </a>
             </p>
-
         </section>
+        <div *ngIf="presente.tags">
+            <p style="text-indent: 0;">Especificações:</p>
+            <table  style="margin-top: 10px;" mat-table [dataSource]="presente.tags" class="mat-elevation-z2">
+                <ng-container matColumnDef="nome">
+                    <!-- <th mat-header-cell *matHeaderCellDef> Nome </th> -->
+                    <td mat-cell *matCellDef="let element" style="font-weight: bold;"> {{element.nome}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="descricao">
+                    <!-- <th mat-header-cell *matHeaderCellDef> Descrição </th> -->
+                    <td mat-cell *matCellDef="let element"> {{element.descricao}} </td>
+                </ng-container>
+                <!-- <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr> -->
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </div>
         <section class="ajuste-altura"></section>
         <section class="presentear">
-            Forma de presentear:
+            <p style="text-indent: 0;">Forma de presentear:</p>
             <div class="buttons">
                 <button mat-flat-button color="accent" (click)="confirmarPresente('VALOR')">PRESENTEAR VALOR</button>
-                <button mat-flat-button color="primary"  (click)="confirmarPresente('PRODUTO')">PRESENTEAR PRODUTO</button>
+                <button mat-flat-button color="primary" (click)="confirmarPresente('PRODUTO')">PRESENTEAR
+                    PRODUTO</button>
             </div>
         </section>
     </body>
 </section>
 
-<popup
-    id="popup-item-confirm"
-    *ngIf="showPopupConfirmar"
-    (close)="showPopupConfirmar = false; presente.tipoPresente = null;"
-    title="Confirmar Presente"
-    textBtnClose="Escolher Outro"
->
+<popup id="popup-item-confirm" *ngIf="showPopupConfirmar"
+    (close)="showPopupConfirmar = false; presente.tipoPresente = null;" title="Confirmar Presente"
+    textBtnClose="Escolher Outro">
     <div class="container">
 
         <p style="width: 100%;">Resumo:</p>
@@ -83,39 +97,44 @@
             </div>
         </div>
         <div class="separator"><i class="fas fa-gift"></i></div>
-        <p class="text justify" *ngIf="presente.tipoPresente == 'Produto'">
+        <p class="text justify" *ngIf="presente.tipoPresente == 'PRODUTO'">
             Fique a vontade para comprar onde quiser! Só clicar em <b style="color: #51b934;">Presentear Produto</b>,
             e saberemos que poderemos contar com você!💖
         </p>
-        <p class="text justify" *ngIf="presente.tipoPresente == 'Valor'">
-            Fique a vontade para doar o valor da forma que quiser! Clicando em <b style="color: #51b934;">Presentear Valor</b>,
+        <div *ngIf="presente.tags && presente.tipoPresente == 'PRODUTO'" style="width: 100%; margin-bottom: 10px;">
+            <p style="text-indent: 0;">Especificações:</p>
+            <table  style="margin-top: 10px;" mat-table [dataSource]="presente.tags" class="mat-elevation-z2">
+                <ng-container matColumnDef="nome">
+                    <!-- <th mat-header-cell *matHeaderCellDef> Nome </th> -->
+                    <td mat-cell *matCellDef="let element" style="font-weight: bold;"> {{element.nome}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="descricao">
+                    <!-- <th mat-header-cell *matHeaderCellDef> Descrição </th> -->
+                    <td mat-cell *matCellDef="let element"> {{element.descricao}} </td>
+                </ng-container>
+                <!-- <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr> -->
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </div>
+        <p class="text justify" *ngIf="presente.tipoPresente == 'VALOR'">
+            Fique a vontade para doar o valor da forma que quiser! Clicando em <b style="color: #51b934;">Presentear
+                Valor</b>,
             abrirá uma nova página para poder fazer o pagamento. Obrigado de verdade por sua contribuição!💖
         </p>
 
     </div>
 
-    <button-popup
-        [text]="presente.tipoPresente == 'Produto' ? 'Presentear Produto' : 'Presentear Valor'"
-        type="success"
-        (onClick)="submit()"
-    ></button-popup>
+    <button-popup [text]="presente.tipoPresente == 'PRODUTO' ? 'Presentear Produto' : 'Presentear Valor'" type="success"
+        (onClick)="submit()"></button-popup>
 
 </popup>
-<popup
-    id="popup-item-selecionado"
-    *ngIf="showPopupSelecionado"
-    (close)="produtoSelecionado()"
-    title="Presente Selecionado"
-    [btnFecharVisible]="false"
->
+<popup id="popup-item-selecionado" *ngIf="showPopupSelecionado" (close)="produtoSelecionado()"
+    title="Presente Selecionado" [btnFecharVisible]="false">
     <p style="text-align: center;">
         Este presente já foi selecionado ou presenteado, por favor selecione outro!
     </p>
-    <button-popup
-        [text]="'Escolher outro Presente'"
-        type="default"
-        (onClick)="produtoSelecionado()"
-    ></button-popup>
+    <button-popup [text]="'Escolher outro Presente'" type="default" (onClick)="produtoSelecionado()"></button-popup>
 </popup>
 
 </html>

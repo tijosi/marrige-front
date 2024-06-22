@@ -26,6 +26,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import {MatTableModule} from '@angular/material/table';
 import { FileUploadModule } from 'ng2-file-upload';
 import { DialogComponent } from './template/dialog/dialog.component';
 import { PresenteDetailComponent } from './pages/presentes/presente-detail/presente-detail.component';
@@ -65,7 +66,8 @@ import { ButtonStarComponent } from './template/button-star/button-star/button-s
     MatSelectModule,
     MatFormFieldModule,
     MatInputModule,
-    FileUploadModule
+    FileUploadModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
