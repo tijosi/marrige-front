@@ -1,5 +1,31 @@
 <section class="screen">
     <main>
+        <h1 class="title">Seja Bem Vindo ao Seu Cantinho</h1>
+        <section class="apresentation">
+            <div class="imagem-container">
+                <img src="../../../assets/suport/casal-desenho.jpg" alt="Casal Casamento">
+            </div>
+            <section class="manual">
+                <div class="title-container">
+                    <img src="../../../assets/suport/fita-title-1.png" alt="Padrinhos Convocados">
+                    <h2>Padrinhos Convocados</h2>
+                </div>
+                <table  style="margin-top: 10px;" mat-table [dataSource]="dsPadrinhos" class="mat-elevation-z7">
+                    <ng-container matColumnDef="nome">
+                        <!-- <th mat-header-cell *matHeaderCellDef> Nome </th> -->
+                        <td mat-cell *matCellDef="let element" style="font-weight: bold;"> {{element.nome}} </td>
+                    </ng-container>
 
+                    <ng-container matColumnDef="imagemUrl">
+                        <!-- <th mat-header-cell *matHeaderCellDef> Imagem </th> -->
+                        <td mat-cell *matCellDef="let element" style="width: 80px;">
+                            <img [src]="element.imagemUrl"alt="Imagem de {{element.nome}}" style="width: 40px; height: 40px; border-radius: 40px;">
+                        </td>
+                    </ng-container>
+                    <!-- <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr> -->
+                    <tr mat-row *matRowDef="let row; columns: ['imagemUrl', 'nome'];"></tr>
+                </table>
+            </section>
+        </section>
     </main>
 </section>
