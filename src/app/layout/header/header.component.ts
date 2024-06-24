@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { NavigationEnd, Router } from '@angular/router';
-import { faBars, faClose, faGifts, faUsers, faUserTie, faSignOutAlt, faHome, faUserSecret } from '@fortawesome/free-solid-svg-icons';
+import { Router } from '@angular/router';
+import { faGifts, faUsers, faUserTie, faSignOutAlt, faHome, faUserSecret } from '@fortawesome/free-solid-svg-icons';
 import { GuardService } from 'src/app/service/guard.service';
 import { HeaderService } from 'src/app/service/header.service';
 
@@ -34,12 +34,10 @@ export class HeaderComponent implements OnInit {
         { id: 0, route: '' },
         { id: 1, route: 'presentes' },
         { id: 2, route: 'padrinhos' },
-        { id: 3, route: 'admin' }
     ]
 
     constructor(
         private router: Router,
-        private rest: HeaderService,
         private guard: GuardService,
         private sanitizer: DomSanitizer
     ) {
@@ -77,19 +75,14 @@ export class HeaderComponent implements OnInit {
         const domElement: HTMLElement = document.documentElement.querySelector('.html-container')!;
 
         if (this.classMenu == "bars fas fa-bars" && !exit) {
-
             this.classMenu = 'close fas fa-close';
             this.classNavbar = 'open';
             domElement.style.overflowY = 'hidden'
-
         } else {
-
             this.classMenu = 'bars fas fa-bars';
             this.classNavbar = '';
             domElement.style.overflowY = 'scroll'
-
         }
-
     }
 
     getSafeHtml() {
@@ -98,7 +91,7 @@ export class HeaderComponent implements OnInit {
 
     confirmPresenca() {
         setTimeout(() => {
-            if (this.user.role_id != 1) {
+            if (!this.isAdmin) {
                 this.showPopupConfirmPresence = true;
                 this.bodyMessage = this.bodyMessage.replace('{{name}}', this.user.name);
             }

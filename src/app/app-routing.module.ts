@@ -7,19 +7,16 @@ import { AuthenticationComponent } from './layout/authentication/authentication.
 import { LoginComponent } from './account/login/login.component';
 import { AuthGuard } from './account/shared/auth.guard';
 import { PresentesComponent } from './pages/presentes/presentes.component';
-import { AdminComponent } from './pages/admin/admin.component';
-import { AdminGuard } from './account/shared/admin.guard';
-import { PadrinhosComponent } from './pages/padrinhos/padrinhos.component';
 
 const routes: Routes = [
     {
         path: '',
         component: HomeComponent,
         children: [
-            { path: '', component: IndexComponent },
-            { path: 'padrinhos', component: PadrinhosComponent },
-            { path: 'presentes', component: PresentesComponent },
-            { path: 'admin', component: AdminComponent, canActivate: [AdminGuard] },
+            // { path: '', component: IndexComponent },
+            // { path: 'padrinhos', component: PadrinhosComponent },
+            { path: '', component: PresentesComponent },
+            // { path: 'presentes', component: PresentesComponent },
             { path: 'presente-detail/:id', component: PresenteDetailComponent }
         ],
         canActivate: [AuthGuard]

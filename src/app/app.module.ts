@@ -16,7 +16,6 @@ import { PresentesComponent } from './pages/presentes/presentes.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PopupComponent } from './template/popup/popup.component';
 import { ButtonPopupComponent } from './template/button-popup/button-popup.component';
-import { AdminComponent } from './pages/admin/admin.component';
 import { LoadingComponent } from './template/loading/loading.component';
 import { GiftComponent } from './template/gift/gift.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -44,7 +43,6 @@ import { ButtonStarComponent } from './template/button-star/button-star/button-s
     PresentesComponent,
     PopupComponent,
     ButtonPopupComponent,
-    AdminComponent,
     LoadingComponent,
     GiftComponent,
     DialogComponent,
