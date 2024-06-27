@@ -16,13 +16,6 @@ export class GuardService {
     private http: HttpClient
   ) { }
 
-  private getHeaders(): HttpHeaders {
-    return new HttpHeaders({
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${localStorage.getItem('token')}`,
-    });
-  }
-
   get isAdmin() {
     this.getUser();
     return this.currentUser.role_id == 1;
@@ -46,10 +39,8 @@ export class GuardService {
   }
 
   auth(): Observable<any> {
-    const headers = this.getHeaders();
-
     try {
-      var result: Observable<any> = this.http.get(this.endpoint.concat('/autenticacao'), {headers});
+      var result: Observable<any> = this.http.get(this.endpoint.concat('/autenticacao'));
     } catch (error) {
       Notify.error('Erro ao tentar buscar dados');
     }
@@ -58,10 +49,8 @@ export class GuardService {
   }
 
   admin(): Observable<any> {
-    const headers = this.getHeaders();
-
     try {
-      var result: Observable<any> = this.http.get(this.endpoint.concat('/admin'), {headers});
+      var result: Observable<any> = this.http.get(this.endpoint.concat('/admin'));
     } catch (error) {
       Notify.error('Erro ao tentar buscar dados');
     }

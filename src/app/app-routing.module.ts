@@ -7,6 +7,7 @@ import { AuthenticationComponent } from './layout/authentication/authentication.
 import { LoginComponent } from './account/login/login.component';
 import { AuthGuard } from './account/shared/auth.guard';
 import { PresentesComponent } from './pages/presentes/presentes.component';
+import { PadrinhosComponent } from './pages/padrinhos/padrinhos.component';
 
 const routes: Routes = [
     {
@@ -14,9 +15,9 @@ const routes: Routes = [
         component: HomeComponent,
         children: [
             // { path: '', component: IndexComponent },
-            // { path: 'padrinhos', component: PadrinhosComponent },
-            { path: '', component: PresentesComponent },
-            // { path: 'presentes', component: PresentesComponent },
+            { path: '', component: PadrinhosComponent },
+            // { path: '', component: PresentesComponent },
+            { path: 'presentes', component: PresentesComponent },
             { path: 'presente-detail/:id', component: PresenteDetailComponent }
         ],
         canActivate: [AuthGuard]

@@ -13,7 +13,7 @@ import { AuthenticationComponent } from './layout/authentication/authentication.
 import '@angular/localize/init';
 import { FormsModule } from '@angular/forms';
 import { PresentesComponent } from './pages/presentes/presentes.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { PopupComponent } from './template/popup/popup.component';
 import { ButtonPopupComponent } from './template/button-popup/button-popup.component';
 import { LoadingComponent } from './template/loading/loading.component';
@@ -25,49 +25,56 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import {MatTableModule} from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table';
 import { FileUploadModule } from 'ng2-file-upload';
 import { DialogComponent } from './template/dialog/dialog.component';
 import { PresenteDetailComponent } from './pages/presentes/presente-detail/presente-detail.component';
 import { PadrinhosComponent } from './pages/padrinhos/padrinhos.component';
 import { ButtonStarComponent } from './template/button-star/button-star/button-star.component';
+import { AuthInterceptor } from './auth.interceptor';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    HeaderComponent,
-    HomeComponent,
-    IndexComponent,
-    AuthenticationComponent,
-    PresentesComponent,
-    PopupComponent,
-    ButtonPopupComponent,
-    LoadingComponent,
-    GiftComponent,
-    DialogComponent,
-    PresenteDetailComponent,
-    PadrinhosComponent,
-    ButtonStarComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FontAwesomeModule,
-    NgbModule,
-    FormsModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    MatIconModule,
-    MatButtonModule,
-    MatToolbarModule,
-    MatSelectModule,
-    MatFormFieldModule,
-    MatInputModule,
-    FileUploadModule,
-    MatTableModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        LoginComponent,
+        HeaderComponent,
+        HomeComponent,
+        IndexComponent,
+        AuthenticationComponent,
+        PresentesComponent,
+        PopupComponent,
+        ButtonPopupComponent,
+        LoadingComponent,
+        GiftComponent,
+        DialogComponent,
+        PresenteDetailComponent,
+        PadrinhosComponent,
+        ButtonStarComponent
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FontAwesomeModule,
+        NgbModule,
+        FormsModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        MatIconModule,
+        MatButtonModule,
+        MatToolbarModule,
+        MatSelectModule,
+        MatFormFieldModule,
+        MatInputModule,
+        FileUploadModule,
+        MatTableModule
+    ],
+    providers: [
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: AuthInterceptor,
+            multi: true
+        }
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
