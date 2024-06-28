@@ -6,6 +6,7 @@ import { GuardService } from 'src/app/service/guard.service';
 import { DialogComponent } from 'src/app/template/dialog/dialog.component';
 import { Router } from '@angular/router';
 import { StringHelper } from 'src/app/helper/StringHelper';
+import { forkJoin } from 'rxjs';
 
 @Component({
     selector: 'app-presentes',
@@ -13,7 +14,6 @@ import { StringHelper } from 'src/app/helper/StringHelper';
     styleUrls: ['./presentes.component.css']
 })
 export class PresentesComponent implements OnInit {
-
     @ViewChild('vlr_minimo') vlr_minimo!: ElementRef
     @ViewChild('vlr_maximo') vlr_maximo!: ElementRef
 
@@ -37,7 +37,6 @@ export class PresentesComponent implements OnInit {
     showLoadPanel: boolean = true;
     showPopupAdicionar: boolean = false;
 
-
     constructor(
         private rest: PresentesService,
         private router: Router,
@@ -45,13 +44,7 @@ export class PresentesComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-
-        this.rest.presentesArea().subscribe({
-            next: data => this.dsArea = data
-        });
-
         this.search();
-
     }
 
     getMask() {
@@ -64,28 +57,32 @@ export class PresentesComponent implements OnInit {
         this.dsPresentes = [];
         this.loadingPosition = '#gifts';
         setTimeout(() => this.showLoadPanel = true, 10);
-        this.rest.presentes().subscribe({
-            next: data => {
-                if (filter && filter != 'TODOS') {
-                    data = data.filter((el: any) => {
-                        return el.level == filter;
-                    });
-                }
-
-                this.dsPresentes = data.sort(function (a: any, b: any) {
+        forkJoin([
+            this.rest.presentesArea(),
+            this.rest.presentes()
+        ]).subscribe({
+            next: ([presentesArea, presentes]) => {
+                this.dsArea = presentesArea;
+                this.dsPresentes = presentes.sort(function (a: any, b: any) {
                     return b.valor - a.valor;
                 });
 
                 for (const el of this.dsPresentes) {
                     el.valor = el.valor.toLocaleString('pt-br', { minimumFractionDigits: 2 });
                 }
-                this.showLoadPanel = false;
             },
-            error: e => {
-                Notify.error(e.error.message);
-                this.showLoadPanel = false;
+            complete: () => {
+                this.showLoadPanel = false
             }
         });
+    }
+
+    filtrarPresentes(filtro: string) {
+        if (!filtro && filtro == 'TODOS') return;
+
+        this.dsPresentes = this.dsPresentes.filter(presente => {
+            return filtro == presente.level;
+        })
     }
 
     valueChange(value: any) {
@@ -154,7 +151,6 @@ export class PresentesComponent implements OnInit {
                     },
                     error: (e) => {
                         this.showLoadPanel = false;
-                        Notify.error(e.error.message);
                     }
                 })
             }
@@ -179,9 +175,7 @@ export class PresentesComponent implements OnInit {
                 };
                 this.search();
             },
-
             error: e => {
-                Notify.error(e.error.message)
                 this.showLoadPanel = false;
             }
         });

@@ -1,16 +1,17 @@
-<section class="screen">
+<section id="screen" class="screen">
     <main>
         <h1 class="title">Seja Bem Vindo ao Seu Cantinho</h1>
+        <h2 class="title nome-padrinho">- {{user.name}} -</h2>
         <section class="apresentation">
             <div class="imagem-container">
-                <img src="../../../assets/suport/casal-desenho.jpg" alt="Casal Casamento">
+                <img src="../../../assets/convite-casamento.png" alt="Convite">
             </div>
             <section class="manual">
                 <div class="title-container">
                     <img src="../../../assets/suport/fita-title-1.png" alt="Padrinhos Convocados">
                     <h2>Padrinhos Convocados</h2>
                 </div>
-                <table  style="margin-top: 10px;" mat-table [dataSource]="dsPadrinhos" class="mat-elevation-z7">
+                <table style="margin-top: 10px;" mat-table [dataSource]="dsPadrinhos" class="mat-elevation-z7">
                     <ng-container matColumnDef="nome">
                         <!-- <th mat-header-cell *matHeaderCellDef> Nome </th> -->
                         <td mat-cell *matCellDef="let element" style="font-weight: bold;"> {{element.nome}} </td>
@@ -19,12 +20,34 @@
                     <ng-container matColumnDef="imagemUrl">
                         <!-- <th mat-header-cell *matHeaderCellDef> Imagem </th> -->
                         <td mat-cell *matCellDef="let element" style="width: 80px;">
-                            <img [src]="element.imagemUrl"alt="Imagem de {{element.nome}}" style="width: 40px; height: 40px; border-radius: 40px;">
+                            <img [src]="element.imagemUrl" alt="Imagem de {{element.nome}}"
+                                style="width: 40px; height: 40px; border-radius: 40px;">
                         </td>
                     </ng-container>
                     <!-- <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr> -->
                     <tr mat-row *matRowDef="let row; columns: ['imagemUrl', 'nome'];"></tr>
                 </table>
+
+                <h1 class="title">Manual do Padrinho</h1>
+                <section id="manual-padrinhos" class="manual-padrinhos">
+                    <div id="text-paleta" class="text-paleta">
+                        <p>
+                            Para o traje dos padrinhos escolhemos o terno de cor
+                            <b style="color: #1d1d1d; text-shadow: 0 0 1px #1d1d1d;">CINZA ESCURO</b>
+                            e a gravata no <b style="color: #a6a6a6; text-shadow: 0 0 1px #a6a6a6;">CINZA CLARO</b>
+                        </p>
+                        <img class="photo-2" src="../../../assets/photos-padrinhos/paleta-cores-padrinho.png">
+                    </div>
+                    <img id="photo-1" class="photo-1" src="../../../assets/photos-padrinhos/transferir (4).jfif.jpg">
+
+                    <div id="inspiracoes" class="inspiracoes">
+                        <h2 class="inspiracoes-title" style="text-align: center; width: 100%;">Algumas Inspirações</h2>
+                        <img class="photo-3" src="../../../assets/photos-padrinhos/Ivory dress with a groom wearing a White Tuxedo jacket___.jfif.jpg">
+                        <img class="photo-4" src="../../../assets/photos-padrinhos/Lucy Struve Photography_ Austin Wedding Photographer.jfif.jpg">
+                        <img class="photo-5" src="../../../assets/photos-padrinhos/transferir (3).jfif.jpg">
+                    </div>
+
+                </section>
             </section>
         </section>
     </main>

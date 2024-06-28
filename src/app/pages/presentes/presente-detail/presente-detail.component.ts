@@ -4,9 +4,9 @@ import { PresentesService } from 'src/app/service/presentes.service';
 import { Notify } from 'src/app/template/notify';
 
 @Component({
-  selector: 'app-presente-detail',
-  templateUrl: './presente-detail.component.html',
-  styleUrls: ['./presente-detail.component.css']
+    selector: 'app-presente-detail',
+    templateUrl: './presente-detail.component.html',
+    styleUrls: ['./presente-detail.component.css']
 })
 export class PresenteDetailComponent {
 
@@ -44,7 +44,6 @@ export class PresenteDetailComponent {
                 }
             },
             error: err => {
-                console.log(err);
                 this.active = false;
                 this.router.navigate(['/presentes']);
                 this.showLoadPanel = false;
@@ -64,7 +63,7 @@ export class PresenteDetailComponent {
         this.router.navigate(['/presentes']);
     }
 
-    confirmarPresente(tipo:string = 'VALOR' || 'PRODUTO') {
+    confirmarPresente(tipo: string = 'VALOR' || 'PRODUTO') {
         this.presente.tipoPresente = tipo;
         this.showPopupConfirmar = true;
     }
@@ -76,19 +75,18 @@ export class PresenteDetailComponent {
             tipo: this.presente.tipoPresente
         };
         this.restPresente.confirmarPresente(form).subscribe({
-        next: (data) => {
-            this.showPopupConfirmar = false;
-            this.showLoadPanel = false;
-            if (data.link) {
-                window.open(data.link);
+            next: (data) => {
+                this.showPopupConfirmar = false;
+                this.showLoadPanel = false;
+                if (data.link) {
+                    window.open(data.link);
+                }
+                Notify.success('MUITO OBRIGADOOOO💖');
+                this.router.navigate(['/presentes']);
+            },
+            error: (e) => {
+                this.showLoadPanel = false;
             }
-            this.router.navigate(['/presentes']);
-            Notify.success('MUITO OBRIGADOOOO💖');
-        },
-        error: (e) => {
-            this.showLoadPanel = false;
-            Notify.error(e.error.message);
-        }
         })
     }
 }

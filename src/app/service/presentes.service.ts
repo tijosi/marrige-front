@@ -2,100 +2,86 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Notify } from '../template/notify';
 import { environment } from './../../environments/environment';
-import { Observable } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
 import { TransformHelper } from '../helper/TransformHelper';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class PresentesService {
+    private endpoint = environment.apiUrl + '/presentes'
 
-  private endpoint = environment.apiUrl + '/presentes'
+    constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
+    get optionsCurrencyBRLMask() {
+        return {
+            alias: 'numeric',
+            radixPoint: ',',
+            groupSeparator: '.',
+            autoGroup: true,
+            prefix: 'R$ ',
+            digits: 2,
+            digitsOptional: false,
+            clearMaskOnLostFocus: false,
+        }
+    };
 
-  private getHeaders(): HttpHeaders {
-    return new HttpHeaders({
-      Authorization: `Bearer ${localStorage.getItem('token')}`,
-    });
-  }
+    presentes(id?: string): Observable<any> {
+        const endpoint = id ? `${this.endpoint}?id=${id}` : this.endpoint;
 
-  get optionsCurrencyBRLMask() {
+        const data: Observable<any> = this.http.get(endpoint).pipe(
+            catchError(error => {
+                Notify.error(error.message);
+                return throwError(() => error);
+            })
+        );
 
-    return {
-      alias: 'numeric',
-      radixPoint: ',',
-      groupSeparator: '.',
-      autoGroup: true,
-      prefix: 'R$ ',
-      digits: 2,
-      digitsOptional: false,
-      clearMaskOnLostFocus: false,
+        return data;
     }
 
-  };
+    savePresente(form: any): Observable<any> {
+        const formData = TransformHelper.objectToFormData(form);
 
-  presentes(id?:string): Observable<any> {
-    const headers = this.getHeaders();
-    let endpoint = this.endpoint;
+        const data: Observable<any> = this.http.post(this.endpoint, formData).pipe(
+            catchError(error => {
+                Notify.error(error.message);
+                return throwError(() => error);
+            })
+        );
 
-    if (id) endpoint = this.endpoint.concat('?id='+id);
-
-    try {
-      var data: Observable<any> = this.http.get(endpoint, { headers });
-    } catch (error) {
-      Notify.error('Erro ao tentar buscar dados');
+        return data;
     }
 
-    return data!;
-  }
+    confirmarPresente(param: any): Observable<any> {
+        const data: Observable<any> = this.http.post(this.endpoint + '/confirmar', param).pipe(
+            catchError(error => {
+                Notify.error(error.message);
+                return throwError(() => error);
+            })
+        );
 
-  savePresente(form: any): Observable<any> {
-    const headers = this.getHeaders();
-    const formData = TransformHelper.objectToFormData(form);
-
-    try {
-      var data: Observable<any> = this.http.post(this.endpoint, formData, { headers });
-    } catch (error) {
-      Notify.error('Erro ao tentar buscar dados');
+        return data;
     }
 
-    return data!;
-  }
+    presentesArea(): Observable<any> {
+        const data: Observable<any> = this.http.get(environment.apiUrl + '/enum/presentes-area-enum').pipe(
+            catchError(error => {
+                Notify.error(error.message);
+                return throwError(() => error);
+            })
+        );
 
-  confirmarPresente(param: any): Observable<any> {
-
-    const headers = this.getHeaders();
-
-    try {
-      var data: Observable<any> = this.http.post(this.endpoint + '/confirmar', param, { headers });
-    } catch (error) {
-      Notify.error('Erro ao tentar buscar dados');
+        return data;
     }
 
-    return data!;
-  }
+    excluirPresente(presenteId: any): Observable<any> {
+        const data: Observable<any> = this.http.delete(this.endpoint + '?presenteId=' + presenteId).pipe(
+            catchError(error => {
+                Notify.error(error.message);
+                return throwError(() => error);
+            })
+        );
 
-  presentesArea(): Observable<any> {
-
-    try {
-      var data: Observable<any> = this.http.get(environment.apiUrl + '/enum/presentes-area-enum');
-    } catch (error) {
-      Notify.error('Erro ao tentar buscar dados');
+        return data;
     }
-
-    return data!;
-  }
-
-  excluirPresente(presenteId: any): Observable<any> {
-    const headers = this.getHeaders();
-
-    try {
-      var data: Observable<any> = this.http.delete(this.endpoint + '?presenteId=' + presenteId, { headers });
-    } catch (error) {
-      Notify.error('Erro ao tentar buscar dados');
-    }
-
-    return data!;
-  }
 }
