@@ -1,4 +1,4 @@
-<nav class="navbar" *ngIf="isAdmin">
+<nav class="navbar">
 
     <div class="btn-presenca" (click)="confirmPresenca()" *ngIf="user.role_id != 1 && user.role_id != 2"><app-button-star></app-button-star></div>
     <div [class]="'menu ' + classNavbar" (click)="openDropdown()">

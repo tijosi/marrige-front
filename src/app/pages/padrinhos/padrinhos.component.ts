@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PadrinhosService } from 'src/app/service/PadrinhosService';
 import { GuardService } from 'src/app/service/guard.service';
-import { Notify } from 'src/app/template/notify';
 
 @Component({
   selector: 'app-padrinhos',
@@ -10,23 +9,9 @@ import { Notify } from 'src/app/template/notify';
 })
 export class PadrinhosComponent implements OnInit {
 
-    dsPadrinhos: any[] = [
-        {nome: 'Dhavid Paes barbosa',   imagemUrl: '../../../assets/photos-banner/foto1.png'},
-        {nome: 'Uanderson Balbino',     imagemUrl: '../../../assets/photos-banner/foto2.png'},
-        {nome: 'Carlos Eduardo',        imagemUrl: '../../../assets/photos-banner/foto3.png'},
-        {nome: 'Silvano Barcelos',      imagemUrl: '../../../assets/photos-banner/foto4.png'},
-        {nome: 'Leonardo Guedes',       imagemUrl: '../../../assets/photos/edson.png'},
-        {nome: 'Dhavid Paes barbosa',   imagemUrl: '../../../assets/photos-banner/foto1.png'},
-        {nome: 'Uanderson Balbino',     imagemUrl: '../../../assets/photos-banner/foto2.png'},
-        {nome: 'Carlos Eduardo',        imagemUrl: '../../../assets/photos-banner/foto3.png'},
-        {nome: 'Silvano Barcelos',      imagemUrl: '../../../assets/photos-banner/foto4.png'},
-        {nome: 'Leonardo Guedes',       imagemUrl: '../../../assets/photos/edson.png'},
-        {nome: 'Dhavid Paes barbosa',   imagemUrl: '../../../assets/photos-banner/foto1.png'},
-        {nome: 'Uanderson Balbino',     imagemUrl: '../../../assets/photos-banner/foto2.png'},
-        {nome: 'Carlos Eduardo',        imagemUrl: '../../../assets/photos-banner/foto3.png'},
-        {nome: 'Silvano Barcelos',      imagemUrl: '../../../assets/photos-banner/foto4.png'},
-        {nome: 'Leonardo Guedes',       imagemUrl: '../../../assets/photos/edson.png'},
-    ]
+    dsPadrinhos: any[] = [];
+
+    showLoadPanel: boolean = false;
 
     user: any = this.guard.getUser();
 
@@ -62,8 +47,24 @@ export class PadrinhosComponent implements OnInit {
     }
 
     search() {
+        this.showLoadPanel = true;
         this.rest.getPadrinhos().subscribe({
-            next: data => {}
+            next: data => {
+                this.dsPadrinhos = data;
+                this.getImagem();
+            },
+            complete: () => {
+                this.showLoadPanel = false;
+            },
         });
+    }
+
+    imagem: string = '../../../assets/convite-casamento.png';
+    getImagem() {
+        for (const padrinho of this.dsPadrinhos) {
+            if (this.user.id == padrinho.id && padrinho.imagem) {
+                this.imagem = padrinho.imagem;
+            };
+        }
     }
 }
