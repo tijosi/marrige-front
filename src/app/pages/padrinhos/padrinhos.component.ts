@@ -21,7 +21,6 @@ export class PadrinhosComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        this.setAnimationScroll();
         this.search();
     }
 
@@ -51,20 +50,13 @@ export class PadrinhosComponent implements OnInit {
         this.rest.getPadrinhos().subscribe({
             next: data => {
                 this.dsPadrinhos = data;
-                this.getImagem();
             },
             complete: () => {
                 this.showLoadPanel = false;
+                setTimeout(() => {
+                    this.setAnimationScroll();
+                }, 100);
             },
         });
-    }
-
-    imagem: string = '../../../assets/convite-casamento.png';
-    getImagem() {
-        for (const padrinho of this.dsPadrinhos) {
-            if (this.user.id == padrinho.id && padrinho.imagem) {
-                this.imagem = padrinho.imagem;
-            };
-        }
     }
 }

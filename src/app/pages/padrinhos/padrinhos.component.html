@@ -1,4 +1,5 @@
 <loading [visible]="showLoadPanel"></loading>
+<div class="screen-into" *ngIf="!showLoadPanel"></div>
 <section id="screen" class="screen">
     <main *ngIf="!showLoadPanel">
         <h1 class="title">Seja Bem Vindo ao Seu Cantinho</h1>
@@ -6,7 +7,7 @@
         <section class="apresentation">
             <div class="imagem-container">
                 <div class="imagem-padrinho">
-                    <img [src]="imagem" alt="Convite">
+                    <img src="../../../assets/convite-casamento.png" alt="Convite">
                 </div>
             </div>
             <section class="manual">
@@ -49,7 +50,6 @@
                         Para o traje dos padrinhos escolhemos o terno de cor
                         <b style="color: #1d1d1d; text-shadow: 0 0 1px #313131;">CINZA ESCURO</b>
                         e a gravata no <b style="color: #a6a6a6; text-shadow: 0 0 1px #a6a6a6;">CINZA CLARO</b>.
-                         Lembrando que a cor do terno não pode ser <b style="color: black;">PRETO.</b>
                     </p>
                     <img class="photo-2" src="../../../assets/photos-padrinhos/icon-terno.png">
 

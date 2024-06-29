@@ -1,8 +1,7 @@
 .screen {
     width: 100%;
     height: 100%;
-    overflow: hidden;
-    animation: overflowBlock 0s forwards 3s;
+    overflow: scroll;
     scrollbar-width: none;
 }
 
@@ -14,6 +13,16 @@ main {
     width: 100%;
     height: 100%;
     flex-direction: column;
+}
+
+.screen-into {
+    position: absolute;
+    z-index: 1;
+    height: 100vh;
+    width: 100%;
+    max-width: 500px;
+    animation: hidden 4s forwards 0.3s;
+    background-color: #1b2d30;
 }
 
 .apresentation {
@@ -99,8 +108,12 @@ main {
     overflow: hidden;
 }
 
+.manual table tr {
+    background-color: #9db6ba;
+}
+
 .manual table tr:nth-child(2n) {
-    background-color: #718F94;
+    background-color: #fff;
 }
 
 .manual .title {
@@ -203,11 +216,15 @@ main {
     }
 }
 
-@keyframes overflowBlock {
+@keyframes hidden {
     0% {
-        overflow: hidden ;
+        opacity: 1;
+    }
+    99% {
+        opacity: 0;
     }
     100% {
-        overflow: scroll;
+        opacity: 0;
+        display: none;
     }
 }
