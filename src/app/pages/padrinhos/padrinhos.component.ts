@@ -11,6 +11,12 @@ export class PadrinhosComponent implements OnInit {
 
     dsPadrinhos: any[] = [];
 
+    pathImgCarrousel: any[] = [
+        '../../../assets/photos-padrinhos/transferir (4).jfif.jpg',
+        '../../../assets/photos-padrinhos/Ivory dress with a groom wearing a White Tuxedo jacket___.jfif.jpg',
+        '../../../assets/photos-padrinhos/Lucy Struve Photography_ Austin Wedding Photographer.jfif.jpg'
+    ];
+
     showLoadPanel: boolean = false;
 
     user: any = this.guard.getUser();
@@ -34,14 +40,6 @@ export class PadrinhosComponent implements OnInit {
             if (distance < window.innerHeight / 1.5) {
                 element!.classList.add('visible');
             }
-
-            var elementInspiracoes = document.getElementById('inspiracoes');
-            var elementOffsetInspiracoes = elementInspiracoes!.getBoundingClientRect().top + scrollTop;
-            var distanceInspiracoes = elementOffsetInspiracoes - scrollTop;
-
-            if (distanceInspiracoes < window.innerHeight / 5) {
-                elementInspiracoes!.classList.add('visible');
-            }
         });
     }
 
@@ -51,12 +49,11 @@ export class PadrinhosComponent implements OnInit {
             next: data => {
                 this.dsPadrinhos = data;
             },
-            complete: () => {
-                this.showLoadPanel = false;
-                setTimeout(() => {
-                    this.setAnimationScroll();
-                }, 100);
-            },
+        }).add(()=> {
+            this.showLoadPanel = false;
+            setTimeout(() => {
+                this.setAnimationScroll();
+            }, 100);
         });
     }
 }

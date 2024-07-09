@@ -11,6 +11,7 @@ export class PadrinhosService {
     private endpoint = environment.apiUrl + '/padrinhos'
 
     constructor(private http: HttpClient) { }
+
     getPadrinhos(id?: number): Observable<any> {
         const endpoint = id ? this.endpoint.concat('?id=' + id) : this.endpoint;
         const data: Observable<any> = this.http.get(endpoint).pipe(

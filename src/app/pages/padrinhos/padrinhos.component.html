@@ -54,13 +54,21 @@
                     <img class="photo-2" src="../../../assets/photos-padrinhos/icon-terno.png">
 
                     <div id="inspiracoes" class="inspiracoes">
-                        <h2 class="inspiracoes-title" style="text-align: center; width: 100%;">Algumas Inspirações</h2>
-                        <img id="photo-1" class="photo-1"
-                            src="../../../assets/photos-padrinhos/transferir (4).jfif.jpg">
-                        <img class="photo-3"
-                            src="../../../assets/photos-padrinhos/Ivory dress with a groom wearing a White Tuxedo jacket___.jfif.jpg">
-                        <img class="photo-4"
-                            src="../../../assets/photos-padrinhos/Lucy Struve Photography_ Austin Wedding Photographer.jfif.jpg">
+                        <h2 class="inspiracoes-title">Algumas Inspirações</h2>
+                        <ngb-carousel
+                            #carousel
+                            [interval]="3000"
+                            [pauseOnHover]="true"
+                            [pauseOnFocus]="true"
+                            [showNavigationArrows]="true"
+                            [showNavigationIndicators]="true"
+                        >
+                            <ng-template ngbSlide *ngFor="let img of pathImgCarrousel; index as i">
+                                <div class="picsum-img-wrapper">
+                                    <img [src]="img" style="width: 100%">
+                                </div>
+                            </ng-template>
+                        </ngb-carousel>
                     </div>
 
                 </section>
