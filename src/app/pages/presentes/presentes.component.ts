@@ -68,7 +68,8 @@ export class PresentesComponent implements OnInit {
                 });
 
                 for (const el of this.dsPresentes) {
-                    el.valor = el.valor.toLocaleString('pt-br', { minimumFractionDigits: 2 });
+                    el.valor    = el.valor.toLocaleString('pt-br', { minimumFractionDigits: 2 });
+                    el.vlr_cota = el.vlr_cota.toLocaleString('pt-br', { minimumFractionDigits: 2 });
                 }
             },
             complete: () => {

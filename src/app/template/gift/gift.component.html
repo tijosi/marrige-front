@@ -1,38 +1,35 @@
 <div class="box-gift">
 
-  <div  class="card-container" *ngFor="let item of dataSource">
-    <div
-      [class]="'card-gift'"
-      [style]="borderGift(item.level)"
-    >
+    <div class="card-container" *ngFor="let item of dataSource">
+        <img *ngIf="item.cotas > 1" src="../../../assets/suport/banner-cota.png" class="banner-cota">
+        <div [class]="'card-gift'" [style]="borderGift(item.level)">
 
-      <div [class]="'banner'" [style]="bannerStyle(item.level)">
-        <div>{{ lookup(item.level) }}</div>
-      </div>
+            <div [class]="'banner'" [style]="bannerStyle(item.level)">
+                <div>{{ lookup(item.level) }}</div>
+            </div>
 
-      <span (click)="onExlcuir.emit(item)"><i *ngIf="isAdmin" id="btn-excluir" class="fas fa-close"></i></span>
+            <span (click)="onExlcuir.emit(item)"><i *ngIf="isAdmin" id="btn-excluir" class="fas fa-close"></i></span>
 
-      <div
-        class="img-gift"
-      >
-        <img [src]="item.path_img">
-      </div>
+            <div class="img-gift">
+                <img [src]="item.path_img">
+            </div>
 
-      <div class="info-gift">
-        <div class="info-gift title">{{ item.nome }}</div>
-        <div *ngIf="item.flg_disponivel" class="info-gift price">R$ {{ item.valor }}</div>
-      </div>
+            <div class="info-gift">
+                <div class="info-gift title">{{ item.nome }}</div>
+                <div *ngIf="item.flg_disponivel" class="info-gift price">
+                    R$ {{ item.cotas > 1 ? item.vlr_cota : item.valor }}
+                </div>
+            </div>
 
-      <button *ngIf="item.flg_disponivel" [class]="'btn-value-gift'" (click)="btnClick.emit(item)">CONFERIR</button>
+            <button *ngIf="item.flg_disponivel" [class]="'btn-value-gift'" (click)="btnClick.emit(item)">
+                {{item.cotas > 1 ? 'CONFERIR COTA' : 'CONFERIR'}}
+            </button>
 
-      <div
-        *ngIf="!item.flg_disponivel"
-        class="selecionado"
-      >
-        <div class="text-selecionado" [style]="bannerStyle(item.level)">SELECIONADO</div>
-      </div>
+            <div *ngIf="!item.flg_disponivel" class="selecionado">
+                <div class="text-selecionado" [style]="bannerStyle(item.level)">SELECIONADO</div>
+            </div>
 
+        </div>
     </div>
-  </div>
 
 </div>

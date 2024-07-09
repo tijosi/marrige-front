@@ -15,6 +15,15 @@
   margin-bottom: 30px;
 }
 
+.banner-cota {
+    position: absolute;
+    opacity: 0.9;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    width: 25%;
+}
+
 .card-gift {
   position: relative;
   padding: 10px;

@@ -3,5 +3,7 @@ export interface IDataSoruceGift {
   path_img: string,
   nome: string,
   valor: number,
-  flg_disponivel: boolean
+  flg_disponivel: boolean,
+  cotas: number,
+  vlr_cota: number
 }
