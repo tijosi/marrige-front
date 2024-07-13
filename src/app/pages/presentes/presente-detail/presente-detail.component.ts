@@ -17,6 +17,10 @@ export class PresenteDetailComponent {
     showPopupSelecionado: boolean = false;
     showLoadPanel: boolean = false;
 
+    form: any = {
+        quantidade: 1
+    }
+
     displayedColumns = ['nome', 'descricao'];
 
     constructor(
@@ -72,7 +76,8 @@ export class PresenteDetailComponent {
         this.showLoadPanel = true;
         const form = {
             presenteId: this.presente.id,
-            tipo: this.presente.tipoPresente
+            tipo: this.presente.tipoPresente,
+            qtd_cota: this.form.quantidade
         };
         this.restPresente.confirmarPresente(form).subscribe({
             next: (data) => {

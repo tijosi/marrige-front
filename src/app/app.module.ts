@@ -26,6 +26,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
+import { MatSliderModule } from '@angular/material/slider';
 import { FileUploadModule } from 'ng2-file-upload';
 import { DialogComponent } from './template/dialog/dialog.component';
 import { PresenteDetailComponent } from './pages/presentes/presente-detail/presente-detail.component';
@@ -66,7 +67,8 @@ import { AuthInterceptor } from './auth.interceptor';
         MatFormFieldModule,
         MatInputModule,
         FileUploadModule,
-        MatTableModule
+        MatTableModule,
+        MatSliderModule
     ],
     providers: [
         {

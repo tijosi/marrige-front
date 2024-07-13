@@ -55,6 +55,7 @@ html {
 
 .gift-img {
     width: 100%;
+    position: relative;
 }
 
 .img-container {
@@ -88,15 +89,17 @@ html {
 }
 
 .gift .cota-messagem {
-    background-color: #f3d457;
-    border-radius: 10px;
-    height: 20px;
-    display: inline-block;
+    background-color: #151515;
+    z-index: 1;
+    color: #FFF;
+    width: calc(100% + 40px);
+    bottom: 0px;
+    left: -20px;
+    position: absolute;
+    height: 25px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 10px;
-    text-shadow: 0 0 1px #00000065;
 }
 
 .gift .valor {
@@ -226,6 +229,10 @@ html {
   width: 100%;
   display: flex;
   justify-content: space-between;
+}
+
+.form-container {
+    width: 100%;
 }
 
 .text-group p {

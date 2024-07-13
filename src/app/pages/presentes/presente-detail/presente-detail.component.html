@@ -11,11 +11,11 @@
         </div>
         <h3>{{presente.nome}}</h3>
         <section class="gift-img">
+            <div *ngIf="presente.cotas > 1" class="cota-messagem">Ainda possui {{presente.cotas_disponiveis}} cotas disponíveis</div>
             <div class="img-container">
                 <img [src]="presente.path_img">
             </div>
         </section>
-        <div *ngIf="presente.cotas > 1" class="cota-messagem">Ainda possui {{presente.cotas_disponiveis}} cotas disponíveis</div>
         <p style="text-indent: 0; margin: 0;">Preço Total Restante:</p>
         <div class="valor-container">
             <p class="valor">R$ {{presente.valor.toFixed(2).split('.')[0]}}</p>
@@ -87,9 +87,13 @@
     </body>
 </section>
 
-<popup id="popup-item-confirm" *ngIf="showPopupConfirmar"
-    (close)="showPopupConfirmar = false; presente.tipoPresente = null;" title="Confirmar Presente"
-    textBtnClose="Escolher Outro">
+<popup
+    id="popup-item-confirm"
+    *ngIf="showPopupConfirmar"
+    (close)="showPopupConfirmar = false; presente.tipoPresente = null;"
+    title="Confirmar Presente"
+    textBtnClose="Escolher Outro"
+>
     <div class="container">
 
         <p style="width: 100%;">Resumo:</p>
@@ -111,6 +115,23 @@
                 <div class="text-group">
                     <p>Presentendo com: </p>
                     <p><b>{{presente.tipoPresente == 'PRODUTO' ? 'Produto' : 'Valor'}}</b></p>
+                </div>
+                <div class="text-group">
+                    <p>Valor {{presente.tipoPresente == 'COTA' ? 'Cota' : 'Total'}}: </p>
+                    <p><b>{{presente.tipoPresente == 'COTA' ? presente.vlr_cota : presente.valor}}</b></p>
+                </div>
+            </div>
+            <div class="separator"><i class="fas fa-gift"></i></div>
+            <div class="group" *ngIf="presente.cotas > 1">
+                <form class="form-container">
+                    <mat-label>Quantidade de Cotas</mat-label>
+                    <mat-slider min="1" [max]="presente.cotas" step="1" showTickMarks discrete style="width: 100%;">
+                        <input matSliderThumb [(ngModel)]="form.quantidade" #quantidade name="quantidade">
+                    </mat-slider>
+                </form>
+                <div class="text-group">
+                    <p>Valor a Presentear: </p>
+                    <p><b>R$ {{(presente.vlr_cota * form.quantidade).toLocaleString('pt-br', { minimumFractionDigits: 2 })}}</b></p>
                 </div>
             </div>
         </div>
