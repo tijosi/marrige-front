@@ -15,6 +15,20 @@
   margin-bottom: 30px;
 }
 
+.quantidade-cotas {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #1a1a1a;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    z-index: 1;
+    transform: translate(-40%, -40%);
+}
+
 .banner-cota {
     position: absolute;
     opacity: 0.9;
@@ -38,7 +52,7 @@
   width: 50%;
   left: 50%;
   top: -1px;
-  transform: translateX(calc(-50% + 2px));
+  transform: translateX(-50%);
   border-radius: 0px 0px 7px 7px;
   display: flex;
   justify-content: center;
@@ -85,6 +99,10 @@
   max-height: 100%;
 }
 
+.info-gift {
+    position: relative;
+}
+
 .info-gift.title {
   text-align: justify;
   height: 45px;
@@ -92,6 +110,22 @@
   font-size: 13px;
   margin: 5px 0 0 0;
   overflow: hidden;
+}
+
+.cota {
+    position: absolute;
+    width: calc(100% + 20px);
+    left: 50%;
+    top: -25px;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FFF;
+    overflow: hidden;
+    background-color: #2f2f2f;
+    font-size: 13px;
+    height: 20px;
 }
 
 .info-gift.price {

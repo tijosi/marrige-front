@@ -63,7 +63,7 @@ export class PresenteDetailComponent {
         this.router.navigate(['/presentes']);
     }
 
-    confirmarPresente(tipo: string = 'VALOR' || 'PRODUTO') {
+    confirmarPresente(tipo: string = 'VALOR' || 'PRODUTO' || 'COTA') {
         this.presente.tipoPresente = tipo;
         this.showPopupConfirmar = true;
     }

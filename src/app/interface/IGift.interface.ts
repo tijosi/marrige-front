@@ -5,5 +5,6 @@ export interface IDataSoruceGift {
   valor: number,
   flg_disponivel: boolean,
   cotas: number,
-  vlr_cota: number
+  vlr_cota: number,
+  cotas_disponiveis: number,
 }

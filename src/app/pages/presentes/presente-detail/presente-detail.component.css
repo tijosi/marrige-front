@@ -87,6 +87,18 @@ html {
     font-size: 18px;
 }
 
+.gift .cota-messagem {
+    background-color: #f3d457;
+    border-radius: 10px;
+    height: 20px;
+    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    text-shadow: 0 0 1px #00000065;
+}
+
 .gift .valor {
     display: inline-block;
     font-size: 26px;
