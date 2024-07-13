@@ -40,8 +40,7 @@ export class PresentesService {
     }
 
     savePresente(form: any): Observable<any> {
-        const formData = TransformHelper.objectToFormData(form);
-
+        let formData = TransformHelper.objectToFormData(form);
         const data: Observable<any> = this.http.post(this.endpoint, formData).pipe(
             catchError(error => {
                 Notify.error(error.message);

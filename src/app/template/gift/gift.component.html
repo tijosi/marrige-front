@@ -22,7 +22,7 @@
             </div>
 
             <button *ngIf="item.flg_disponivel" [class]="'btn-value-gift'" (click)="btnClick.emit(item)">
-                {{item.cotas > 1 ? 'CONFERIR COTA' : 'CONFERIR'}}
+                Ver Presente
             </button>
 
             <div *ngIf="!item.flg_disponivel" class="selecionado">

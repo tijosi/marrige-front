@@ -69,7 +69,9 @@ export class PresentesComponent implements OnInit {
 
                 for (const el of this.dsPresentes) {
                     el.valor    = el.valor.toLocaleString('pt-br', { minimumFractionDigits: 2 });
-                    el.vlr_cota = el.vlr_cota.toLocaleString('pt-br', { minimumFractionDigits: 2 });
+                    if (el.vlr_cota) {
+                        el.vlr_cota = el.vlr_cota.toLocaleString('pt-br', { minimumFractionDigits: 2 });
+                    }
                 }
             },
             complete: () => {
@@ -123,15 +125,16 @@ export class PresentesComponent implements OnInit {
         if (items) {
             for (let i = 0; i < items.length; i++) {
                 if (items[i].type.indexOf('image') !== -1) {
-                    const blob = items[i].getAsFile();
-                    if (blob) {
-                        this.formAdicionar.file = blob;
+                    const file: File = items[i].getAsFile()!;
+                    if (file) {
+                        this.formAdicionar.file = file;
                         const reader = new FileReader();
                         reader.onload = (e) => {
                             this.imgUrl = e.target?.result;
                         };
-                        reader.readAsDataURL(blob);
+                        reader.readAsDataURL(file);
                     }
+                    break;
                 }
             }
         }
@@ -190,7 +193,6 @@ export class PresentesComponent implements OnInit {
             nome: this.tag.nome.toUpperCase(),
             descricao: this.tag.descricao
         })
-        console.log(this.tags);
     }
 
     validationTag(): boolean {
