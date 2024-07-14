@@ -14,8 +14,7 @@ import { forkJoin } from 'rxjs';
     styleUrls: ['./presentes.component.css']
 })
 export class PresentesComponent implements OnInit {
-    @ViewChild('vlr_minimo') vlr_minimo!: ElementRef
-    @ViewChild('vlr_maximo') vlr_maximo!: ElementRef
+    @ViewChild('valor') valor!: ElementRef
 
     dsPresentes: any[] = [];
     dsArea: any[] = [];
@@ -24,8 +23,7 @@ export class PresentesComponent implements OnInit {
 
     imgUrl!: any;
     formAdicionar: any = {
-        vlr_minimo: 0,
-        vlr_maximo: 0
+        valor: 0
     };
     tag: any = {
         nome: null,
@@ -48,8 +46,7 @@ export class PresentesComponent implements OnInit {
     }
 
     getMask() {
-        Inputmask(this.rest.optionsCurrencyBRLMask).mask(this.vlr_minimo.nativeElement);
-        Inputmask(this.rest.optionsCurrencyBRLMask).mask(this.vlr_maximo.nativeElement);
+        Inputmask(this.rest.optionsCurrencyBRLMask).mask(this.valor.nativeElement);
     }
 
     loadingPosition: any;
@@ -68,15 +65,16 @@ export class PresentesComponent implements OnInit {
                 });
 
                 for (const el of this.dsPresentes) {
-                    el.valor    = el.valor.toLocaleString('pt-br', { minimumFractionDigits: 2 });
+                    el.valor = el.valor.toLocaleString('pt-br', { minimumFractionDigits: 2 });
                     if (el.vlr_cota) {
                         el.vlr_cota = el.vlr_cota.toLocaleString('pt-br', { minimumFractionDigits: 2 });
                     }
                 }
-            },
-            complete: () => {
-                this.showLoadPanel = false
+
+                if (filter) this.filtrarPresentes(filter);
             }
+        }).add(() => {
+            this.showLoadPanel = false
         });
     }
 
@@ -162,8 +160,7 @@ export class PresentesComponent implements OnInit {
     }
 
     submitAdicionar() {
-        this.formAdicionar.vlr_minimo = TransformHelper.currencyBrlToFloat(this.vlr_minimo.nativeElement.inputmask.unmaskedvalue());
-        this.formAdicionar.vlr_maximo = TransformHelper.currencyBrlToFloat(this.vlr_maximo.nativeElement.inputmask.unmaskedvalue());
+        this.formAdicionar.valor = TransformHelper.currencyBrlToFloat(this.valor.nativeElement.inputmask.unmaskedvalue());
         this.formAdicionar.tags = JSON.stringify(this.tags);
         this.loadingPosition = '.popup';
         this.showLoadPanel = true;
@@ -171,17 +168,14 @@ export class PresentesComponent implements OnInit {
         this.rest.savePresente(this.formAdicionar).subscribe({
             next: data => {
                 this.showPopupAdicionar = false;
-                this.showLoadPanel = false;
                 this.imgUrl = null;
                 this.formAdicionar = {
-                    vlr_minimo: 0,
-                    vlr_maximo: 0
+                    valor: 0
                 };
                 this.search();
-            },
-            error: e => {
-                this.showLoadPanel = false;
             }
+        }).add(() => {
+            this.showLoadPanel = false;
         });
     }
 

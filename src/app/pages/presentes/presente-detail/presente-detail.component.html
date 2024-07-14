@@ -16,35 +16,36 @@
                 <img [src]="presente.path_img">
             </div>
         </section>
-        <p style="text-indent: 0; margin: 0;">Preço Total Restante:</p>
+        <p *ngIf="presente.cotas" style="text-indent: 0; margin: 0;">Preço Total Restante:</p>
+        <p *ngIf="!presente.cotas" style="text-indent: 0; margin: 0;">Preço Total:</p>
         <div class="valor-container">
             <p class="valor">R$ {{presente.valor_disponivel.toFixed(2).split('.')[0]}}</p>
             <p class="valor-decimal">{{presente.valor_disponivel.toFixed(2).split('.')[1]}}</p>
         </div>
-        <span class="value-parcelado-sem-juros" *ngIf="presente.valor > 1200 && presente.cotas == 1">
+        <span class="value-parcelado-sem-juros" *ngIf="presente.valor > 1200 && !presente.cotas">
             em
             <span class="parcela">2x R$ {{(presente.valor_disponivel/2).toFixed(2).split('.')[0]}}<span
                     class="parcela-decimal">{{(presente.valor_disponivel/2).toFixed(2).split('.')[1]}}</span>
                 sem juros
             </span>
         </span>
-        <span *ngIf="presente.cotas == 1" class="value-parcelado">
+        <span *ngIf="!presente.cotas" class="value-parcelado">
             ou até 12x com juros
         </span>
 
-        <p style="text-indent: 0; margin: 20px 0 0 0;">Preço por Cota:</p>
-        <div class="valor-container">
+        <p *ngIf="presente.cotas > 1" style="text-indent: 0; margin: 20px 0 0 0;">Preço por Cota:</p>
+        <div *ngIf="presente.cotas > 1" class="valor-container">
             <p class="valor">R$ {{presente.vlr_cota.toFixed(2).split('.')[0]}}</p>
             <p class="valor-decimal">{{presente.vlr_cota.toFixed(2).split('.')[1]}}</p>
         </div>
-        <span class="value-parcelado-sem-juros" *ngIf="presente.vlr_cota > 1200">
+        <span class="value-parcelado-sem-juros" *ngIf="presente.vlr_cota > 1200 && presente.cotas > 1">
             em
             <span class="parcela">2x R$ {{(presente.vlr_cota/2).toFixed(2).split('.')[0]}}<span
                     class="parcela-decimal">{{(presente.vlr_cota/2).toFixed(2).split('.')[1]}}</span>
                 sem juros
             </span>
         </span>
-        <span class="value-parcelado">
+        <span *ngIf="presente.cotas > 1" class="value-parcelado">
             ou até 12x com juros
         </span>
         <section class="descricao">
@@ -79,9 +80,9 @@
         <section class="presentear">
             <p style="text-indent: 0;">Forma de presentear:</p>
             <div class="buttons">
-                <button *ngIf="presente.cotas == presente.cotas_disponiveis || presente.cotas < presente.cotas_disponiveis" mat-flat-button color="accent" (click)="confirmarPresente('VALOR')">PRESENTEAR VALOR TOTAL</button>
-                <button *ngIf="presente.cotas > 1" mat-stroked-button color="accent" (click)="confirmarPresente('COTA')">PRESENTEAR COTA </button>
-                <button *ngIf="presente.cotas == presente.cotas_disponiveis || presente.cotas < presente.cotas_disponiveis" mat-flat-button color="primary" (click)="confirmarPresente('PRODUTO')">PRESENTEAR PRODUTO</button>
+                <button *ngIf="!presente.cotas" mat-flat-button color="accent" (click)="confirmarPresente('VALOR')">PRESENTEAR VALOR</button>
+                <button *ngIf="presente.cotas" mat-stroked-button color="accent" (click)="confirmarPresente('COTA')">PRESENTEAR COTA </button>
+                <button *ngIf="!presente.cotas || presente.cotas <= presente.cotas_disponiveis" mat-flat-button color="primary" (click)="confirmarPresente('PRODUTO')">PRESENTEAR PRODUTO</button>
             </div>
         </section>
     </body>
@@ -121,8 +122,8 @@
                     <p><b>R$ {{presente.tipoPresente == 'COTA' ? presente.vlr_cota.toLocaleString('pt-br', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : presente.valor.toLocaleString('pt-br', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}}</b></p>
                 </div>
             </div>
-            <div *ngIf="presente.cotas > 1" class="separator"><i class="fas fa-gift"></i></div>
-            <div class="group" *ngIf="presente.cotas > 1">
+            <div *ngIf="presente.cotas && presente.cotas > 1" class="separator"><i class="fas fa-gift"></i></div>
+            <div class="group" *ngIf="presente.cotas && presente.cotas > 1">
                 <form class="form-container" *ngIf="presente.cotas_disponiveis > 1">
                     <mat-label>Quantidade de Cotas</mat-label>
                     <mat-slider min="1" [max]="presente.cotas_disponiveis" step="1" showTickMarks discrete style="width: 100%;">

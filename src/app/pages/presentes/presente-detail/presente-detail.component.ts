@@ -40,19 +40,17 @@ export class PresenteDetailComponent {
             next: data => {
                 if (!data) this.router.navigate(['/presentes']);
                 this.presente = data;
-                this.presente.valor_disponivel = this.presente.valor - this.presente.vlr_processando - this.presente.vlr_presenteado
-                this.showLoadPanel = false;
-                if (this.presente.flg_disponivel == 0) {
-                    this.showPopupSelecionado = true;
-                } else {
-                    this.active = true;
-                }
+                this.presente.valor_disponivel = this.presente.valor - this.presente.vlr_processando - this.presente.vlr_presenteado;
+
+                if (this.presente.flg_disponivel == 0)  this.showPopupSelecionado = true;
+                else                                    this.active = true;
             },
             error: err => {
                 this.active = false;
                 this.router.navigate(['/presentes']);
-                this.showLoadPanel = false;
             }
+        }).add(() => {
+            this.showLoadPanel = false;
         })
     }
 
