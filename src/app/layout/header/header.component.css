@@ -76,7 +76,7 @@
     z-index: 2;
     background: #ffffffcc;
     backdrop-filter: blur(10px);
-    height: 100vh;
+    height: 100dvh;
     width: 100%;
     bottom: 0;
     right: 100%;

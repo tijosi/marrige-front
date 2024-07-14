@@ -15,20 +15,6 @@
   margin-bottom: 30px;
 }
 
-.quantidade-cotas {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background-color: #1a1a1a;
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #ffffff;
-    z-index: 1;
-    transform: translate(-40%, -40%);
-}
-
 .banner-cota {
     position: absolute;
     opacity: 0.9;
@@ -103,10 +89,10 @@
     position: relative;
 }
 
-.info-gift.title {
-  text-align: justify;
-  height: 45px;
+.info-gift .title {
+  text-align: center;
   line-height: 15px;
+  height: 30px;
   font-size: 13px;
   margin: 5px 0 0 0;
   overflow: hidden;
@@ -116,7 +102,7 @@
     position: absolute;
     width: calc(100% + 20px);
     left: 50%;
-    top: -25px;
+    top: -30px;
     transform: translateX(-50%);
     display: flex;
     justify-content: center;
@@ -125,14 +111,27 @@
     overflow: hidden;
     background-color: #2f2f2f;
     font-size: 13px;
-    height: 20px;
+    height: 25px;
 }
 
 .info-gift.price {
-  text-align: center;
-  color: rgb(73, 138, 63);
-  font-size: 16px;
-  margin: 5px 0 10px 0;
+    text-align: center;
+    height: 40px;
+    color: rgb(73, 138, 63);
+    font-size: 16px;
+    margin: 0;
+}
+
+.info-gift.price-cota {
+    position: absolute;
+    text-align: center;
+    bottom: -10px;
+    width: calc(100% + 20px);
+    transform: translate(-10px, 0);
+    color: rgb(73, 138, 63);
+    font-weight: bold;
+    font-size: 12px;
+    margin: 5px 0 10px 0;
 }
 
 .btn-value-gift {

@@ -40,6 +40,7 @@ export class PresenteDetailComponent {
             next: data => {
                 if (!data) this.router.navigate(['/presentes']);
                 this.presente = data;
+                this.presente.valor_disponivel = this.presente.valor - this.presente.vlr_processando - this.presente.vlr_presenteado
                 this.showLoadPanel = false;
                 if (this.presente.flg_disponivel == 0) {
                     this.showPopupSelecionado = true;
@@ -70,6 +71,9 @@ export class PresenteDetailComponent {
     confirmarPresente(tipo: string = 'VALOR' || 'PRODUTO' || 'COTA') {
         this.presente.tipoPresente = tipo;
         this.showPopupConfirmar = true;
+        this.form = {
+            quantidade: 1
+        }
     }
 
     submit() {

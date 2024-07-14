@@ -1,7 +1,6 @@
 <div class="box-gift">
 
     <div class="card-container" *ngFor="let item of dataSource">
-        <span *ngIf="item.cotas > 1" class="quantidade-cotas">{{item.cotas_disponiveis}}</span>
         <div [class]="'card-gift'" [style]="borderGift(item.level)">
 
             <div [class]="'banner'" [style]="bannerStyle(item.level)">
@@ -15,13 +14,16 @@
             </div>
 
             <div class="info-gift">
-                <div class="info-gift title">{{ item.nome }}</div>
-                <div *ngIf="item.cotas > 1" class="cota">Possui Cotas</div>
-                <div *ngIf="item.flg_disponivel" class="info-gift price">
-                    R$ {{ item.cotas > 1 ? item.vlr_cota : item.valor }}
+                <div class="title">{{ item.nome }}</div>
+                <div *ngIf="item.cotas > 1" class="cota">Contém {{item.cotas_disponiveis}} Cotas</div>
+                <div class="info-gift price">
+                    {{item.flg_disponivel ? 'R$ ' + item.valor : null}}
+                </div>
+                <div *ngIf="item.flg_disponivel && item.cotas > 1" class="info-gift price-cota">
+                    COTA: R$ {{item.vlr_cota}}
                 </div>
             </div>
-            <button *ngIf="item.flg_disponivel" [class]="'btn-value-gift'" (click)="btnClick.emit(item)">
+            <button [class]="'btn-value-gift'" (click)="btnClick.emit(item)">
                 Ver Presente
             </button>
 

@@ -18,13 +18,13 @@
         </section>
         <p style="text-indent: 0; margin: 0;">Preço Total Restante:</p>
         <div class="valor-container">
-            <p class="valor">R$ {{presente.valor.toFixed(2).split('.')[0]}}</p>
-            <p class="valor-decimal">{{presente.valor.toFixed(2).split('.')[1]}}</p>
+            <p class="valor">R$ {{presente.valor_disponivel.toFixed(2).split('.')[0]}}</p>
+            <p class="valor-decimal">{{presente.valor_disponivel.toFixed(2).split('.')[1]}}</p>
         </div>
         <span class="value-parcelado-sem-juros" *ngIf="presente.valor > 1200 && presente.cotas == 1">
             em
-            <span class="parcela">2x R$ {{(presente.valor/2).toFixed(2).split('.')[0]}}<span
-                    class="parcela-decimal">{{(presente.valor/2).toFixed(2).split('.')[1]}}</span>
+            <span class="parcela">2x R$ {{(presente.valor_disponivel/2).toFixed(2).split('.')[0]}}<span
+                    class="parcela-decimal">{{(presente.valor_disponivel/2).toFixed(2).split('.')[1]}}</span>
                 sem juros
             </span>
         </span>
@@ -79,7 +79,7 @@
         <section class="presentear">
             <p style="text-indent: 0;">Forma de presentear:</p>
             <div class="buttons">
-                <button mat-flat-button color="accent" (click)="confirmarPresente('VALOR')">PRESENTEAR VALOR TOTAL</button>
+                <button *ngIf="presente.cotas == presente.cotas_disponiveis" mat-flat-button color="accent" (click)="confirmarPresente('VALOR')">PRESENTEAR VALOR TOTAL</button>
                 <button *ngIf="presente.cotas > 1" mat-stroked-button color="accent" (click)="confirmarPresente('COTA')">PRESENTEAR COTA </button>
                 <button *ngIf="presente.cotas == presente.cotas_disponiveis" mat-flat-button color="primary" (click)="confirmarPresente('PRODUTO')">PRESENTEAR PRODUTO</button>
             </div>
@@ -118,20 +118,20 @@
                 </div>
                 <div class="text-group">
                     <p>Valor {{presente.tipoPresente == 'COTA' ? 'Cota' : 'Total'}}: </p>
-                    <p><b>{{presente.tipoPresente == 'COTA' ? presente.vlr_cota : presente.valor}}</b></p>
+                    <p><b>R$ {{presente.tipoPresente == 'COTA' ? presente.vlr_cota.toLocaleString('pt-br', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : presente.valor.toLocaleString('pt-br', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}}</b></p>
                 </div>
             </div>
-            <div class="separator"><i class="fas fa-gift"></i></div>
+            <div *ngIf="presente.cotas > 1" class="separator"><i class="fas fa-gift"></i></div>
             <div class="group" *ngIf="presente.cotas > 1">
-                <form class="form-container">
+                <form class="form-container" *ngIf="presente.cotas_disponiveis > 1">
                     <mat-label>Quantidade de Cotas</mat-label>
-                    <mat-slider min="1" [max]="presente.cotas" step="1" showTickMarks discrete style="width: 100%;">
+                    <mat-slider min="1" [max]="presente.cotas_disponiveis" step="1" showTickMarks discrete style="width: 100%;">
                         <input matSliderThumb [(ngModel)]="form.quantidade" #quantidade name="quantidade">
                     </mat-slider>
                 </form>
                 <div class="text-group">
                     <p>Valor a Presentear: </p>
-                    <p><b>R$ {{(presente.vlr_cota * form.quantidade).toLocaleString('pt-br', { minimumFractionDigits: 2 })}}</b></p>
+                    <p><b>R$ {{(presente.vlr_cota * form.quantidade).toLocaleString('pt-br', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}}</b></p>
                 </div>
             </div>
         </div>

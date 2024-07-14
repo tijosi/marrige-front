@@ -18,7 +18,7 @@ main {
 .screen-into {
     position: absolute;
     z-index: 1;
-    height: 100vh;
+    height: 100dvh;
     width: 100%;
     max-width: 500px;
     animation: hidden 4s forwards 0.3s;
