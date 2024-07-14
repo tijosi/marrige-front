@@ -11,7 +11,7 @@
         </div>
         <h3>{{presente.nome}}</h3>
         <section class="gift-img">
-            <div *ngIf="presente.cotas > 1" class="cota-messagem">Ainda possui {{presente.cotas_disponiveis}} cotas disponíveis</div>
+            <div *ngIf="presente.cotas > 1" class="cota-messagem">Restam {{presente.cotas_disponiveis}} cotas disponíveis</div>
             <div class="img-container">
                 <img [src]="presente.path_img">
             </div>

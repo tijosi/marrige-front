@@ -30,12 +30,6 @@ export class HeaderComponent implements OnInit {
     computadorMode: boolean = false;
     showPopupConfirmPresence: boolean = false;
 
-    stringsRoutes: any[] = [
-        { id: 0, route: '' },
-        { id: 1, route: 'presentes' },
-        { id: 2, route: 'padrinhos' },
-    ]
-
     constructor(
         private router: Router,
         private guard: GuardService,
@@ -47,29 +41,7 @@ export class HeaderComponent implements OnInit {
         this.search();
     }
 
-    search() {
-        this.aba(null, true);
-    }
-
-    aba(aba: any = null, first = false) {
-
-        const pathName = window.location.pathname;
-        let abaString = aba == null ? pathName.replace('/', "") : aba;
-        const time = first ? 1000 : 0;
-
-        setTimeout(() => {
-            const items = document.querySelectorAll('.item');
-
-            items.forEach(el => {
-                if (el.className != 'item sair' && el.className != 'item padrinho') el.className = 'item';
-            });
-
-            this.stringsRoutes.forEach(el => {
-                if (el.route == abaString) items[el.id].classList.add('item-selected');
-            });
-        }, time)
-
-    }
+    search() {}
 
     openDropdown(exit: boolean = false) {
         const domElement: HTMLElement = document.documentElement.querySelector('.html-container')!;
@@ -111,9 +83,7 @@ export class HeaderComponent implements OnInit {
 
     routes(nav: string) {
         this.openDropdown();
-
         setTimeout(() => { this.router.navigate([nav]) }, 300);
-        setTimeout(() => { this.aba(nav) }, 500);
     }
 
 }

@@ -15,7 +15,7 @@
 
             <div class="info-gift">
                 <div class="title">{{ item.nome }}</div>
-                <div *ngIf="item.cotas > 1" class="cota">Contém {{item.cotas_disponiveis}} Cotas</div>
+                <div *ngIf="item.cotas > 1" class="cota">Restam {{item.cotas_disponiveis}} Cota's</div>
                 <div class="info-gift price">
                     {{item.flg_disponivel ? 'R$ ' + item.valor : null}}
                 </div>

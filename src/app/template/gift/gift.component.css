@@ -125,13 +125,15 @@
 .info-gift.price-cota {
     position: absolute;
     text-align: center;
-    bottom: -10px;
-    width: calc(100% + 20px);
-    transform: translate(-10px, 0);
-    color: rgb(73, 138, 63);
+    bottom: 1px;
+    min-width: 140px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    color: rgb(102, 195, 88);
+    background-color: #2f2f2f;
+    border-radius: 10px;
     font-weight: bold;
     font-size: 12px;
-    margin: 5px 0 10px 0;
 }
 
 .btn-value-gift {
