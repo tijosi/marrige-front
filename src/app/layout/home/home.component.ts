@@ -38,7 +38,7 @@ export class HomeComponent implements OnInit {
 
         setTimeout(() => {
             if (this.canActive) this.active = true;
-        }, 7300);
+        }, 7200);
     }
 
 }
