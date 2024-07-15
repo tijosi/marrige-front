@@ -14,16 +14,17 @@ export class AuthInterceptor implements HttpInterceptor {
     constructor() { }
 
     private getHeaders(request: any): HttpHeaders {
-        if (request.body instanceof FormData) {
-            return new HttpHeaders({
-                'Authorization': `Bearer ${localStorage.getItem('token')}`,
-            });
-        } else {
-            return new HttpHeaders({
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('token')}`,
-            });
+        let headers = request.headers;
+
+        if (!headers.has('Authorization')) {
+            headers = headers.set('Authorization', `Bearer ${localStorage.getItem('token')}`);
         }
+
+        if (!(request.body instanceof FormData) && !headers.has('Content-Type')) {
+            headers = headers.set('Content-Type', 'application/json');
+        }
+
+         return headers;
     }
 
     intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {

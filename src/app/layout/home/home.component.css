@@ -4,7 +4,7 @@
     align-items: center;
     width: 100vw;
     height: 100dvh;
-    background-color: #252525;
+    background-color: #000000;
     background-repeat:no-repeat;
     background-position: center;
     background-size:cover;
@@ -37,20 +37,19 @@
     background-color: transparent;
 }
 
-.img-horario-funcionamento {
+.video-intro {
     position: relative;
     width: 100%;
     max-width: 500px;
     height: 100dvh;
 }
 
-.img-horario-funcionamento img {
+.video-intro video {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 90%;
-    filter: drop-shadow(0px 0px 10px rgb(154, 130, 68));;
+    width: 60%;
 }
 
 @keyframes startOpaticy {
