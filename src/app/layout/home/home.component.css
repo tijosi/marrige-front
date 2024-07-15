@@ -1,73 +1,67 @@
 .container-pattern {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100vw;
-  height: 100dvh;
-  background-image: url("/assets/bg-sky.jpg");
-  background-repeat:no-repeat;
-  background-position: center;
-  background-size:cover;
-  background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100dvh;
+    background-image: url("/assets/bg-sky.jpg");
+    background-repeat:no-repeat;
+    background-position: center;
+    background-size:cover;
+    background-attachment: fixed;
 }
 
 .html-container {
-  display: flex;
-  flex-direction: column;
-  width: 100vw;
-  height: 100dvh;
-  overflow-x: hidden;
-  background-image: url("/assets/bg-sky.jpg");
-  background-repeat:no-repeat;
-  background-position: center;
-  background-size:cover;
-  background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100dvh;
+    overflow-x: hidden;
+    background-image: url("/assets/bg-sky.jpg");
+    background-repeat:no-repeat;
+    background-position: center;
+    background-size:cover;
+    background-attachment: fixed;
 }
 
-main {
-  flex-grow: 1;
-  overflow-x: hidden;
-  width: 100%;
+    main {
+    flex-grow: 1;
+    overflow-x: hidden;
+    width: 100%;
 }
 
 .html-container::-webkit-scrollbar,
 .container-pattern::-webkit-scrollbar,
 ::-webkit-scrollbar {
-  width: 0px;
-  background-color: transparent;
+    width: 0px;
+    background-color: transparent;
+}
+
+.img-horario-funcionamento {
+    position: relative;
+    width: 100vw;
+    height: 100dvh;
+    background-color: #545454;
+}
+
+.img-horario-funcionamento img {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    filter: drop-shadow(0px 0px 10px rgb(154, 130, 68));;
 }
 
 @keyframes startOpaticy {
-  0%    { opacity: 0 }
-  100%  { opacity: 1 }
-}
-
-#popup-confirm-presenca {
-  animation: startOpaticy 0.3s linear;
-}
-
-#popup-confirm-presenca .body p {
-  font-size: 105%;
-  text-indent: 15px;
-  text-align: justify;
-}
-
-#popup-confirm-presenca .body p:first-child {
-  text-align: center;
-  text-indent: 0;
-}
-
-.confirmar-presenca {
-  transform: none;
-  width: 300px;
-  height: 50px;
-  font-size: 25px;
+    0%    { opacity: 0 }
+    100%  { opacity: 1 }
 }
 
 @media (min-width: 500px) {
 
-  .html-container{
-    width: 500px;
-  }
+    .html-container{
+        width: 500px;
+    }
 
 }

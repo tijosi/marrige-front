@@ -1,18 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
-import { WellcomeMessagem } from 'src/app/enums/HomeEnum';
-import { GuardService } from 'src/app/service/guard.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+    selector: 'app-home',
+    templateUrl: './home.component.html',
+    styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit{
+export class HomeComponent implements OnInit {
+    active: boolean = true;
+    dtNow: Date = new Date();
 
-  constructor(){}
+    constructor() {
+        if (this.dtNow.getHours() > 9 && this.dtNow.getHours() < 0) this.active = true;
+        else this.active = false;
+    }
 
-  ngOnInit() {}
-
+    ngOnInit() { }
 
 }

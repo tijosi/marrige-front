@@ -1,10 +1,13 @@
 <div class="container-pattern">
-    <div class="html-container">
+    <div class="html-container" *ngIf="active" >
         <header>
             <app-header></app-header>
         </header>
         <main>
             <router-outlet></router-outlet>
         </main>
+    </div>
+    <div *ngIf="!active" class="img-horario-funcionamento">
+        <img src="../../../assets/suport/horario-funcionamento.png" alt="Horário de Funcionamento" >
     </div>
 </div>
