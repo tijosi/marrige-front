@@ -34,6 +34,15 @@ export class PresenteDetailComponent {
         })
     }
 
+    get getCurrencyBrlOptions() {
+        return {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+            style: "currency",
+            currency: "BRL"
+        }
+    }
+
     async searchPresente() {
         this.showLoadPanel = true;
         this.restPresente.presentes(this.presenteId).subscribe({
