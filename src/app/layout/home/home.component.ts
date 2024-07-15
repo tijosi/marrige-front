@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { GuardService } from 'src/app/service/guard.service';
 
 @Component({
@@ -8,6 +8,8 @@ import { GuardService } from 'src/app/service/guard.service';
     styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+    @ViewChild('introVideo', { static: false }) introVideo!: ElementRef<HTMLVideoElement>;
+
     active: boolean = false;
     canActive: boolean = false;
 
