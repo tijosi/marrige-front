@@ -43,6 +43,15 @@ export class PresenteDetailComponent {
         }
     }
 
+    get getValorPresentear() {
+        return (this.presente.vlr_cota * this.form.quantidade).toLocaleString('pt-br', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+            style: "currency",
+            currency: "BRL"
+        })
+    }
+
     async searchPresente() {
         this.showLoadPanel = true;
         this.restPresente.presentes(this.presenteId).subscribe({
