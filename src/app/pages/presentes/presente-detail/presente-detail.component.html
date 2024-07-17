@@ -152,14 +152,14 @@
                 <form class="form-container" *ngIf="presente.cotas_disponiveis > 1">
                     <mat-label>Quantidade de Cotas</mat-label>
                     <mat-slider min="1" [max]="presente.cotas_disponiveis" step="1" showTickMarks discrete style="width: 100%;">
-                        <input matSliderThumb [(ngModel)]="form.quantidade" #quantidade name="quantidade">
+                        <input matSliderThumb [(ngModel)]="form.quantidade" #quantidade name="quantidade" (change)="updateValorPresentear($event)">
                     </mat-slider>
                 </form>
 
                 <div class="text-group">
                     <p style="font-size: 17px;">Valor a Presentear: </p>
                     <p style="font-size: 17px;"><b style="color: #339450">
-                        {{ getValorPresentear }}
+                        {{ valorPresentear }}
                     </b></p>
                 </div>
             </div>

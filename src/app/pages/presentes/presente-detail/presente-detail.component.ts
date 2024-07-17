@@ -16,6 +16,7 @@ export class PresenteDetailComponent {
     showPopupConfirmar: boolean = false;
     showPopupSelecionado: boolean = false;
     showLoadPanel: boolean = false;
+    valorPresentear: any;
 
     form: any = {
         quantidade: 1
@@ -34,7 +35,7 @@ export class PresenteDetailComponent {
         })
     }
 
-    get getCurrencyBrlOptions() {
+    get getCurrencyBrlOptions(): object {
         return {
             minimumFractionDigits: 2,
             maximumFractionDigits: 2,
@@ -43,13 +44,8 @@ export class PresenteDetailComponent {
         }
     }
 
-    get getValorPresentear() {
-        return (this.presente.vlr_cota * this.form.quantidade).toLocaleString('pt-br', {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2,
-            style: "currency",
-            currency: "BRL"
-        })
+    updateValorPresentear(event: any) {
+        this.valorPresentear = (this.presente.vlr_cota * event.target.value).toLocaleString('pt-br', this.getCurrencyBrlOptions);
     }
 
     async searchPresente() {
@@ -85,11 +81,15 @@ export class PresenteDetailComponent {
     }
 
     confirmarPresente(tipo: string = 'VALOR' || 'PRODUTO' || 'COTA') {
+        if (tipo == 'COTA') {
+            this.form = {
+                quantidade: 1
+            }
+            this.valorPresentear = this.presente.vlr_cota.toLocaleString('pt-br', this.getCurrencyBrlOptions);
+        }
+
         this.presente.tipoPresente = tipo;
         this.showPopupConfirmar = true;
-        this.form = {
-            quantidade: 1
-        }
     }
 
     submit() {
