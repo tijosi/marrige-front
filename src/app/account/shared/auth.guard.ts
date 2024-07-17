@@ -16,25 +16,19 @@ export class AuthGuard {
     ) { }
 
     canActivate() {
-
-        if (this.rest.getUser()) return true;
-
         return this.rest.auth().pipe(
-            map((data: any) => {
-                if (data) {
-                    this.rest.setUser(data);
-                    return true;
+            map((user: any) => {
+                if (!user) {
+                    this.rest.clearUser();
+                    this.route.navigate(['/login']);
                 }
-
-                this.rest.clearUser();
-                this.route.navigate(['/login']);
-                return false;
+                this.rest.setUser(user);
+                return true;
             }),
-
-            catchError((e: any) => {
+            catchError(() => {
                 this.route.navigate(['/login']);
                 return of(false);
-            })
+              })
         )
 
     }

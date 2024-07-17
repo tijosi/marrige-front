@@ -17,8 +17,6 @@ export class PadrinhosComponent implements OnInit {
         '../../../assets/photos-padrinhos/Lucy Struve Photography_ Austin Wedding Photographer.jfif.jpg'
     ];
 
-    showLoadPanel: boolean = false;
-
     user: any = this.guard.getUser();
 
     constructor(
@@ -44,13 +42,11 @@ export class PadrinhosComponent implements OnInit {
     }
 
     search() {
-        this.showLoadPanel = true;
         this.rest.getPadrinhos().subscribe({
             next: data => {
                 this.dsPadrinhos = data;
             },
         }).add(()=> {
-            this.showLoadPanel = false;
             setTimeout(() => {
                 this.setAnimationScroll();
             }, 100);

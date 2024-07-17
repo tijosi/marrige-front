@@ -1,3 +1,4 @@
+import { AppComponent } from './../../app.component';
 import Inputmask from 'inputmask';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
@@ -21,7 +22,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private rest: AccountService,
     private guard: GuardService,
-    private router: Router
+    private router: Router,
+    private app: AppComponent
   ){}
 
   ngOnInit(): void {
@@ -52,8 +54,9 @@ export class LoginComponent implements OnInit {
         localStorage.clear();
         this.guard.clearUser();
         localStorage.setItem('token', data.token);
-        this.router.navigate(['']);
         this.showLoadPanel = false;
+        this.router.navigate(['']);
+        this.app.activeLoading(true);
 
       },
 
