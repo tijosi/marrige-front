@@ -2,8 +2,8 @@
 .video-intro {
     position: absolute;
     z-index: 11;
-    top: 0;
-    left: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
     background-color: #000000;
     width: 100%;
     max-width: 500px;

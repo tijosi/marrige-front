@@ -14,9 +14,8 @@ const routes: Routes = [
         path: '',
         component: HomeComponent,
         children: [
-            // { path: '', component: IndexComponent },
-            { path: '', component: PadrinhosComponent },
-            // { path: '', component: PresentesComponent },
+            { path: '', component: IndexComponent },
+            { path: 'padrinho', component: PadrinhosComponent },
             { path: 'presentes', component: PresentesComponent },
             { path: 'presente-detail/:id', component: PresenteDetailComponent }
         ],

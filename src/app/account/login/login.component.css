@@ -7,7 +7,7 @@
   align-items: center;
   flex-direction: column;
   background-image: url("/assets/bg-tree.jpg");
-  background-size: auto;
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
 }

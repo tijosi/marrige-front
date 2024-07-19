@@ -17,11 +17,7 @@
     width: 100vw;
     height: 100dvh;
     overflow-x: hidden;
-    background-image: url("/assets/bg-sky.jpg");
-    background-repeat:no-repeat;
-    background-position: center;
-    background-size:cover;
-    background-attachment: fixed;
+    background-color: #FFF;
 }
 
     main {
