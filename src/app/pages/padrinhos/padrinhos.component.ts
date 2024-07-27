@@ -17,6 +17,11 @@ export class PadrinhosComponent implements OnInit {
         '../../../assets/photos-padrinhos/Lucy Struve Photography_ Austin Wedding Photographer.jfif.jpg'
     ];
 
+    pathImgCarrouselMadrinha: any[] = [
+        '../../../assets/photos-madrinhas/exemplo-1.jpg',
+        '../../../assets/photos-madrinhas/exemplo-2.jpg'
+    ];
+
     user: any = this.guard.getUser();
 
     constructor(

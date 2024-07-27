@@ -1,8 +1,8 @@
 <div class="screen-into"></div>
 <section id="screen" class="screen">
     <main>
-        <h1 class="title">Seja Bem Vindo ao Seu Cantinho</h1>
-        <h2 class="title nome-padrinho">- {{user.name}} -</h2>
+        <h1 class="title-container">Seja Bem Vindo ao Seu Cantinho</h1>
+        <h2 class="title-nome-padrinho">- {{user.name}} -</h2>
         <section class="apresentation">
             <div class="imagem-container">
                 <div class="imagem-padrinho">
@@ -10,11 +10,8 @@
                 </div>
             </div>
             <section class="manual">
-                <div class="title-container">
-                    <img src="../../../assets/suport/fita-title-1.png" alt="Padrinhos Convocados">
-                    <h2>Padrinhos Convocados</h2>
-                </div>
-                <table style="margin-top: 10px;" mat-table [dataSource]="dsPadrinhos" class="mat-elevation-z7">
+                <h1 class="title">Padrinhos Convocados</h1>
+                <table style="margin: 10px 0;" mat-table [dataSource]="dsPadrinhos" class="mat-elevation-z7">
                     <ng-container matColumnDef="name">
                         <!-- <th mat-header-cell *matHeaderCellDef> name </th> -->
                         <td mat-cell *matCellDef="let element" style="font-weight: bold;"> {{element.name}} </td>
@@ -43,33 +40,64 @@
                     <tr mat-row *matRowDef="let row; columns: ['imagem', 'name'];"></tr>
                 </table>
 
-                <h1 class="title">Manual do Padrinho</h1>
-                <section id="manual-padrinhos" class="manual-padrinhos">
-                    <p>
-                        Para o traje dos padrinhos escolhemos o terno de cor
-                        <b style="color: #1d1d1d; text-shadow: 0 0 1px #313131;">CINZA ESCURO</b>
-                        e a gravata no <b style="color: #a6a6a6; text-shadow: 0 0 1px #a6a6a6;">CINZA CLARO</b>.
-                    </p>
-                    <img class="photo-2" src="../../../assets/photos-padrinhos/icon-terno.png">
+                <section class="manuais">
+                    <section id="manual-padrinhos" class="manual-padrinhos">
+                        <h1 class="title">Manual do Padrinho</h1>
+                        <p>
+                            Para o traje dos padrinhos escolhemos o terno de cor
+                            <b style="color: #1d1d1d; text-shadow: 0 0 1px #313131;">CINZA ESCURO</b>
+                            e a gravata no <b style="color: #a6a6a6; text-shadow: 0 0 1px #a6a6a6;">CINZA CLARO</b>.
+                        </p>
+                        <img class="photo-2" src="../../../assets/photos-padrinhos/icon-terno.png">
 
-                    <div id="inspiracoes" class="inspiracoes">
-                        <h2 class="inspiracoes-title">Algumas Inspirações</h2>
-                        <ngb-carousel
-                            #carousel
-                            [interval]="3000"
-                            [pauseOnHover]="true"
-                            [pauseOnFocus]="true"
-                            [showNavigationArrows]="true"
-                            [showNavigationIndicators]="true"
-                        >
-                            <ng-template ngbSlide *ngFor="let img of pathImgCarrousel; index as i">
-                                <div class="picsum-img-wrapper">
-                                    <img [src]="img" style="width: 100%">
-                                </div>
-                            </ng-template>
-                        </ngb-carousel>
-                    </div>
+                        <div id="inspiracoes" class="inspiracoes">
+                            <h2 class="inspiracoes-title">Algumas Inspirações</h2>
+                            <ngb-carousel
+                                #carousel
+                                [interval]="3000"
+                                [pauseOnHover]="true"
+                                [pauseOnFocus]="true"
+                                [showNavigationArrows]="true"
+                                [showNavigationIndicators]="true"
+                            >
+                                <ng-template ngbSlide *ngFor="let img of pathImgCarrousel; index as i">
+                                    <div class="picsum-img-wrapper">
+                                        <img [src]="img" style="width: 100%">
+                                    </div>
+                                </ng-template>
+                            </ngb-carousel>
+                        </div>
 
+                    </section>
+                    <section id="manual-madrinhas" class="manual-madrinhas">
+                        <h1 class="title">Manual da Madrinha</h1>
+                        <p>
+                            Para o look das madrinhas, escolhemos uma paleta de cores belíssima no
+                            <b style="color: #e36f80;">ROSA CANELA</b>,
+                            para você arrasar naquele <b  style="color: #000000;">vestido longo</b> de festa de sua escolha,
+                            <b  style="color: #000000;">sem</b> estampas
+                        </p>
+                        <img class="photo-2" src="../../../assets/photos-madrinhas/paleta.jpg">
+
+                        <div id="inspiracoes" class="inspiracoes">
+                            <h2 class="inspiracoes-title">Algumas Inspirações</h2>
+                            <ngb-carousel
+                                #carousel
+                                [interval]="3000"
+                                [pauseOnHover]="true"
+                                [pauseOnFocus]="true"
+                                [showNavigationArrows]="true"
+                                [showNavigationIndicators]="true"
+                            >
+                                <ng-template ngbSlide *ngFor="let img of pathImgCarrouselMadrinha; index as i">
+                                    <div class="picsum-img-wrapper" style="height: 550px; display: flex; justify-content: center; align-items: center;">
+                                        <img [src]="img" style="height: 100%">
+                                    </div>
+                                </ng-template>
+                            </ngb-carousel>
+                        </div>
+
+                    </section>
                 </section>
             </section>
         </section>
