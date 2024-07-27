@@ -71,7 +71,7 @@ export class PresentesComponent implements OnInit {
                 });
 
                 for (const el of this.dsPresentes) {
-                    el.valor = el.valor.toLocaleString('pt-br', { minimumFractionDigits: 2 });
+                    el.valor = (el.valor - el.vlr_presenteado - el.vlr_processando).toLocaleString('pt-br', { minimumFractionDigits: 2 });
                     if (el.vlr_cota) {
                         el.vlr_cota = el.vlr_cota.toLocaleString('pt-br', { minimumFractionDigits: 2 });
                     }
