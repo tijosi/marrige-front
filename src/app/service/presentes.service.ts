@@ -83,4 +83,26 @@ export class PresentesService {
 
         return data;
     }
+
+    getUsuarios(): Observable<any> {
+        const data: Observable<any> = this.http.get(environment.apiUrl + '/database/usuarios').pipe(
+            catchError(error => {
+                Notify.error(error.message);
+                return throwError(() => error);
+            })
+        );
+
+        return data;
+    }
+
+    adicionarPagamentoManual(form: any): Observable<any> {
+        const data: Observable<any> = this.http.post(this.endpoint + '/adicionar-pagamento-manual', form).pipe(
+            catchError(error => {
+                Notify.error(error.message);
+                return throwError(() => error);
+            })
+        );
+
+        return data;
+    }
 }

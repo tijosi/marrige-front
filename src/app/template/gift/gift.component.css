@@ -49,15 +49,30 @@
   overflow: hidden;
 }
 
+.buttons {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    top: 0;
+    right: -1px;
+    z-index: 1;
+    padding: 4px 8px;
+    gap: 5px;
+}
+
+.buttons i {
+    font-size: 22px;
+    cursor: pointer;
+}
+
 #btn-excluir {
-  position: absolute;
-  top: 0;
-  right: 0;
-  z-index: 1;
-  font-size: 22px;
-  color: #c82626;
-  right: -1px;
-  padding: 4px 8px;
+    color: #c82626;
+}
+
+#btn-add-payment {
+    color: #267ac8dd;
 }
 
 .img-gift {

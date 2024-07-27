@@ -40,6 +40,7 @@
             [dataSource]="dsPresentes"
             (btnClick)="openPopup($event)"
             (onExlcuir)="excluirPresente($event)"
+            (onAddPayment)="openPopupPagamentoManual($event)"
         ></app-gift>
     </section>
 
@@ -123,4 +124,31 @@
     </form>
 
     <button-popup text="Adicionar" type="success" (onClick)="submitAdicionar()"></button-popup>
+</popup>
+
+<popup
+    *ngIf="showPopupPagamentoManual"
+    (close)="showPopupPagamentoManual = false"
+    title="Adicionar Pagamento Manual"
+>
+    <form class="form-container">
+        <mat-form-field appearance="outline" style="width: 100%;padding: 0 !important;">
+            <mat-label>Nome do Presente</mat-label>
+            <input matInput [(ngModel)]="formPagamentoManual.nome_presente" name="nomePresente" readonly>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" style="width: 100%;padding: 0 !important;">
+            <mat-label>Pagante</mat-label>
+            <mat-select [(ngModel)]="formPagamentoManual.pagante" name="pagante">
+                <mat-option *ngFor="let usuario of dsUsuarios" [value]="usuario.id">{{usuario.name}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" style="width: 100%;padding: 0 !important;">
+            <mat-label>Valor</mat-label>
+            <input matInput [(ngModel)]="formPagamentoManual.valor" #valorPagamentoManual name="valorPagamentoManual">
+        </mat-form-field>
+    </form>
+
+    <button-popup text="Adicionar" type="success" (onClick)="submitAdicionarPagamentoManual()"></button-popup>
 </popup>

@@ -12,8 +12,9 @@ export class GiftComponent {
   @Input() dsArea: any[] = [];
   @Input() dataSource: IDataSoruceGift[] = [];
 
-  @Output() btnClick = new EventEmitter<any>();
-  @Output() onExlcuir = new EventEmitter<any>();
+  @Output() btnClick        = new EventEmitter<any>();
+  @Output() onExlcuir       = new EventEmitter<any>();
+  @Output() onAddPayment    = new EventEmitter<any>();
 
   isAdmin = this.guard.isAdmin;
 

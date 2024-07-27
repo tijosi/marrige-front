@@ -15,6 +15,7 @@ import { forkJoin } from 'rxjs';
 })
 export class PresentesComponent implements OnInit {
     @ViewChild('valor') valor!: ElementRef
+    @ViewChild('valorPagamentoManual') valorPagamentoManual!: ElementRef
 
     dsPresentes: any[] = [];
     dsArea: any[] = [];
@@ -25,6 +26,9 @@ export class PresentesComponent implements OnInit {
     formAdicionar: any = {
         valor: 0
     };
+
+    formPagamentoManual: any = {};
+
     tag: any = {
         nome: null,
         descricao: null,
@@ -34,6 +38,7 @@ export class PresentesComponent implements OnInit {
 
     showLoadPanel: boolean = true;
     showPopupAdicionar: boolean = false;
+    showPopupPagamentoManual: boolean = false;
 
     constructor(
         private rest: PresentesService,
@@ -46,7 +51,8 @@ export class PresentesComponent implements OnInit {
     }
 
     getMask() {
-        Inputmask(this.rest.optionsCurrencyBRLMask).mask(this.valor.nativeElement);
+        if (this.valor)                 Inputmask(this.rest.optionsCurrencyBRLMask).mask(this.valor.nativeElement);
+        if (this.valorPagamentoManual)  Inputmask(this.rest.optionsCurrencyBRLMask).mask(this.valorPagamentoManual.nativeElement);
     }
 
     loadingPosition: any;
@@ -79,7 +85,7 @@ export class PresentesComponent implements OnInit {
     }
 
     filtrarPresentes(filtro: string) {
-        if (!filtro && filtro == 'TODOS') return;
+        if (!filtro || filtro == 'TODOS') return;
 
         this.dsPresentes = this.dsPresentes.filter(presente => {
             return filtro == presente.level;
@@ -157,6 +163,40 @@ export class PresentesComponent implements OnInit {
                 })
             }
         });
+    }
+
+    dsUsuarios: any;
+    openPopupPagamentoManual(item: any) {
+        this.showLoadPanel = true;
+        this.loadingPosition = '';
+        this.rest.getUsuarios().subscribe({
+            next: (data) => {
+                this.dsUsuarios = data;
+                this.formPagamentoManual.nome_presente = item.nome;
+                this.formPagamentoManual.presente_id = item.id;
+                this.formPagamentoManual.valor = 0;
+                this.showPopupPagamentoManual = true;
+                setTimeout(() => this.getMask(), 100);
+            }
+        }).add(() => {
+            this.showLoadPanel = false;
+        })
+    }
+
+    submitAdicionarPagamentoManual() {
+        this.showLoadPanel = true;
+        this.loadingPosition = '';
+        this.formPagamentoManual.valor = TransformHelper.currencyBrlToFloat(this.valorPagamentoManual.nativeElement.inputmask.unmaskedvalue());
+        this.rest.adicionarPagamentoManual(this.formPagamentoManual).subscribe({
+            next: () => {
+                this.showPopupPagamentoManual = false;
+                this.formPagamentoManual = {};
+                this.search();
+                Notify.success('Pagamento adicionado com Sucesso!');
+            }
+        }).add(() => {
+            this.showLoadPanel = false;
+        })
     }
 
     submitAdicionar() {
