@@ -44,8 +44,8 @@ export class PresenteDetailComponent {
         }
     }
 
-    updateValorPresentear(event: any) {
-        this.valorPresentear = (this.presente.vlr_cota * event.target.value).toLocaleString('pt-br', this.getCurrencyBrlOptions);
+    get getValorPresentear() {
+        return (this.presente.vlr_cota * this.form.quantidade).toLocaleString('pt-br', this.getCurrencyBrlOptions);
     }
 
     async searchPresente() {
