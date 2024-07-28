@@ -76,12 +76,14 @@ section {
 .noivos {
   padding: 20px 10px;
   margin: 0;
-  background-color: #e8e1d0;
+  background-color: #faf7f0;
   width: calc(100% + 20px);
 }
 
 .title-noivos {
-    font-size: 35px;
+    font-size: 28px;
+    margin: 15px 0;
+    padding: 0;
 }
 
 .flip-card {
@@ -204,7 +206,7 @@ section {
 }
 
 .countdown {
-    background-color: #e8e1d0;
+    background-color: #faf7f0;
     border-radius: 3px;
     box-shadow: 0 0 5px #63615db9;
     margin: 40px 0;
@@ -255,6 +257,10 @@ section {
   color: #111;
   text-align: center;
   padding: 3px 0;
+}
+
+.localizacao {
+    padding: 10px 0 20px 0;
 }
 
 
