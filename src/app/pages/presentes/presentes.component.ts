@@ -97,9 +97,27 @@ export class PresentesComponent implements OnInit {
     }
 
     item: any;
-    openPopup(item: any) {
-        this.item = item;
-        this.router.navigate(['/presente-detail/' + item.id]);
+    openPopup(event: any) {
+        if(event.cancelar ) {
+            DialogComponent.confirm('Deseja cancelar a seleção do presente <b><i>' + event.item.nome + '</i></b> ?', 'Cancelar Seleção').subscribe({
+                next: response => {
+                    if (!response) return;
+
+                    this.showLoadPanel = true;
+                    this.rest.cancelarSelecaoPresente(event.item.id).subscribe({
+                        next: () => {
+                            this.search();
+                            Notify.success('Cancelado seleção com sucesso!');
+                        }
+                    }).add(() => {
+                        this.showLoadPanel = false;
+                    })
+                }
+            })
+        } else {
+            this.item = event.item;
+            this.router.navigate(['/presente-detail/' + this.item.id]);
+        }
     }
 
     openPopupAdicionar() {

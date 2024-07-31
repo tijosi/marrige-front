@@ -7,4 +7,5 @@ export interface IDataSoruceGift {
   cotas: number,
   vlr_cota: number,
   cotas_disponiveis: number,
+  selected_by_user_id: number,
 }

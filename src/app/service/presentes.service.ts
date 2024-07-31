@@ -105,4 +105,15 @@ export class PresentesService {
 
         return data;
     }
+
+    cancelarSelecaoPresente(presenteId: any): Observable<any> {
+        const data: Observable<any> = this.http.post(this.endpoint + '/cancelar-selecao', {presenteId}).pipe(
+            catchError(error => {
+                Notify.error(error.message);
+                return throwError(() => error);
+            })
+        );
+
+        return data;
+    }
 }

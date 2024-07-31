@@ -8,9 +8,9 @@
   transform: translate(-50%, -50%);
   width: 300px;
   min-height: 100px;
-  background-image: linear-gradient(45deg, #FFF 0, #FFF 90%, #f2bb39 10%);
-  box-shadow: 0px 2px 10px #000;
-  border: 1px solid #f2bb39;
+  background-image: linear-gradient(45deg, #FFF 0, #FFF 90%, #d4d4d4 10%);
+  box-shadow: 0px 2px 20px #000;
+  border: 1px solid #d4d4d4;
   border-radius: 5px;
 }
 
@@ -25,13 +25,13 @@
   width: calc(100% + 20px);
   transform: translateX(-10px);
   font-size: 16px;
-  border-bottom: 1px solid #f2bb39;
+  border-bottom: 1px solid #d4d4d4;
   color: #1b1b1b;
 }
 
 .dialog-body {
-  text-align: justify;
-  font-size: 15px;
+  text-align: center;
+  font-size: 14px;
   margin-bottom: 20px;
 }
 
@@ -50,5 +50,5 @@
   padding: 5px;
   color: #FFF;
   border: 0;
-  background-color: #f2bb39;
+  background-color: #d4d4d4;
 }

@@ -27,13 +27,23 @@
                     COTA: R$ {{item.vlr_cota}}
                 </div>
             </div>
-            <button [class]="'btn-value-gift'" (click)="btnClick.emit(item)">
-                Ver Presente
-            </button>
 
             <div *ngIf="!item.flg_disponivel" class="selecionado">
                 <div class="text-selecionado" [style]="bannerStyle(item.level)">SELECIONADO</div>
             </div>
+
+            <button *ngIf="!item.selected_by_user_id" [class]="'btn-value-gift'" (click)="btnClick.emit({item: item, cancelar: false})">
+                Ver Presente
+            </button>
+            <button
+                *ngIf="showBtnCancelar(item)"
+                [class]="'btn-value-gift cancelar'"
+                (click)="btnClick.emit({item: item, cancelar: true})"
+            >Cancelar</button>
+            <button
+                *ngIf="!showBtnCancelar(item) && !item.flg_disponivel"
+                [class]="'btn-value-gift empty'"
+            ></button>
 
         </div>
     </div>

@@ -152,16 +152,27 @@
 }
 
 .btn-value-gift {
-  width: 90%;
-  margin: 0 5%;
-  height: 30px;
-  outline: 0;
-  border: 0;
-  border-radius: 3px;
-  color: #FFF;
-  background-color: #4265e4;
-  box-shadow: none;
-  font-size: 16px;
+    width: 90%;
+    margin: 0 5%;
+    height: 30px;
+    outline: 0;
+    border: 0;
+    border-radius: 3px;
+    color: #FFF;
+    background-color: #4265e4;
+    box-shadow: none;
+    font-size: 16px;
+}
+
+.btn-value-gift.cancelar {
+    position: relative;
+    background-color: #eb4e4e;
+    z-index: 1;
+}
+
+.btn-value-gift.empty {
+    background-color: transparent;
+    height: 25px;
 }
 
 .selecionado {
