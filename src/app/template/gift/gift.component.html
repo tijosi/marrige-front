@@ -3,6 +3,10 @@
     <div class="card-container" *ngFor="let item of dataSource">
         <div [class]="'card-gift'" [style]="borderGift(item.level)">
 
+            <div class="priority">
+                {{item.prioridade + '°'}}
+            </div>
+
             <div [class]="'banner'" [style]="bannerStyle(item.level)">
                 <div>{{ lookup(item.level) }}</div>
             </div>
@@ -20,7 +24,7 @@
             <div class="info-gift">
                 <div class="title">{{ item.nome }}</div>
                 <div *ngIf="item.cotas > 1" class="cota">Restam {{item.cotas_disponiveis}} Cota's</div>
-                <div class="info-gift price">
+                <div class="info-gift price" [style]="!item.cotas ? 'padding-top: 10px' : '' ">
                     {{item.flg_disponivel ? 'R$ ' + item.valor : null}}
                 </div>
                 <div *ngIf="item.flg_disponivel && item.cotas > 1" class="info-gift price-cota">

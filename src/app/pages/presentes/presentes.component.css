@@ -115,3 +115,28 @@
     font-weight: bold;
     background-color: #e7e7e7;
 }
+
+::ng-deep ngb-carousel .carousel-control-prev-icon,
+::ng-deep ngb-carousel .carousel-control-next-icon {
+  background-image: none;
+}
+
+::ng-deep ngb-carousel .carousel-control-prev-icon::before {
+  content: '◀';
+  color: black;
+  font-size: 2.5rem;
+}
+
+::ng-deep ngb-carousel .carousel-control-next-icon::before {
+  content: '▶';
+  color: black;
+  font-size: 2.5rem;
+}
+
+::ng-deep ngb-carousel .carousel-indicators [data-bs-target] {
+    background-color: rgb(59, 59, 59);
+  }
+
+  ::ng-deep ngb-carousel .carousel-indicators .active {
+    background-color: black;
+  }

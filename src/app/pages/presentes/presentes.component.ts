@@ -20,6 +20,12 @@ export class PresentesComponent implements OnInit {
     dsPresentes: any[] = [];
     dsArea: any[] = [];
 
+    pathImgCarrousel: any[] = [
+        '../../../assets/tutorial-presente/area.png',
+        '../../../assets/tutorial-presente/prioridade.png',
+        '../../../assets/tutorial-presente/cota.png'
+    ];
+
     isAdmin = this.guard.isAdmin;
 
     imgUrl!: any;
@@ -39,6 +45,7 @@ export class PresentesComponent implements OnInit {
     showLoadPanel: boolean = true;
     showPopupAdicionar: boolean = false;
     showPopupPagamentoManual: boolean = false;
+    showPopupTutorial: boolean = true;
 
     constructor(
         private rest: PresentesService,
@@ -67,7 +74,7 @@ export class PresentesComponent implements OnInit {
             next: ([presentesArea, presentes]) => {
                 this.dsArea = presentesArea;
                 this.dsPresentes = presentes.sort(function (a: any, b: any) {
-                    return b.valor - a.valor;
+                    return a.prioridade - b.prioridade;
                 });
 
                 for (const el of this.dsPresentes) {
