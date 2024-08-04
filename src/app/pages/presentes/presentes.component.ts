@@ -7,6 +7,7 @@ import { DialogComponent } from 'src/app/template/dialog/dialog.component';
 import { Router } from '@angular/router';
 import { StringHelper } from 'src/app/helper/StringHelper';
 import { forkJoin } from 'rxjs';
+import { MatCheckboxChange } from '@angular/material/checkbox';
 
 @Component({
     selector: 'app-presentes',
@@ -29,9 +30,7 @@ export class PresentesComponent implements OnInit {
     isAdmin = this.guard.isAdmin;
 
     imgUrl!: any;
-    formAdicionar: any = {
-        valor: 0
-    };
+    formAdicionar: any = {};
 
     formPagamentoManual: any = {};
 
@@ -103,6 +102,10 @@ export class PresentesComponent implements OnInit {
         this.search(value);
     }
 
+    updateChekboxVlrSimbolico(e: MatCheckboxChange) {
+        this.formAdicionar.vlrSimbolico = e.checked;
+    }
+
     item: any;
     openPopup(event: any) {
         if(event.cancelar ) {
@@ -129,6 +132,7 @@ export class PresentesComponent implements OnInit {
 
     openPopupAdicionar() {
         this.showPopupAdicionar = true;
+        this.formAdicionar = {};
         setTimeout(() => this.getMask(), 100)
     }
 

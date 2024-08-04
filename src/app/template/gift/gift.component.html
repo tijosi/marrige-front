@@ -11,6 +11,10 @@
                 <div>{{ lookup(item.level) }}</div>
             </div>
 
+            <div *ngIf="item.vlr_simbolico" class="valor-simbolico">
+                VALOR SIMBÓLICO
+            </div>
+
             <div class="buttons">
                 <span (click)="onExlcuir.emit(item)" title="Excluir Presente"><i *ngIf="isAdmin" id="btn-excluir" class="fas fa-close"></i></span>
                 <span (click)="onAddPayment.emit(item)" title="Adicionar Pagamento Manual"><i *ngIf="isAdmin" id="btn-add-payment" class="fas fa-file-invoice-dollar"></i></span>

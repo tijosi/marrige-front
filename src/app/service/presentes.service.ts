@@ -30,9 +30,9 @@ export class PresentesService {
         const endpoint = id ? `${this.endpoint}?id=${id}` : this.endpoint;
 
         const data: Observable<any> = this.http.get(endpoint).pipe(
-            catchError(error => {
-                Notify.error(error.message);
-                return throwError(() => error);
+            catchError(e => {
+                Notify.error(e.error.message);
+                return throwError(() => e);
             })
         );
 
@@ -42,9 +42,9 @@ export class PresentesService {
     savePresente(form: any): Observable<any> {
         let formData = TransformHelper.objectToFormData(form);
         const data: Observable<any> = this.http.post(this.endpoint, formData).pipe(
-            catchError(error => {
-                Notify.error(error.message);
-                return throwError(() => error);
+            catchError(e => {
+                Notify.error(e.error.message);
+                return throwError(() => e);
             })
         );
 
@@ -53,9 +53,9 @@ export class PresentesService {
 
     confirmarPresente(param: any): Observable<any> {
         const data: Observable<any> = this.http.post(this.endpoint + '/confirmar', param).pipe(
-            catchError(error => {
-                Notify.error(error.message);
-                return throwError(() => error);
+            catchError(e => {
+                Notify.error(e.error.message);
+                return throwError(() => e);
             })
         );
 
@@ -64,9 +64,9 @@ export class PresentesService {
 
     presentesArea(): Observable<any> {
         const data: Observable<any> = this.http.get(environment.apiUrl + '/enum/presentes-area-enum').pipe(
-            catchError(error => {
-                Notify.error(error.message);
-                return throwError(() => error);
+            catchError(e => {
+                Notify.error(e.error.message);
+                return throwError(() => e);
             })
         );
 
@@ -75,9 +75,9 @@ export class PresentesService {
 
     excluirPresente(presenteId: any): Observable<any> {
         const data: Observable<any> = this.http.delete(this.endpoint + '?presenteId=' + presenteId).pipe(
-            catchError(error => {
-                Notify.error(error.message);
-                return throwError(() => error);
+            catchError(e => {
+                Notify.error(e.error.message);
+                return throwError(() => e);
             })
         );
 
@@ -86,9 +86,9 @@ export class PresentesService {
 
     getUsuarios(): Observable<any> {
         const data: Observable<any> = this.http.get(environment.apiUrl + '/database/usuarios').pipe(
-            catchError(error => {
-                Notify.error(error.message);
-                return throwError(() => error);
+            catchError(e => {
+                Notify.error(e.error.message);
+                return throwError(() => e);
             })
         );
 
@@ -97,9 +97,9 @@ export class PresentesService {
 
     adicionarPagamentoManual(form: any): Observable<any> {
         const data: Observable<any> = this.http.post(this.endpoint + '/adicionar-pagamento-manual', form).pipe(
-            catchError(error => {
-                Notify.error(error.message);
-                return throwError(() => error);
+            catchError(e => {
+                Notify.error(e.error.message);
+                return throwError(() => e);
             })
         );
 
@@ -108,9 +108,9 @@ export class PresentesService {
 
     cancelarSelecaoPresente(presenteId: any): Observable<any> {
         const data: Observable<any> = this.http.post(this.endpoint + '/cancelar-selecao', {presenteId}).pipe(
-            catchError(error => {
-                Notify.error(error.message);
-                return throwError(() => error);
+            catchError(e => {
+                Notify.error(e.error.message);
+                return throwError(() => e);
             })
         );
 

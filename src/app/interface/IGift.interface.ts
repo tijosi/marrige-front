@@ -8,5 +8,6 @@ export interface IDataSoruceGift {
   vlr_cota: number,
   cotas_disponiveis: number,
   selected_by_user_id: number,
-  prioridade: number
+  prioridade: number,
+  vlr_simbolico: boolean
 }

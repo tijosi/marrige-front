@@ -20,7 +20,7 @@
                 </div>
             </section>
 
-            <p *ngIf="!presente.cotas" style="text-indent: 0; margin: 0;">Preço Total:</p>
+            <p *ngIf="!presente.cotas" style="text-indent: 0; margin: 0; font-weight: bold;">Preço Total:</p>
             <div *ngIf="!presente.cotas" class="valor-container">
                 <p class="valor">R$ {{presente.valor_disponivel.toFixed(2).split('.')[0]}}</p>
                 <p class="valor-decimal">{{presente.valor_disponivel.toFixed(2).split('.')[1]}}</p>
@@ -56,16 +56,20 @@
                 ou até 12x com juros
             </span>
 
-            <p *ngIf="presente.cotas" style="text-indent: 0; margin: 15px 0 0 0;">
+            <p *ngIf="presente.cotas" style="text-indent: 0; margin: 15px 0 0 0; font-weight: bold;">
                 Preço Total Restante: <b>{{ presente.valor_disponivel.toLocaleString('pt-br', getCurrencyBrlOptions) }}</b>
             </p>
 
             <section class="descricao">
-                <p style="text-indent: 0;">Anotação:</p>
+                <p style="text-indent: 0; font-weight: bold;">Anotações:</p>
+                <p class="descricao-text valor-simbolico" *ngIf="presente.vlr_simbolico">
+                    Este presente, tem apenas a opção de presentar o valor, isto porquê o produto correto deve ser comprado ou de forma
+                    presencial ou de acordo com a casa onde iremos morar
+                </p>
                 <p class="descricao-text" *ngIf="presente.descricao != null && presente.descricao != ''">
                     {{presente.descricao}}
                 </p>
-                <p class="descricao-text">
+                <p class="descricao-text text-simple">
                     Caso queira verificar onde nos baseamos o presente, acesse o link
                     <a [href]="presente.img_url" target="_blank" class="link">
                         clicando aqui
@@ -74,7 +78,7 @@
             </section>
 
             <div *ngIf="presente.tags">
-                <p style="text-indent: 0;">Especificações:</p>
+                <p style="text-indent: 0; font-weight: bold;">Especificações:</p>
 
                 <table style="margin-top: 10px;" mat-table [dataSource]="presente.tags" class="mat-elevation-z2">
                     <ng-container matColumnDef="nome">
@@ -100,7 +104,7 @@
                         (click)="confirmarPresente('VALOR')">PRESENTEAR VALOR</button>
                     <button *ngIf="presente.cotas" mat-flat-button color="accent"
                         (click)="confirmarPresente('COTA')">PRESENTEAR COTA </button>
-                    <button *ngIf="!presente.cotas || presente.cotas_disponiveis == presente.cotas" mat-flat-button
+                    <button *ngIf="(!presente.cotas || presente.cotas_disponiveis == presente.cotas) && !presente.vlr_simbolico" mat-flat-button
                         color="primary" (click)="confirmarPresente('PRODUTO')">PRESENTEAR PRODUTO</button>
                 </div>
             </section>

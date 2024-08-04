@@ -144,7 +144,17 @@ html {
     border-left: 8px solid #f3d457;
     background-color: #f3e49813;
     padding: 10px 10px;
-    margin-top: 10px !important;
+    margin-bottom: 15px !important;
+}
+
+.text-simple {
+    border: 1px solid #d4d4d4;
+    border-left: 8px solid #d4d4d4;
+}
+
+.valor-simbolico {
+    border: 1px solid #F26419;
+    border-left: 8px solid #F26419;
 }
 
 .descricao-text .link {

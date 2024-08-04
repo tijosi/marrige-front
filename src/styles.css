@@ -59,6 +59,10 @@ h1 {
   z-index: 5;
 }
 
+.notify:hover {
+    cursor: pointer;
+}
+
 @keyframes opacityEnd {
   from  { opacity: 1 }
   to    { opacity: 0 }

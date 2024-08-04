@@ -34,10 +34,8 @@ export class GiftComponent {
     }
 
     borderGift(area: any): string {
-
         const selection = this.dsArea.filter(el => el.id == area);
         return `box-shadow: 0px 0px 5px ${selection[0].color}; border: 1px solid ${selection[0].color} ;`
-
     }
 
     bannerStyle(area: any) {

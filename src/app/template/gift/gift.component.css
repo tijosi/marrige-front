@@ -12,7 +12,26 @@
 .card-container {
   position: relative;
   flex: 0 0 calc(50% - 5px);
-  margin-bottom: 30px;
+  margin-bottom: 35px;
+
+  & .valor-simbolico {
+    position: absolute;
+    white-space: nowrap;
+    z-index: 0;
+    height: 28px;
+    width: calc(100% + 2px);
+    top: -28px;
+    left: -1px;
+    display: flex;
+    justify-content: center;
+    border-radius: 10px 10px 0 0;
+    align-items: center;
+    background-color: #f27f41;
+    border: 1px solid #ed6f2a;
+    border-bottom: none;
+    box-shadow: 0px -1px 5px #e4590eac;
+    color: #FFF;
+  }
 }
 
 .banner-cota {
@@ -26,6 +45,7 @@
 
 .card-gift {
   position: relative;
+  z-index: 1;
   padding: 10px;
   background-color: #FFF;
 }
@@ -59,6 +79,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    text-shadow: 0px 0px 1px #0f0f0f88;
+    color: #0f0f0f;
     font-size: 14px;
     background-color: #e9c46a;
 }
@@ -91,7 +113,8 @@
 
 .img-gift {
   position: relative;
-  width: 100%;
+  width: calc(100% + 20px);
+  transform: translate(-10px, 0);
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -122,7 +145,7 @@
   text-align: center;
   line-height: 15px;
   height: 30px;
-  font-size: 13px;
+  font-size: 14px;
   margin: 5px 0 0 0;
   overflow: hidden;
 }
