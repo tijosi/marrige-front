@@ -161,6 +161,13 @@
     background-color: #ffffff;
 }
 
+#popup-confirm-presenca {
+    & .body p {
+        font-size: 17px !important;
+        font-family: "Philosopher", sans-serif !important;
+    }
+}
+
 @keyframes animacaoCores {
     0% {
         background-position: 0% 50%;

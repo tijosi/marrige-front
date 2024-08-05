@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { faGifts, faUsers, faUserTie, faSignOutAlt, faHome, faUserSecret } from '@fortawesome/free-solid-svg-icons';
+import { WellcomeMessagem } from 'src/app/enums/HomeEnum';
 import { GuardService } from 'src/app/service/guard.service';
 import { HeaderService } from 'src/app/service/header.service';
 
@@ -41,7 +42,13 @@ export class HeaderComponent implements OnInit {
         this.search();
     }
 
-    search() {}
+    search() {
+        // if (this.guard.getConfirmRead() == 0) {
+        //     this.bodyMessage = (this.user && this.user.role_id == 2) ? WellcomeMessagem.PADRINHO : WellcomeMessagem.CONVIDADO
+        //     this.bodyMessage = this.bodyMessage.replace('{{name}}', this.user.name);
+        //     this.showPopupConfirmPresence = true
+        // }
+    }
 
     openDropdown(exit: boolean = false) {
         const domElement: HTMLElement = document.documentElement.querySelector('.html-container')!;
@@ -59,18 +66,12 @@ export class HeaderComponent implements OnInit {
 
     getSafeHtml() {
         return this.sanitizer.bypassSecurityTrustHtml(this.bodyMessage);
-      }
-
-    confirmPresenca() {
-        setTimeout(() => {
-            if (!this.isAdmin) {
-                this.showPopupConfirmPresence = true;
-                this.bodyMessage = this.bodyMessage.replace('{{name}}', this.user.name);
-            }
-        }, 400);
     }
 
-    confirmar(){}
+    confirmar(){
+        this.guard.setConfirmRead(true);
+        this.showPopupConfirmPresence = false;
+    }
 
     exitAcount() {
         this.openDropdown(true);
