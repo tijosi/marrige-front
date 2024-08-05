@@ -107,7 +107,6 @@ export class PresenteDetailComponent {
                     window.location.href = data.link;
                 }
                 Notify.success('MUITO OBRIGADOOOO💖');
-                this.router.navigate(['/presentes']);
             },
             error: (e) => {
                 this.showLoadPanel = false;
