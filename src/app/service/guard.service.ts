@@ -28,6 +28,15 @@ export class GuardService {
         localStorage.setItem('currentUser', JSON.stringify(user));
     }
 
+    setConfirmRead(flg: boolean) {
+        let bool = flg ? '1' : '0';
+        localStorage.setItem('confirm_read', bool);
+    }
+
+    getConfirmRead(): Number {
+        return Number(localStorage.getItem('confirm_read')) ?? 0;
+    }
+
     getUser(): any {
         if (!this.currentUser && localStorage.getItem('currentUser')) {
             this.currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');

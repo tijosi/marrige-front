@@ -1,6 +1,4 @@
 <nav class="navbar">
-
-    <div class="btn-presenca" (click)="confirmPresenca()" *ngIf="user.role_id != 1 && user.role_id != 2"><app-button-star></app-button-star></div>
     <div [class]="'menu ' + classNavbar" (click)="openDropdown()">
         <i [class]="classMenu"></i>
         <span>{{classNavbar == 'open' ? 'Fechar' : 'MENU'}}</span>
@@ -31,10 +29,10 @@
 
 </nav>
 
-<popup *ngIf="showPopupConfirmPresence" id="popup-confirm-presenca" (close)="showPopupConfirmPresence = false"
+<!-- <popup *ngIf="showPopupConfirmPresence" id="popup-confirm-presenca" (close)="showPopupConfirmPresence = false"
     title="Seja Muito Bem vindo" width="90%" [scroll]="false"
     [textBtnClose]="user.role_id == 3 ? 'Agora não' : 'Ir para o Site'">
     <div class="body" [innerHTML]="getSafeHtml()"></div>
     <button-popup *ngIf="user.role_id == 3" text="Confirmar Presença" type="success"
         (onClick)="confirmar()"></button-popup>
-</popup>
+</popup> -->
