@@ -18,9 +18,9 @@
     position: absolute;
     white-space: nowrap;
     z-index: 0;
-    height: 28px;
+    height: 25px;
     width: calc(100% + 2px);
-    top: -28px;
+    top: -25px;
     left: -1px;
     display: flex;
     justify-content: center;
