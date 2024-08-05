@@ -40,7 +40,7 @@
                 <div class="text-selecionado" [style]="bannerStyle(item.level)">SELECIONADO</div>
             </div>
 
-            <button *ngIf="!item.selected_by_user_id" [class]="'btn-value-gift'" (click)="btnClick.emit({item: item, cancelar: false})">
+            <button *ngIf="!item.selected_by_user_id && item.flg_disponivel" [class]="'btn-value-gift'" (click)="btnClick.emit({item: item, cancelar: false})">
                 Ver Presente
             </button>
             <button
