@@ -11,7 +11,8 @@
 
 .popup {
   max-width: 460px;
-  max-height: calc(100% - 80px);
+  max-height: calc(100dvh - 40px);
+  min-width: 315px;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -35,6 +36,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 0;
+  margin-bottom: 15px;
   height: 40px;
   color: #2d2d2d;
   width: 100%;
@@ -47,7 +50,7 @@
 .popup-body {
   display: flex;
   flex-direction: column;
-  max-height: calc(100vh - 230px);
+  max-height: calc(100dvh - 145px);
   justify-content: space-between;
   overflow-y: scroll;
 }
