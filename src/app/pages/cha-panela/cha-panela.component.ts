@@ -149,6 +149,7 @@ export class ChaPanelaComponent {
         this.rest.savePresente(this.formAdicionar).subscribe({
             next: data => {
                 this.imgUrl = null;
+                this.search();
             }
         }).add(() => {
             this.showLoadPanel = false;
