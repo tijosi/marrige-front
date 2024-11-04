@@ -37,6 +37,7 @@ export class GiftComponent {
     ngOnChanges() { }
 
     showBtnCancelar(item: any) {
+        if (item.cha_panela == 1) return false;
         return Boolean(item.selected_by_user_id == this.user.id || (item.selected_by_user_id && this.user.role_id == 1));
     }
 
