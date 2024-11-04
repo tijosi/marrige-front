@@ -108,7 +108,6 @@ export class GuardService {
     API(): Observable<any> {
         const data: Observable<any> = this.http.get(this.endpoint + '/api').pipe(
             catchError(e => {
-                Notify.error(e.error.message);
                 return throwError(() => e);
             })
         );
@@ -128,7 +127,7 @@ export class GuardService {
         }
 
         return this.API().pipe(
-            retry(maxTentativas),
+            // retry(maxTentativas),
             switchMap((response) => {
                 const dataAtual = new Date().getTime();
                 this.setCacheAPI({ apiLigada: '1', dataTime: dataAtual });

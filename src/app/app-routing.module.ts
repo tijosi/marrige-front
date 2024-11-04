@@ -12,6 +12,13 @@ import { ChaPanelaComponent } from './pages/cha-panela/cha-panela.component';
 
 const routes: Routes = [
     {
+        path: 'cha-panela',
+        component: HomeComponent,
+        children: [
+            { path: '', component: ChaPanelaComponent}
+        ]
+    },
+    {
         path: '',
         component: HomeComponent,
         children: [
@@ -28,13 +35,6 @@ const routes: Routes = [
         children: [
             { path: '', redirectTo: 'login', pathMatch: 'full' },
             { path: 'login', component: LoginComponent },
-        ]
-    },
-    {
-      path: 'cha-panela',
-        component: HomeComponent,
-        children: [
-            { path: '', component: ChaPanelaComponent}
         ]
     },
     {path: '**', redirectTo: '', pathMatch: 'full'}
