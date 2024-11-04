@@ -16,6 +16,10 @@
                 <fa-icon class="item-icon" [icon]="faGifts"></fa-icon>
                 Presentes
             </li>
+            <li class="item" (click)="routes('cha-panela')">
+                <i class="fas fa-wine-glass-alt"></i>
+                Chá de Panela
+            </li>
             <li class="item padrinho" (click)="routes('padrinhos')" *ngIf="user.role_id != 3">
                 <fa-icon class="item-icon icon-padrinho" [icon]="faUserTie"></fa-icon>
                 Padrinhos

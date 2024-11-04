@@ -11,6 +11,13 @@ export class GiftComponent {
 
     @Input() dsArea: any[] = [];
     @Input() dataSource: IDataSoruceGift[] = [];
+    @Input() hiddenPrice: Boolean = false;
+    @Input() hiddenPriority: Boolean = false;
+    @Input() showBtnPaymentManual: Boolean = true;
+
+
+    @Input() nameBtnPrimary: string = 'Ver Presente';
+
 
     @Output() btnClick = new EventEmitter<any>();
     @Output() onExlcuir = new EventEmitter<any>();

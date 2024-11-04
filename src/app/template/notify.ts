@@ -5,7 +5,7 @@ export class Notify {
         div.className = 'notify ' + type;
         div.innerHTML = msg;
 
-        document.addEventListener('click', ($event) => {
+        div.addEventListener('click', ($event) => {
             div.style.animation = 'opacityEnd 0.2s';
             setTimeout(() => document.documentElement.removeChild(div), 190);
         });

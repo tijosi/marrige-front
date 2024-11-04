@@ -1,0 +1,57 @@
+.home {
+    background: #ffffffc3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    padding-top: 30px;
+    width: 100%;
+    height: 100%;
+}
+
+
+.intro {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    padding: 20px 10px;
+    margin-bottom: 20px;
+}
+
+.intro p {
+    font-size: 16px;
+}
+
+#gifts {
+    flex-grow: 1;
+    width: 100%;
+    background: #ffffffc3;
+}
+
+  /* TOOLBAR */
+.toolbar-container {
+    width: 100%;
+}
+
+.mat-toolbar {
+    position: relative;
+    background-color: transparent;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    padding: 0 10px;
+    gap: 10px;
+    height: 78px;
+}
+
+.mat-toolbar span mat-form-field {
+    width: 100%;
+}
+
+.toolbar-adicionar {
+    width: 104px;
+    margin-bottom: 22px;
+    display: flex;
+    justify-content: end;
+
+}

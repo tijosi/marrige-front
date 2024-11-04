@@ -1,0 +1,77 @@
+<loading [visible]="showLoadPanel"></loading>
+<section class="home">
+    <section class="toolbar-container">
+        <mat-toolbar class="mat-toolbar">
+            <span class="toolbar-adicionar" *ngIf="isAdmin">
+                <button
+                    mat-flat-button color="primary"
+                    (click)="openPopupAdicionar()"
+                    [disabled]="showLoadPanel"
+                >
+                    <i class="fas fa-add"></i>
+                </button>
+            </span>
+        </mat-toolbar>
+    </section>
+
+    <section id="gifts">
+        <app-gift
+            [dsArea]="dsChaPanelaEnum"
+            [dataSource]="dsPresentes"
+            [hiddenPrice]="true"
+            [hiddenPriority]="true"
+            [showBtnPaymentManual]="false"
+            [nameBtnPrimary]="'Presentear'"
+            (btnClick)="openPopup($event)"
+            (onExlcuir)="excluirPresente($event)"
+        ></app-gift>
+    </section>
+
+</section>
+
+<popup
+    *ngIf="showPopupAdicionar"
+    (close)="showPopupAdicionar = false; formAdicionar = {}"
+    title="Adicionar Presente"
+    textBtnClose="Cancelar"
+>
+    <form class="form-container">
+        <mat-form-field appearance="outline" style="width: 100%;padding: 0 !important;">
+            <mat-label>Nome do Presente</mat-label>
+            <input matInput [(ngModel)]="formAdicionar.nome_presente" name="nomePresente">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" style="width: 100%;padding: 0 !important;">
+            <mat-label>Categoria</mat-label>
+            <mat-select [(ngModel)]="formAdicionar.categoria" name="categoria">
+                <mat-option *ngFor="let chaPanelaItem of dsChaPanelaEnum" [value]="chaPanelaItem.id">{{chaPanelaItem.descricao}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <div class="input-file-group">
+            <label for="file">{{imgUrl ? 'Selecionar outra imagem' : 'Escolher imagem'}}</label>
+            <input id="file" name="file" type="file" (change)="onFileSelected($event)">
+            <div class="img-file" (paste)="onPaste($event)">
+                <img *ngIf="imgUrl" [src]="imgUrl">
+            </div>
+        </div>
+    </form>
+
+    <button-popup text="Adicionar" type="success" (onClick)="submitAdicionar()"></button-popup>
+</popup>
+
+<popup
+    *ngIf="showPopupConfirmarPresente"
+    (close)="showPopupConfirmarPresente = false; formConfirmarPresente = {}"
+    title="Confirmar Presente"
+    textBtnClose="Cancelar"
+>
+    <form class="form-container">
+        <mat-form-field appearance="outline" style="width: 100%;padding: 0 !important;">
+            <mat-label>Seu nome</mat-label>
+            <input matInput [(ngModel)]="formConfirmarPresente.nome" name="nome">
+        </mat-form-field>
+    </form>
+
+    <button-popup text="Adicionar" type="success" (onClick)="submitConfirmarPresente()"></button-popup>
+</popup>

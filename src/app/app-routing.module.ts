@@ -8,6 +8,7 @@ import { LoginComponent } from './account/login/login.component';
 import { AuthGuard } from './account/shared/auth.guard';
 import { PresentesComponent } from './pages/presentes/presentes.component';
 import { PadrinhosComponent } from './pages/padrinhos/padrinhos.component';
+import { ChaPanelaComponent } from './pages/cha-panela/cha-panela.component';
 
 const routes: Routes = [
     {
@@ -27,6 +28,13 @@ const routes: Routes = [
         children: [
             { path: '', redirectTo: 'login', pathMatch: 'full' },
             { path: 'login', component: LoginComponent },
+        ]
+    },
+    {
+      path: 'cha-panela',
+        component: HomeComponent,
+        children: [
+            { path: '', component: ChaPanelaComponent}
         ]
     },
     {path: '**', redirectTo: '', pathMatch: 'full'}

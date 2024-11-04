@@ -21,12 +21,6 @@ export class PresentesComponent implements OnInit {
     dsPresentes: any[] = [];
     dsArea: any[] = [];
 
-    pathImgCarrousel: any[] = [
-        '../../../assets/tutorial-presente/area.png',
-        '../../../assets/tutorial-presente/prioridade.png',
-        '../../../assets/tutorial-presente/cota.png'
-    ];
-
     isAdmin = this.guard.isAdmin;
 
     imgUrl!: any;
@@ -44,7 +38,6 @@ export class PresentesComponent implements OnInit {
     showLoadPanel: boolean = true;
     showPopupAdicionar: boolean = false;
     showPopupPagamentoManual: boolean = false;
-    showPopupTutorial: boolean = true;
 
     constructor(
         private rest: PresentesService,

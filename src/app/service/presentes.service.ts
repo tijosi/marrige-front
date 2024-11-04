@@ -39,6 +39,19 @@ export class PresentesService {
         return data;
     }
 
+    presentesChaPanela(id?: string): Observable<any> {
+        const endpoint = id ? `${this.endpoint}-cha-panela?id=${id}` : this.endpoint;
+
+        const data: Observable<any> = this.http.get(endpoint + '-cha-panela').pipe(
+            catchError(e => {
+                Notify.error(e.error.message);
+                return throwError(() => e);
+            })
+        );
+
+        return data;
+    }
+
     savePresente(form: any): Observable<any> {
         let formData = TransformHelper.objectToFormData(form);
         const data: Observable<any> = this.http.post(this.endpoint, formData).pipe(
@@ -62,8 +75,30 @@ export class PresentesService {
         return data;
     }
 
+    confirmarPresenteChaPanela(param: any): Observable<any> {
+        const data: Observable<any> = this.http.post(this.endpoint + '/confirmar-cha-panela', param).pipe(
+            catchError(e => {
+                Notify.error(e.error.message);
+                return throwError(() => e);
+            })
+        );
+
+        return data;
+    }
+
     presentesArea(): Observable<any> {
         const data: Observable<any> = this.http.get(environment.apiUrl + '/enum/presentes-area-enum').pipe(
+            catchError(e => {
+                Notify.error(e.error.message);
+                return throwError(() => e);
+            })
+        );
+
+        return data;
+    }
+
+    chaPanelaEnum(): Observable<any> {
+        const data: Observable<any> = this.http.get(environment.apiUrl + '/enum/cha-panela-enum').pipe(
             catchError(e => {
                 Notify.error(e.error.message);
                 return throwError(() => e);

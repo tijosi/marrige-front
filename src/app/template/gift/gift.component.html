@@ -3,7 +3,7 @@
     <div class="card-container" *ngFor="let item of dataSource">
         <div [class]="'card-gift'" [style]="borderGift(item.level)">
 
-            <div class="priority">
+            <div class="priority" *ngIf="!hiddenPriority">
                 {{item.prioridade + '°'}}
             </div>
 
@@ -17,7 +17,7 @@
 
             <div class="buttons">
                 <span (click)="onExlcuir.emit(item)" title="Excluir Presente"><i *ngIf="isAdmin" id="btn-excluir" class="fas fa-close"></i></span>
-                <span (click)="onAddPayment.emit(item)" title="Adicionar Pagamento Manual"><i *ngIf="isAdmin" id="btn-add-payment" class="fas fa-file-invoice-dollar"></i></span>
+                <span *ngIf="showBtnPaymentManual"  (click)="onAddPayment.emit(item)" title="Adicionar Pagamento Manual"><i *ngIf="isAdmin" id="btn-add-payment" class="fas fa-file-invoice-dollar"></i></span>
             </div>
 
 
@@ -27,12 +27,14 @@
 
             <div class="info-gift">
                 <div class="title">{{ item.nome }}</div>
-                <div *ngIf="item.cotas > 1" class="cota">Restam {{item.cotas_disponiveis}} Cota's</div>
-                <div class="info-gift price" [style]="!item.cotas ? 'padding-top: 10px' : '' ">
-                    {{item.flg_disponivel ? 'R$ ' + item.valor : null}}
-                </div>
-                <div *ngIf="item.flg_disponivel && item.cotas > 1" class="info-gift price-cota">
-                    COTA: R$ {{item.vlr_cota}}
+                <div class="price" *ngIf="!hiddenPrice">
+                    <div *ngIf="item.cotas > 1" class="cota">Restam {{item.cotas_disponiveis}} Cota's</div>
+                    <div class="info-gift price" [style]="!item.cotas ? 'padding-top: 10px' : '' ">
+                        {{item.flg_disponivel ? 'R$ ' + item.valor : null}}
+                    </div>
+                    <div *ngIf="item.flg_disponivel && item.cotas > 1" class="info-gift price-cota">
+                        COTA: R$ {{item.vlr_cota}}
+                    </div>
                 </div>
             </div>
 
@@ -41,7 +43,7 @@
             </div>
 
             <button *ngIf="!item.selected_by_user_id && item.flg_disponivel" [class]="'btn-value-gift'" (click)="btnClick.emit({item: item, cancelar: false})">
-                Ver Presente
+                {{nameBtnPrimary}}
             </button>
             <button
                 *ngIf="showBtnCancelar(item)"

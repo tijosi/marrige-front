@@ -190,7 +190,7 @@
 
 .btn-value-gift {
     width: 90%;
-    margin: 0 5%;
+    margin: 10px 5%;
     height: 30px;
     outline: 0;
     border: 0;
@@ -207,9 +207,8 @@
     z-index: 1;
 }
 
-.btn-value-gift.empty {
+.empty {
     background-color: transparent;
-    height: 25px;
 }
 
 .selecionado {
