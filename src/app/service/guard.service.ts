@@ -136,7 +136,7 @@ export class GuardService {
             catchError(error => {
                 console.log('Falha nas tentativas de conectar à API, chamando activeBack...');
                 return this.activeBack().pipe(
-                    delay(500),
+                    delay(1000),
                     switchMap(() => {
                         return this.API().pipe(
                             switchMap((response) => {
