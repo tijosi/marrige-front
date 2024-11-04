@@ -34,7 +34,6 @@ import { PresenteDetailComponent } from './pages/presentes/presente-detail/prese
 import { PadrinhosComponent } from './pages/padrinhos/padrinhos.component';
 import { ButtonStarComponent } from './template/button-star/button-star/button-star.component';
 import { AuthInterceptor } from './auth.interceptor';
-import { CadastroUsuarioComponent } from './pages/presentes/presente-detail/cadastro-usuario/cadastro-usuario.component';
 import { ChaPanelaComponent } from './pages/cha-panela/cha-panela.component';
 
 @NgModule({
@@ -54,7 +53,6 @@ import { ChaPanelaComponent } from './pages/cha-panela/cha-panela.component';
         PresenteDetailComponent,
         PadrinhosComponent,
         ButtonStarComponent,
-        CadastroUsuarioComponent,
         ChaPanelaComponent
     ],
     imports: [
