@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { faGifts, faUsers, faUserTie, faSignOutAlt, faHome, faUserSecret } from '@fortawesome/free-solid-svg-icons';
+import { faGifts, faUsers, faUserTie, faSignOutAlt, faHome, faUserSecret, faWineGlassAlt } from '@fortawesome/free-solid-svg-icons';
 import { WellcomeMessagem } from 'src/app/enums/HomeEnum';
 import { GuardService } from 'src/app/service/guard.service';
 import { HeaderService } from 'src/app/service/header.service';
@@ -21,6 +21,7 @@ export class HeaderComponent implements OnInit {
     faSignOutAlt = faSignOutAlt;
     faHome = faHome;
     faUserSecret = faUserSecret;
+    faWineGlassAlt = faWineGlassAlt;
     isAdmin = this.guard.isAdmin;
 
     bodyMessage: string = '';

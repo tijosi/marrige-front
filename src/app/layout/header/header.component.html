@@ -17,7 +17,7 @@
                 Presentes
             </li>
             <li class="item" (click)="routes('cha-panela')">
-                <i class="fas fa-wine-glass-alt"></i>
+                <fa-icon class="item-icon icon-padrinho" [icon]="faWineGlassAlt"></fa-icon>
                 Chá de Panela
             </li>
             <li class="item padrinho" (click)="routes('padrinhos')" *ngIf="user.role_id != 3">
