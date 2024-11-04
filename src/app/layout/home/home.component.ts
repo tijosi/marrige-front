@@ -1,4 +1,4 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { GuardService } from 'src/app/service/guard.service';
 
@@ -7,18 +7,19 @@ import { GuardService } from 'src/app/service/guard.service';
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements AfterViewInit {
+export class HomeComponent implements OnInit {
 
     user = this.guard.getUser();
 
-    showHeader: boolean = true;
+    showHeader: boolean = false;
 
     constructor(
         private router: Router,
         private guard: GuardService
     ) {}
 
-    ngAfterViewInit(): void {
+    ngOnInit(): void {
+        console.log(window.location.pathname);
         this.showHeader = (window.location.pathname !== '/cha-panela') && this.user;
     }
 }

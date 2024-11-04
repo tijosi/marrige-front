@@ -24,8 +24,8 @@ export class AppComponent implements OnInit {
         if (window.location.pathname == '/login' && !login) return;
 
         this.activeIntro = true;
-        setTimeout(() => {
-            if (this.gaurdService.isAuthorized$) this.activeIntro = false;
-        }, 7200);
+        this.gaurdService.ligarAPI().subscribe().add(() => {
+            setTimeout(() => this.activeIntro = false, 4000)
+        });
     }
 }

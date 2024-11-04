@@ -33,9 +33,7 @@ export class ChaPanelaComponent {
     ) { }
 
     ngOnInit() {
-        this.guard.ligarAPI().subscribe({
-            next: () => this.search()
-        })
+        this.search();
     }
 
     loadingPosition: any;

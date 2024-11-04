@@ -23,7 +23,7 @@ export class GuardService {
 
     get isAdmin() {
         this.getUser();
-        return this.currentUser.role_id == 1;
+        return this.currentUser && (this.currentUser.role_id == 1);
     }
 
     setCacheAPI(data: { apiLigada: string, dataTime: number }): void {
@@ -62,20 +62,16 @@ export class GuardService {
     }
 
     auth(): Observable<any> {
-        return this.ligarAPI().pipe(
-            switchMap(() => {
-                return this.http.get(this.endpoint + '/autenticacao').pipe(
-                    switchMap((user) => {
-                        this.isAuthorizedSubject.next(true);
-                        return of(user);
-                    }),
-                    catchError(error => {
-                        this.isAuthorizedSubject.next(false);
-                        return of(false);
-                    })
-                );
+        return this.http.get(this.endpoint + '/autenticacao').pipe(
+            switchMap((user) => {
+                this.isAuthorizedSubject.next(true);
+                return of(user);
+            }),
+            catchError(error => {
+                this.isAuthorizedSubject.next(false);
+                return of(false);
             })
-        )
+        );
     }
 
     admin(): Observable<any> {
@@ -127,7 +123,7 @@ export class GuardService {
         }
 
         return this.API().pipe(
-            // retry(maxTentativas),
+            retry(maxTentativas),
             switchMap((response) => {
                 const dataAtual = new Date().getTime();
                 this.setCacheAPI({ apiLigada: '1', dataTime: dataAtual });
