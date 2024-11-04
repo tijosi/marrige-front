@@ -26,15 +26,6 @@ export class GuardService {
         return this.currentUser && (this.currentUser.role_id == 1);
     }
 
-    setCacheAPI(data: { apiLigada: string, dataTime: number }): void {
-        localStorage.setItem('apiCache', JSON.stringify(data));
-    }
-
-    getCacheAPI(): { apiLigada: string, dataTime: number } | null {
-        const cache = localStorage.getItem('apiCache');
-        return cache ? JSON.parse(cache) : null;
-    }
-
     setUser(user: any): void {
         this.currentUser = user;
         localStorage.setItem('currentUser', JSON.stringify(user));
@@ -114,19 +105,10 @@ export class GuardService {
     ligarAPI(): Observable<any> {
         const maxTentativas = 1;
 
-        const cacheAPI = this.getCacheAPI();
-        const agora = new Date().getTime();
-
-        if (cacheAPI && ((agora - cacheAPI?.dataTime) < this.TEMPO_CACHE_MINUTOS * 60 * 1000)) {
-            console.log('Usando dados do cache da API.');
-            return of(cacheAPI);
-        }
-
         return this.API().pipe(
             retry(maxTentativas),
             switchMap((response) => {
                 const dataAtual = new Date().getTime();
-                this.setCacheAPI({ apiLigada: '1', dataTime: dataAtual });
                 return of(response);
             }),
             catchError(error => {
@@ -137,7 +119,6 @@ export class GuardService {
                         return this.API().pipe(
                             switchMap((response) => {
                                 const dataAtual = new Date().getTime();
-                                this.setCacheAPI({ apiLigada: '1', dataTime: dataAtual });
                                 return of(response);
                             })
                         );
