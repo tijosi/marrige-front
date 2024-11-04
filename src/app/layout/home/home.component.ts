@@ -15,8 +15,6 @@ export class HomeComponent implements AfterViewInit {
     ) {}
 
     ngAfterViewInit(): void {
-        this.router.events.subscribe(() => {
-            this.showHeader = this.router.url !== '/cha-panela';
-        });
-      }
+        this.showHeader = window.location.pathname !== '/cha-panela';
+    }
 }
