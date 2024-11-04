@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PadrinhosService } from 'src/app/service/PadrinhosService';
+import { PadrinhosService } from 'src/app/service/padrinhos.service';
 import { GuardService } from 'src/app/service/guard.service';
 
 @Component({

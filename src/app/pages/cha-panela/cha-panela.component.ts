@@ -5,7 +5,7 @@ import { TransformHelper } from 'src/app/helper/TransformHelper';
 import { GuardService } from 'src/app/service/guard.service';
 import { DialogComponent } from 'src/app/template/dialog/dialog.component';
 import { Router } from '@angular/router';
-import { forkJoin } from 'rxjs';
+import { forkJoin, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-cha-panela',
@@ -29,12 +29,13 @@ export class ChaPanelaComponent {
 
     constructor(
         private rest: PresentesService,
-        private router: Router,
         private guard: GuardService
     ) { }
 
     ngOnInit() {
-        this.search();
+        this.guard.ligarAPI().subscribe({
+            next: () => this.search()
+        })
     }
 
     loadingPosition: any;

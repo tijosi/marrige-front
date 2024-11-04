@@ -2,7 +2,7 @@ import { Notify } from 'src/app/template/notify';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { BehaviorSubject, catchError, delay, Observable, of, switchMap, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, delay, Observable, of, retry, switchMap, throwError } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -13,6 +13,9 @@ export class GuardService {
 
     isAuthorized$ = this.isAuthorizedSubject.asObservable();
     currentUser: any;
+    currentApi: any;
+
+    TEMPO_CACHE_MINUTOS = 30;
 
     constructor(
         private http: HttpClient
@@ -21,6 +24,15 @@ export class GuardService {
     get isAdmin() {
         this.getUser();
         return this.currentUser.role_id == 1;
+    }
+
+    setCacheAPI(data: { apiLigada: string, dataTime: number }): void {
+        localStorage.setItem('apiCache', JSON.stringify(data));
+    }
+
+    getCacheAPI(): { apiLigada: string, dataTime: number } | null {
+        const cache = localStorage.getItem('apiCache');
+        return cache ? JSON.parse(cache) : null;
     }
 
     setUser(user: any): void {
@@ -50,47 +62,20 @@ export class GuardService {
     }
 
     auth(): Observable<any> {
-        return this.http.get(this.endpoint + '/autenticacao').pipe(
-            switchMap((user) => {
-                console.log('Autorizada e Api ligada');
-                this.isAuthorizedSubject.next(true);
-                return of(user);
-            }),
-            catchError(error => {
-                if (error.status == 0) {
-                    console.log('Ligando api...');
-                    return this.activeBack().pipe(
-                        switchMap(() => {
-                            return of(null).pipe(
-                                delay(500), // Atraso de 0.5 segundo para a api ligar totalmente
-                                switchMap(() => this.http.get(this.endpoint + '/autenticacao').pipe(
-                                    switchMap((user) => {
-                                        console.log('Api ligada e Autorizada');
-                                        this.isAuthorizedSubject.next(true);
-                                        return of(user);
-                                    }),
-                                    catchError(error => {
-                                        console.log('Api ligada e NÃO Autorizada');
-                                        this.isAuthorizedSubject.next(false);
-                                        return of(false);
-                                    })
-                                ))
-                            );
-                        }),
-
-                        catchError(() => {
-                            console.log('Erro ao ligar a API...');
-                            this.isAuthorizedSubject.next(false);
-                            return of(false);
-                        })
-                    );
-                } else {
-                    console.log('Não Autorizado');
-                    this.isAuthorizedSubject.next(false);
-                    return of(false);
-                }
+        return this.ligarAPI().pipe(
+            switchMap(() => {
+                return this.http.get(this.endpoint + '/autenticacao').pipe(
+                    switchMap((user) => {
+                        this.isAuthorizedSubject.next(true);
+                        return of(user);
+                    }),
+                    catchError(error => {
+                        this.isAuthorizedSubject.next(false);
+                        return of(false);
+                    })
+                );
             })
-        );
+        )
     }
 
     admin(): Observable<any> {
@@ -118,5 +103,52 @@ export class GuardService {
         );
 
         return data;
+    }
+
+    API(): Observable<any> {
+        const data: Observable<any> = this.http.get(this.endpoint + '/api').pipe(
+            catchError(e => {
+                Notify.error(e.error.message);
+                return throwError(() => e);
+            })
+        );
+
+        return data;
+    }
+
+    ligarAPI(): Observable<any> {
+        const maxTentativas = 1;
+
+        const cacheAPI = this.getCacheAPI();
+        const agora = new Date().getTime();
+
+        if (cacheAPI && ((agora - cacheAPI?.dataTime) < this.TEMPO_CACHE_MINUTOS * 60 * 1000)) {
+            console.log('Usando dados do cache da API.');
+            return of(cacheAPI);
+        }
+
+        return this.API().pipe(
+            retry(maxTentativas),
+            switchMap((response) => {
+                const dataAtual = new Date().getTime();
+                this.setCacheAPI({ apiLigada: '1', dataTime: dataAtual });
+                return of(response);
+            }),
+            catchError(error => {
+                console.log('Falha nas tentativas de conectar à API, chamando activeBack...');
+                return this.activeBack().pipe(
+                    delay(500),
+                    switchMap(() => {
+                        return this.API().pipe(
+                            switchMap((response) => {
+                                const dataAtual = new Date().getTime();
+                                this.setCacheAPI({ apiLigada: '1', dataTime: dataAtual });
+                                return of(response);
+                            })
+                        );
+                    })
+                );
+            })
+        );
     }
 }
