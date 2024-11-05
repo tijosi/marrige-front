@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { GuardService } from './service/guard.service';
+import * as moment from 'moment';
 
 @Component({
     selector: 'app-root',
@@ -23,9 +24,14 @@ export class AppComponent implements OnInit {
     activeLoading(login: boolean = false) {
         if (window.location.pathname == '/login' && !login) return;
 
-        this.activeIntro = true;
+        this.activeIntro    = true;
+        const maxDelay      = 4000;
+        const startTime     = moment();
+
         this.gaurdService.ligarAPI().subscribe().add(() => {
-            setTimeout(() => this.activeIntro = false, 4000)
+            const elapsedTime = moment().diff(startTime);
+            const remainingTime = Math.max(0, maxDelay - elapsedTime);
+            setTimeout(() => this.activeIntro = false, remainingTime)
         });
     }
 }
