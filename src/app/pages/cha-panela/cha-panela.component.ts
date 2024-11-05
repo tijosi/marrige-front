@@ -46,6 +46,7 @@ export class ChaPanelaComponent {
             next: ([chaPanelaEnum, presentesChaPanela]) => {
                 this.dsChaPanelaEnum = chaPanelaEnum;
                 this.dsPresentes = presentesChaPanela.filter((el: any) => (el.level == this.dsChaPanelaEnum[0].descricao || el.level == this.dsChaPanelaEnum[1].descricao));
+                this.showLoadPanel = false
             }
         }).add(() => {
             this.showLoadPanel = false

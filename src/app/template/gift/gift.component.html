@@ -21,11 +21,11 @@
             </div>
 
 
-            <div class="img-gift">
+            <div class="img-gift" (click)="btnClick.emit({item: item, cancelar: false})">
                 <img [src]="item.path_img">
             </div>
 
-            <div class="info-gift">
+            <div class="info-gift" (click)="btnClick.emit({item: item, cancelar: false})">
                 <div class="title">{{ item.nome }}</div>
                 <div class="price" *ngIf="!hiddenPrice">
                     <div *ngIf="item.cotas > 1" class="cota">Restam {{item.cotas_disponiveis}} Cota's</div>
