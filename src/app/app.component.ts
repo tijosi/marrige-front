@@ -22,6 +22,11 @@ export class AppComponent implements OnInit {
     }
 
     activeLoading(login: boolean = false) {
+        this.activeIntro    = true;
+
+        /** Site está suspenso */
+        return;
+        
         if (window.location.pathname == '/login' && !login) return;
 
         this.activeIntro    = true;
